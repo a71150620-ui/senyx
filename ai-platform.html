@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>منصة الذكاء الاصطناعي | SENYX</title>
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.ai-hero{padding:6rem 2rem 3rem;background:linear-gradient(180deg,rgba(128,48,192,.06) 0%,transparent 100%);text-align:center;}
+.ai-hero h1{font-family:var(--font-en);font-size:clamp(2rem,5vw,4rem);font-weight:900;color:var(--ai3);letter-spacing:.1em;margin-bottom:.5rem;}
+.engines-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.engine-card{background:var(--bg3);border:1px solid rgba(128,48,192,.15);border-radius:var(--r2);padding:1.3rem;cursor:pointer;transition:all .3s;}
+.engine-card:hover,.engine-card.active{border-color:var(--ai2);box-shadow:0 8px 30px rgba(128,48,192,.15);transform:translateY(-3px);background:rgba(128,48,192,.06);}
+.engine-icon{font-size:1.8rem;margin-bottom:.7rem;}
+.engine-code{font-family:var(--font-mono);font-size:.65rem;color:var(--ai3);letter-spacing:.15em;margin-bottom:.3rem;}
+.engine-name{font-size:.88rem;font-weight:700;color:var(--white);margin-bottom:.5rem;}
+.engine-accuracy{display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;}
+.engine-desc{font-size:.75rem;color:var(--silver);line-height:1.6;}
+.chat-panel{background:var(--bg2);border:1px solid rgba(128,48,192,.2);border-radius:var(--r2);overflow:hidden;}
+.chat-panel-head{padding:1rem 1.5rem;background:rgba(128,48,192,.06);border-bottom:1px solid rgba(128,48,192,.2);display:flex;align-items:center;gap:1rem;}
+.agents-panel{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+@media(max-width:1100px){.engines-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.engines-grid{grid-template-columns:1fr;}.agents-panel{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">منصة الذكاء الاصطناعي</span></div></div>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="ipccore.html">IP Core</a></li>
+    <li><a href="market.html">السوق</a></li>
+    <li><a href="ai-platform.html" class="active">منصة AI</a></li>
+    <li><a href="dashboards.html">لوحات التحكم</a></li>
+    <li><a href="governance.html">الحوكمة</a></li>
+    <li><a href="community.html">المجتمع</a></li>
+    <li><a href="investor.html">المستثمرون</a></li>
+    <li><a href="news.html">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button>
+    <button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="btn-login" onclick="openModal('login')">دخول</button>
+  </div>
+</nav>
+<div class="ai-hero">
+  <div class="section-tag" style="border-color:rgba(128,48,192,.3);color:var(--ai3)">🧠 AI SOVEREIGN PLATFORM</div>
+  <h1>منصة الذكاء الاصطناعي السيادي</h1>
+  <p style="color:var(--silver);max-width:600px;margin:.8rem auto 0;font-size:.95rem;line-height:1.9">8 محركات ذكاء اصطناعي متخصصة، كل منها وكيل مستقل. AI يُمكّن — الإنسان يقرر ويتحمل المسؤولية.</p>
+</div>
+<section class="section">
+  <div class="section-tag" style="color:var(--ai3);border-color:rgba(128,48,192,.3)">المحركات المتخصصة</div>
+  <h2 class="section-title" style="-webkit-text-fill-color:var(--ai3);background:none;color:var(--ai3)">8 Specialized AI Engines</h2>
+  <div class="engines-grid" style="margin-top:2rem" id="enginesGrid"></div>
+  <div style="margin-top:2rem">
+    <div class="chat-panel">
+      <div class="chat-panel-head">
+        <span style="font-size:1.2rem" id="activeEngineIcon">🧠</span>
+        <div>
+          <div style="font-weight:700;color:var(--white)" id="activeEngineName">المحرك المركزي — اختر محركاً للتفاعل</div>
+          <div style="font-size:.7rem;color:var(--silver)" id="activeEngineDesc">انقر على أي محرك أعلاه للتحدث معه مباشرةً</div>
+        </div>
+        <span class="badge badge-ai" style="margin-right:auto;font-size:.65rem" id="activeAccuracy">—</span>
+      </div>
+      <div class="chat-body" id="aiChatBody" style="height:320px">
+        <div class="msg msg-ai">مرحباً! اختر محركاً ذكاءً اصطناعياً من القائمة أعلاه للتحدث معه مباشرةً. كل محرك له تخصص دقيق في منظومة SENYX.</div>
+      </div>
+      <div class="chat-foot">
+        <input class="chat-input" id="aiChatInput" placeholder="اختر محركاً أولاً ثم اكتب سؤالك...">
+        <button class="chat-send" id="aiChatSend" onclick="sendAiChat()">إرسال</button>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" style="background:var(--bg2);max-width:100%;padding:5rem 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag" style="color:var(--ai3);border-color:rgba(128,48,192,.3)">الوكلاء المتخصصون</div>
+    <h2 class="section-title" style="-webkit-text-fill-color:var(--ai3);background:none;color:var(--ai3)">Specialized AI Agents</h2>
+    <div class="agents-panel" style="margin-top:2rem">
+      <div class="chat-box">
+        <div class="chat-head" style="color:var(--ipc3)">🔬 وكيل IP Core المتقدم<span class="badge badge-ipc" style="margin-right:auto;font-size:.6rem">براءات الاختراع</span></div>
+        <div class="chat-body" id="agentIPCBody"><div class="msg msg-ai">أنا وكيل براءات الاختراع المتخصص. أساعدك في استراتيجية الملكية الفكرية، تحليل المنافسين، وحماية ابتكاراتك دولياً.</div></div>
+        <div class="chat-foot"><input class="chat-input" id="agentIPCInput" placeholder="اسألني عن استراتيجية براءة الاختراع..."><button class="chat-send" id="agentIPCSend" onclick="sendAgent('IPC')">إرسال</button></div>
+      </div>
+      <div class="chat-box">
+        <div class="chat-head" style="color:var(--mkt3)">💹 وكيل السوق المالي<span class="badge badge-mkt" style="margin-right:auto;font-size:.6rem">التقييم المالي</span></div>
+        <div class="chat-body" id="agentMKTBody"><div class="msg msg-ai">أنا وكيل التقييم المالي. أحلل قيمة الملكية الفكرية، أنماط السوق، وأساعدك في اتخاذ قرارات الاستثمار الصحيحة.</div></div>
+        <div class="chat-foot"><input class="chat-input" id="agentMKTInput" placeholder="قيّم ابتكاري أو اسأل عن السوق..."><button class="chat-send" id="agentMKTSend" onclick="sendAgent('MKT')">إرسال</button></div>
+      </div>
+      <div class="chat-box">
+        <div class="chat-head" style="color:var(--gold2)">⚖️ وكيل الحوكمة القانوني<span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">القانون السيادي</span></div>
+        <div class="chat-body" id="agentGOVBody"><div class="msg msg-ai">أنا المستشار القانوني السيادي. أساعدك في فهم الأطر القانونية، حقوق الملكية الفكرية، وضمان الامتثال الدولي.</div></div>
+        <div class="chat-foot"><input class="chat-input" id="agentGOVInput" placeholder="استشرني في المسائل القانونية والحوكمة..."><button class="chat-send" id="agentGOVSend" onclick="sendAgent('GOV')">إرسال</button></div>
+      </div>
+      <div class="chat-box">
+        <div class="chat-head" style="color:var(--ai3)">⭐ الوكيل المنسق الرئيسي<span class="badge badge-ai" style="margin-right:auto;font-size:.6rem">SENYX Brain</span></div>
+        <div class="chat-body" id="agentMAINBody"><div class="msg msg-ai">أنا الوكيل المنسق الرئيسي لمنصة SENYX. أنسق بين جميع الوكلاء وأقدم نظرة شاملة على منظومة الابتكار السيادي. اسألني عن أي شيء.</div></div>
+        <div class="chat-foot"><input class="chat-input" id="agentMAINInput" placeholder="اسألني عن أي جانب من SENYX..."><button class="chat-send" id="agentMAINSend" onclick="sendAgent('MAIN')">إرسال</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="snyx-footer">
+  <div style="max-width:1280px;margin:0 auto;text-align:center">
+    <div style="font-family:var(--font-en);font-size:1.2rem;font-weight:900;color:var(--ai3);margin-bottom:.5rem">AI SOVEREIGN PLATFORM — SENYX</div>
+    <p style="font-size:.82rem;color:var(--silver)">منصة الذكاء الاصطناعي السيادي | AI يُمكّن — الإنسان يقرر</p>
+    <div style="margin-top:1rem"><a href="index.html" style="font-size:.82rem">← العودة للرئيسية</a></div>
+  </div>
+</footer>
+<div class="modal-overlay" id="modal-apikey">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('apikey')">✕</button>
+    <div class="modal-title">🔑 مفتاح API</div>
+    <div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)"></div>
+    <div class="form-group"><label class="form-label">مفتاح API Anthropic</label><input class="form-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-..."></div>
+    <div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ وتفعيل</button><button class="btn-outline" onclick="clearApiKey()">🗑 حذف</button></div>
+    <p style="margin-top:.8rem;font-size:.73rem;color:var(--silver)"><a href="https://console.anthropic.com" target="_blank" style="color:var(--gold3)">console.anthropic.com</a></p>
+  </div>
+</div>
+<script src="js/shared.js"></script>
+<script>
+const ENGINES=[
+  {icon:'🔍',code:'SNA',name:'التحليل الدلالي',accuracy:97,desc:'يحلل النصوص بـ 8 لغات ويكشف التشابه المفاهيمي بين الابتكارات',sys:'أنت محرك SNA (Semantic Network Analysis) في SENYX. متخصص في التحليل الدلالي للابتكارات بـ 8 لغات، كشف التشابه المفاهيمي، وتحليل شبكات المعرفة.'},
+  {icon:'📊',code:'ISA',name:'تقييم الابتكار',accuracy:94,desc:'يحسب درجة الابتكار من 0-100 ويقيّم الأبعاد المختلفة للابتكار',sys:'أنت محرك ISA (Innovation Scoring Algorithm) في SENYX. تحسب درجة الابتكار من 0-100 وتقيّم: الأصالة، القابلية للتطبيق، الجدوى التجارية، الأثر الاجتماعي.'},
+  {icon:'🛡️',code:'FSE',name:'محرك الفطرة',accuracy:100,desc:'الفلتر الأخلاقي الإسلامي والإنساني — 100% دقة في الكشف الأخلاقي',sys:'أنت محرك FSE (Fitrah Shield Engine) في SENYX. تطبّق الفلتر الأخلاقي الإسلامي والإنساني على الابتكارات. مبدأك: "لا ضرر ولا ضرار". دقتك 100%.'},
+  {icon:'💎',code:'VE',name:'محرك التقييم',accuracy:92,desc:'يقيّم القيمة السوقية والاستثمارية للملكية الفكرية',sys:'أنت محرك VE (Valuation Engine) في SENYX. تقيّم القيمة السوقية للملكية الفكرية بدقة 92% مستخدماً بيانات السوق والمقارنات الصناعية.'},
+  {icon:'🌐',code:'MI',name:'استخبارات السوق',accuracy:95,desc:'يتابع اتجاهات السوق واحتياجات القطاعات في الوقت الفعلي',sys:'أنت محرك MI (Market Intelligence) في SENYX. تتابع اتجاهات السوق، احتياجات القطاعات، وتقدم تحليلات استراتيجية مدعومة بالبيانات.'},
+  {icon:'🔐',code:'FD',name:'كشف الاحتيال',accuracy:99,desc:'يكشف الابتكارات المزيفة والسرقة الفكرية بدقة 99%',sys:'أنت محرك FD (Fraud Detection) في SENYX. تكشف الابتكارات المزيفة، السرقة الفكرية، والتلاعب بدقة 99%. أنت حارس النزاهة في المنصة.'},
+  {icon:'💬',code:'CE',name:'محرك التواصل',accuracy:96,desc:'يدار المفاوضات والتفاوض الذكي بين الأطراف',sys:'أنت محرك CE (Communication Engine) في SENYX. تدير المفاوضات الذكية بين الأطراف، توصل الرسائل بدقة ثقافية، وتضمن تواصلاً واضحاً وفعالاً.'},
+  {icon:'📈',code:'MKI',name:'تكامل السوق',accuracy:91,desc:'يربط جميع محركات AI ويضمن تكاملها مع السوق السيادي',sys:'أنت محرك MKI (Market Integration) في SENYX. تنسق بين جميع المحركات الـ8 وتضمن تكاملها مع السوق السيادي. أنت عقل التكامل في المنصة.'}
+];
+let activeEngine=null;
+const aiHistory=[];
+const agentHistories={IPC:[],MKT:[],GOV:[],MAIN:[]};
+const agentSystems={
+  IPC:'أنت وكيل براءات الاختراع المتقدم في SENYX. تساعد في استراتيجية الملكية الفكرية، تحليل المنافسين، ومسارات التسجيل الدولية.',
+  MKT:'أنت وكيل التقييم المالي في SENYX. تحلل قيمة الملكية الفكرية، أنماط السوق، وتقدم توصيات استثمارية.',
+  GOV:'أنت المستشار القانوني السيادي في SENYX. تساعد في الأطر القانونية، حقوق الملكية الفكرية، والامتثال الدولي والخليجي.',
+  MAIN:'أنت الوكيل المنسق الرئيسي لمنصة SENYX. تنسق بين جميع الوكلاء وتقدم نظرة شاملة على منظومة الابتكار السيادي.'
+};
+function renderEngines(){
+  document.getElementById('enginesGrid').innerHTML=ENGINES.map((e,i)=>`
+    <div class="engine-card reveal" onclick="selectEngine(${i})">
+      <div class="engine-icon">${e.icon}</div>
+      <div class="engine-code">${e.code}</div>
+      <div class="engine-name">${e.name}</div>
+      <div class="engine-accuracy">
+        <div style="flex:1;height:4px;background:var(--bg4);border-radius:2px"><div style="width:${e.accuracy}%;height:100%;background:var(--ai3);border-radius:2px"></div></div>
+        <span style="font-family:var(--font-mono);font-size:.68rem;color:var(--ai3)">${e.accuracy}%</span>
+      </div>
+      <div class="engine-desc">${e.desc}</div>
+    </div>`).join('');
+}
+function selectEngine(i){
+  activeEngine=ENGINES[i];
+  document.querySelectorAll('.engine-card').forEach((c,j)=>c.classList.toggle('active',j===i));
+  document.getElementById('activeEngineIcon').textContent=activeEngine.icon;
+  document.getElementById('activeEngineName').textContent=`${activeEngine.code} — ${activeEngine.name}`;
+  document.getElementById('activeEngineDesc').textContent=activeEngine.desc;
+  document.getElementById('activeAccuracy').textContent=`دقة: ${activeEngine.accuracy}%`;
+  document.getElementById('aiChatInput').placeholder=`اسأل محرك ${activeEngine.code}...`;
+  appendMsg('aiChatBody','ai',`تم تفعيل محرك ${activeEngine.code} — ${activeEngine.name}. دقتي ${activeEngine.accuracy}%. كيف أستطيع مساعدتك؟`);
+}
+async function sendAiChat(){
+  if(!activeEngine){alert('اختر محركاً أولاً من القائمة أعلاه.');return;}
+  await chatSend({inputId:'aiChatInput',bodyId:'aiChatBody',btnId:'aiChatSend',system:activeEngine.sys,history:aiHistory});
+}
+bindChatEnter('aiChatInput',sendAiChat);
+async function sendAgent(key){
+  await chatSend({inputId:'agent'+key+'Input',bodyId:'agent'+key+'Body',btnId:'agent'+key+'Send',system:agentSystems[key],history:agentHistories[key]});
+}
+['IPC','MKT','GOV','MAIN'].forEach(k=>bindChatEnter('agent'+k+'Input',()=>sendAgent(k)));
+renderEngines();
+</script>
+</body>
+</html>

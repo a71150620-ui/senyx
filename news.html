@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>الأخبار والتحديثات | SENYX</title>
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.news-layout{display:grid;grid-template-columns:2fr 1fr;gap:2rem;}
+.news-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;margin-bottom:1.2rem;transition:all .3s;cursor:pointer;}
+.news-card:hover{border-color:rgba(184,146,42,.4);box-shadow:0 8px 30px rgba(0,0,0,.3);transform:translateY(-2px);}
+.news-card.featured{border-color:rgba(184,146,42,.35);background:rgba(184,146,42,.03);}
+.news-img{width:100%;height:160px;background:linear-gradient(135deg,var(--bg4),var(--bg5));border-radius:var(--r2);margin-bottom:1rem;display:flex;align-items:center;justify-content:center;font-size:3rem;}
+.news-cat{display:inline-block;font-family:var(--font-mono);font-size:.62rem;padding:.2rem .6rem;border-radius:10px;margin-bottom:.6rem;}
+.news-title{font-size:.95rem;font-weight:700;color:var(--white);margin-bottom:.5rem;line-height:1.5;}
+.news-excerpt{font-size:.8rem;color:var(--silver);line-height:1.7;margin-bottom:.8rem;}
+.news-meta{display:flex;align-items:center;gap:1rem;font-size:.72rem;color:var(--silver);}
+.sidebar-widget{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;margin-bottom:1.2rem;}
+.sidebar-title{font-family:var(--font-mono);font-size:.72rem;color:var(--gold);letter-spacing:.1em;margin-bottom:1rem;}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:.5rem;}
+.trend-item{display:flex;justify-content:space-between;align-items:center;padding:.5rem 0;border-bottom:1px solid var(--border2);font-size:.8rem;}
+@media(max-width:900px){.news-layout{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">الأخبار</span></div></div>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li><li><a href="ipccore.html">IP Core</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="governance.html">الحوكمة</a></li><li><a href="community.html">المجتمع</a></li><li><a href="investor.html">المستثمرون</a></li><li><a href="news.html" class="active">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions"><button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button><button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button><button class="btn-login">دخول</button></div>
+</nav>
+<section class="section" style="padding-top:5rem">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+    <div><div class="section-tag">📰 SENYX NEWS</div><h2 class="section-title" style="margin-bottom:0">أخبار وتحديثات</h2></div>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap" id="catFilters"></div>
+  </div>
+  <div class="news-layout">
+    <div id="newsGrid"></div>
+    <div>
+      <!-- SEARCH -->
+      <div class="sidebar-widget">
+        <div class="sidebar-title">🔍 بحث</div>
+        <div style="display:flex;gap:.5rem"><input class="form-input" id="newsSearch" placeholder="ابحث في الأخبار..."><button class="btn-primary" style="flex-shrink:0;padding:.6rem 1rem" onclick="filterNews()">بحث</button></div>
+      </div>
+      <!-- NEWSLETTER -->
+      <div class="sidebar-widget" style="border-color:rgba(184,146,42,.25)">
+        <div class="sidebar-title">📩 النشرة الإخبارية</div>
+        <p style="font-size:.78rem;color:var(--silver);margin-bottom:.8rem">احصل على آخر أخبار SENYX مباشرة في بريدك.</p>
+        <div class="form-group" style="margin-bottom:.6rem"><input class="form-input" id="nlEmail" type="email" placeholder="بريدك الإلكتروني"></div>
+        <button class="btn-primary" style="width:100%;font-size:.8rem" onclick="subscribeNL()">🚀 اشترك الآن</button>
+      </div>
+      <!-- TRENDING -->
+      <div class="sidebar-widget">
+        <div class="sidebar-title">🔥 الأكثر قراءة</div>
+        <div id="trendingList"></div>
+      </div>
+      <!-- TAGS -->
+      <div class="sidebar-widget">
+        <div class="sidebar-title">🏷️ التصنيفات</div>
+        <div class="tag-cloud" id="tagCloud"></div>
+      </div>
+      <!-- AI SUMMARY -->
+      <div class="chat-box" style="height:300px">
+        <div class="chat-head" style="color:var(--gold2)">📰 محلل الأخبار الذكي<span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">News AI</span></div>
+        <div class="chat-body" id="newsChatBody"><div class="msg msg-ai">مرحباً! أنا محلل أخبار SENYX. أستطيع تلخيص الأخبار، شرح التطورات التقنية، وتحليل تأثيرها على منظومة الابتكار السيادي.</div></div>
+        <div class="chat-foot"><input class="chat-input" id="newsChatInput" placeholder="اسألني عن أي خبر أو تطور..."><button class="chat-send" id="newsChatSend" onclick="sendNewsChat()">إرسال</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="snyx-footer"><div style="max-width:1280px;margin:0 auto;text-align:center"><div style="font-family:var(--font-en);font-size:1.2rem;font-weight:900;color:var(--gold3)">SENYX NEWS</div><p style="font-size:.82rem;color:var(--silver);margin-top:.5rem">أخبار ومستجدات مدينة الابتكار السيادي</p><div style="margin-top:1rem"><a href="index.html" style="font-size:.82rem">← الرئيسية</a></div></div></footer>
+<div class="modal-overlay" id="modal-apikey"><div class="modal-box"><button class="modal-close" onclick="closeModal('apikey')">✕</button><div class="modal-title">🔑 مفتاح API</div><div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)"></div><div class="form-group"><label class="form-label">sk-ant-...</label><input class="form-input" id="apiKeyInput" type="password"></div><div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ</button><button class="btn-outline" onclick="clearApiKey()">🗑</button></div></div></div>
+<script src="js/shared.js"></script>
+<script>
+const NEWS=[
+  {id:1,icon:'🤝',cat:'شراكات',catColor:'badge-ipc',title:'SENYX تعلن شراكة استراتيجية مع وزارة الاتصالات وتقنية المعلومات',excerpt:'أبرمت منصة SENYX اتفاقية تعاون مع وزارة الاتصالات وتقنية المعلومات في المملكة العربية السعودية لدعم مسيرة الابتكار الوطني.',date:'15 مارس 2025',featured:true},
+  {id:2,icon:'🧠',cat:'تقنية',catColor:'badge-ai',title:'إطلاق محرك FSE بدقة 100% في الكشف الأخلاقي',excerpt:'أعلنت SENYX عن إطلاق محرك درع الفطرة FSE بدقة غير مسبوقة تبلغ 100% في اكتشاف الابتكارات الضارة.',date:'10 مارس 2025',featured:false},
+  {id:3,icon:'💹',cat:'سوق',catColor:'badge-mkt',title:'السوق السيادي يسجل أول صفقة براءة اختراع بقيمة $2.5M',excerpt:'أتمّ السوق السيادي لـ SENYX أول صفقة تاريخية بتداول براءة اختراع في تكنولوجيا الطاقة المتجددة.',date:'5 مارس 2025',featured:false},
+  {id:4,icon:'🎓',cat:'تعليم',catColor:'badge-gold',title:'انطلاق برنامج "مبتكر المدينة" لتأهيل 500 مبتكر سعودي',excerpt:'أطلقت SENYX برنامجها التدريبي الشامل لتأهيل جيل جديد من المبتكرين السعوديين في مجال الملكية الفكرية.',date:'1 مارس 2025',featured:false},
+  {id:5,icon:'🏆',cat:'جوائز',catColor:'badge-gold',title:'SENYX تحصد جائزة أفضل منصة ابتكار في مؤتمر GITEX 2025',excerpt:'حصدت منصة SENYX جائزة أفضل منصة ابتكار سيادي في مؤتمر GITEX التقني بدبي.',date:'25 فبراير 2025',featured:false},
+];
+const newsHistory=[];
+const NEWS_SYS='أنت محلل أخبار SENYX. تساعد في تلخيص الأخبار وتحليل تأثيرها على منظومة الابتكار السيادي. كن مختصراً وثاقب الرأي.';
+let activecat='الكل';
+function renderNews(list){
+  document.getElementById('newsGrid').innerHTML=list.map(n=>`
+    <div class="news-card ${n.featured?'featured':''} reveal" onclick="openNews(${n.id})">
+      <div class="news-img">${n.icon}</div>
+      <span class="news-cat ${n.catColor}">${n.cat}</span>
+      <div class="news-title">${n.title}</div>
+      <div class="news-excerpt">${n.excerpt}</div>
+      <div class="news-meta"><span>📅 ${n.date}</span>${n.featured?'<span class="badge badge-gold" style="font-size:.6rem">مميز</span>':''}</div>
+    </div>`).join('');
+  initReveal();
+}
+function renderCats(){
+  const cats=['الكل',...new Set(NEWS.map(n=>n.cat))];
+  document.getElementById('catFilters').innerHTML=cats.map(c=>`<button onclick="filterByCat('${c}',this)" class="btn-outline" style="font-size:.72rem;padding:.3rem .7rem;${c==='الكل'?'border-color:var(--gold);color:var(--gold2);':''}">${c}</button>`).join('');
+}
+function filterByCat(cat,btn){
+  document.querySelectorAll('#catFilters button').forEach(b=>{b.style.borderColor='';b.style.color='';});
+  btn.style.borderColor='var(--gold)';btn.style.color='var(--gold2)';
+  renderNews(cat==='الكل'?NEWS:NEWS.filter(n=>n.cat===cat));
+}
+function filterNews(){
+  const q=document.getElementById('newsSearch').value.trim().toLowerCase();
+  renderNews(q?NEWS.filter(n=>n.title.includes(q)||n.excerpt.includes(q)):NEWS);
+}
+function openNews(id){
+  const n=NEWS.find(x=>x.id===id);
+  appendMsg('newsChatBody','user',`أخبرني أكثر عن: ${n.title}`);
+  document.getElementById('newsChatBody').scrollTop=9999;
+  sendNewsChat(`أخبرني تحليلاً موجزاً لهذا الخبر: ${n.title}. ${n.excerpt}`);
+}
+async function sendNewsChat(override){
+  if(override){
+    document.getElementById('newsChatInput').value=override;
+  }
+  await chatSend({inputId:'newsChatInput',bodyId:'newsChatBody',btnId:'newsChatSend',system:NEWS_SYS,history:newsHistory});
+}
+bindChatEnter('newsChatInput',()=>sendNewsChat());
+function subscribeNL(){
+  const e=document.getElementById('nlEmail').value.trim();
+  if(!e||!e.includes('@')){alert('أدخل بريداً إلكترونياً صحيحاً.');return;}
+  alert('✅ تم تسجيلك في النشرة الإخبارية!\nسنرسل لك آخر أخبار SENYX أسبوعياً.');
+  document.getElementById('nlEmail').value='';
+}
+document.getElementById('trendingList').innerHTML=NEWS.slice(0,3).map((n,i)=>`<div class="trend-item"><span style="font-size:.8rem;color:var(--white)">${n.title.slice(0,40)}...</span><span class="badge badge-gold" style="font-size:.6rem">${(i+1)*120+80} قراءة</span></div>`).join('');
+const tags=['الذكاء الاصطناعي','براءات الاختراع','السوق السيادي','الحوكمة','$SNYX','Vision 2030','الابتكار','المدينة المنورة'];
+document.getElementById('tagCloud').innerHTML=tags.map(t=>`<span class="badge badge-gold" style="cursor:pointer;font-size:.68rem" onclick="document.getElementById('newsSearch').value='${t}';filterNews()">${t}</span>`).join('');
+renderCats();renderNews(NEWS);
+</script>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>حوكمة الفطرة | SENYX</title>
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.gov-hero{padding:6rem 2rem 3rem;background:linear-gradient(180deg,rgba(184,146,42,.06) 0%,transparent 100%);text-align:center;}
+.gov-hero h1{font-family:var(--font-en);font-size:clamp(2rem,5vw,4rem);font-weight:900;color:var(--gold3);letter-spacing:.1em;margin-bottom:.5rem;}
+.layers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.fitrah-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.fitrah-item{background:var(--bg3);border:1px solid rgba(34,170,102,.2);border-radius:var(--r2);padding:1rem;text-align:center;}
+.fitrah-item.bad{border-color:rgba(192,48,48,.2);}
+@media(max-width:900px){.layers-grid{grid-template-columns:1fr;}.fitrah-grid{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">حوكمة الفطرة</span></div></div>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li><li><a href="ipccore.html">IP Core</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="governance.html" class="active">الحوكمة</a></li><li><a href="community.html">المجتمع</a></li><li><a href="investor.html">المستثمرون</a></li><li><a href="news.html">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions"><button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button><button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button><button class="btn-login">دخول</button></div>
+</nav>
+<div class="gov-hero">
+  <div class="section-tag" style="border-color:rgba(184,146,42,.3);color:var(--gold3)">⚖️ FITRAH GOVERNANCE</div>
+  <h1>حوكمة الفطرة</h1>
+  <p style="color:var(--silver);max-width:600px;margin:.8rem auto 0;font-size:.95rem;line-height:1.9">نظام حوكمة ثلاثي المستويات. AI يُمكّن — الإنسان يقرر ويتحمل المسؤولية الكاملة.</p>
+</div>
+<section class="section">
+  <div class="section-tag">الهيكل الحوكمي</div>
+  <h2 class="section-title">Three-Layer Governance</h2>
+  <div class="layers-grid" style="margin-top:2rem">
+    <div class="card reveal" style="border-color:rgba(184,146,42,.25)"><div style="font-size:2rem;margin-bottom:.8rem">👑</div><div style="font-family:var(--font-en);font-size:1rem;font-weight:700;color:var(--gold3);margin-bottom:.3rem">Layer 1: Strategic</div><div style="font-weight:700;color:var(--white);margin-bottom:.8rem">الحوكمة الاستراتيجية</div><p style="font-size:.82rem;color:var(--silver);line-height:1.8">مجلس الحوكمة السيادي — يحدد التوجه الاستراتيجي، يصادق على السياسات الكبرى، ويضمن الامتثال للأطر الوطنية والإسلامية.</p><div class="divider"></div><div style="font-size:.75rem;color:var(--silver)">الأعضاء: 7 خبراء استراتيجيين</div></div>
+    <div class="card reveal" style="border-color:rgba(61,85,200,.25)"><div style="font-size:2rem;margin-bottom:.8rem">⚙️</div><div style="font-family:var(--font-en);font-size:1rem;font-weight:700;color:var(--ipc3);margin-bottom:.3rem">Layer 2: Operational</div><div style="font-weight:700;color:var(--white);margin-bottom:.8rem">الحوكمة التشغيلية</div><p style="font-size:.82rem;color:var(--silver);line-height:1.8">لجان التشغيل المتخصصة — تشرف على المنصات اليومية، تراجع قرارات AI، وتحل النزاعات بين الأطراف.</p><div class="divider"></div><div style="font-size:.75rem;color:var(--silver)">الأعضاء: 4 لجان متخصصة</div></div>
+    <div class="card reveal" style="border-color:rgba(192,48,48,.25)"><div style="font-size:2rem;margin-bottom:.8rem">🛡️</div><div style="font-family:var(--font-en);font-size:1rem;font-weight:700;color:var(--gov2);margin-bottom:.3rem">Layer 3: Ethical</div><div style="font-weight:700;color:var(--white);margin-bottom:.8rem">حوكمة الفطرة</div><p style="font-size:.82rem;color:var(--silver);line-height:1.8">درع الفطرة — الطبقة الأخلاقية الإسلامية والإنسانية. تفحص كل ابتكار لضمان عدم الإضرار بالمجتمع أو مخالفة المبادئ الأخلاقية.</p><div class="divider"></div><div style="font-size:.75rem;color:var(--silver)">المبدأ: لا ضرر ولا ضرار</div></div>
+  </div>
+</section>
+<section class="section" style="background:var(--bg2);max-width:100%;padding:5rem 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag">درع الفطرة</div>
+    <h2 class="section-title">Fitrah Shield — معايير الفحص</h2>
+    <div class="fitrah-grid" style="margin-top:2rem">
+      <div class="fitrah-item reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">✅</div><div style="font-size:.82rem;font-weight:700;color:var(--white)">لا ضرر جسدي</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">سلامة الإنسان أولاً</div></div>
+      <div class="fitrah-item reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">✅</div><div style="font-size:.82rem;font-weight:700;color:var(--white)">لا استغلال</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">حماية الضعفاء</div></div>
+      <div class="fitrah-item reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">✅</div><div style="font-size:.82rem;font-weight:700;color:var(--white)">لا فساد أخلاقي</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">القيم الإسلامية</div></div>
+      <div class="fitrah-item reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">✅</div><div style="font-size:.82rem;font-weight:700;color:var(--white)">لا ضرر بيئي</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">الاستدامة</div></div>
+      <div class="fitrah-item bad reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">🚫</div><div style="font-size:.82rem;font-weight:700;color:var(--red)">أسلحة الدمار</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">محظور قطعياً</div></div>
+      <div class="fitrah-item bad reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">🚫</div><div style="font-size:.82rem;font-weight:700;color:var(--red)">انتهاك الخصوصية</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">محظور</div></div>
+      <div class="fitrah-item bad reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">🚫</div><div style="font-size:.82rem;font-weight:700;color:var(--red)">الإدمان والإيذاء</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">محظور</div></div>
+      <div class="fitrah-item bad reveal"><div style="font-size:1.5rem;margin-bottom:.5rem">🚫</div><div style="font-size:.82rem;font-weight:700;color:var(--red)">الاحتكار الضار</div><div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">محظور</div></div>
+    </div>
+    <div style="margin-top:2rem;background:var(--bg3);border:1px solid rgba(192,48,48,.2);border-radius:var(--r2);overflow:hidden;">
+      <div style="padding:1rem 1.5rem;background:rgba(192,48,48,.06);border-bottom:1px solid rgba(192,48,48,.15);display:flex;justify-content:space-between;align-items:center">
+        <span style="font-family:var(--font-mono);font-size:.72rem;color:var(--gov2)">🛡️ سجل الابتكارات المرفوضة اليوم</span>
+        <span class="badge badge-red">23 مرفوض</span>
+      </div>
+      <table class="snyx-table">
+        <thead><tr><th>الابتكار</th><th>سبب الرفض</th><th>المعيار</th></tr></thead>
+        <tbody id="rejectedTbody"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem">
+    <div>
+      <div class="section-tag">طلب حوكمة</div>
+      <h3 style="font-family:var(--font-ar);font-size:1.2rem;color:var(--white);margin-bottom:1.5rem">تقديم طلب للمجلس</h3>
+      <div class="card">
+        <div class="form-group"><label class="form-label">نوع الطلب</label>
+          <select class="form-select" id="govType">
+            <option>اعتراض على قرار AI</option><option>نزاع حقوق ملكية فكرية</option><option>طلب استثناء حوكمي</option><option>مراجعة معيار الفطرة</option><option>شكوى ضد مستخدم</option>
+          </select>
+        </div>
+        <div class="form-group"><label class="form-label">الوصف التفصيلي</label><textarea class="form-textarea" id="govDesc" style="min-height:100px" placeholder="اشرح طلبك بوضوح مع رقم القضية أو الابتكار المعني..."></textarea></div>
+        <div class="form-group"><label class="form-label">الأدلة الداعمة</label><input class="form-input" id="govEvid" placeholder="أرقام الشهادات، روابط، وثائق..."></div>
+        <button class="btn-primary" style="width:100%" onclick="submitGovRequest()">⚖️ تقديم الطلب للمجلس</button>
+      </div>
+    </div>
+    <div class="chat-box">
+      <div class="chat-head" style="color:var(--gold2)">⚖️ وكيل الحوكمة القانوني<span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">Gov AI</span></div>
+      <div class="chat-body" id="govChatBody"><div class="msg msg-ai">مرحباً! أنا وكيل الحوكمة القانوني. أساعدك في فهم الأطر القانونية لـ SENYX، معايير درع الفطرة، وإجراءات تقديم الطلبات.</div></div>
+      <div class="chat-foot"><input class="chat-input" id="govChatInput" placeholder="اسألني عن الحوكمة، القانون، الفطرة..."><button class="chat-send" id="govChatSend" onclick="sendGovChat()">إرسال</button></div>
+    </div>
+  </div>
+</section>
+<footer class="snyx-footer"><div style="max-width:1280px;margin:0 auto;text-align:center"><div style="font-family:var(--font-en);font-size:1.2rem;font-weight:900;color:var(--gold3)">FITRAH GOVERNANCE — SENYX</div><p style="font-size:.82rem;color:var(--silver);margin-top:.5rem">AI يُمكّن — الإنسان يقرر | المدينة المنورة</p><div style="margin-top:1rem"><a href="index.html" style="font-size:.82rem">← الرئيسية</a></div></div></footer>
+<div class="modal-overlay" id="modal-apikey"><div class="modal-box"><button class="modal-close" onclick="closeModal('apikey')">✕</button><div class="modal-title">🔑 مفتاح API</div><div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)"></div><div class="form-group"><label class="form-label">sk-ant-...</label><input class="form-input" id="apiKeyInput" type="password"></div><div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ</button><button class="btn-outline" onclick="clearApiKey()">🗑</button></div><p style="margin-top:.8rem;font-size:.73rem;color:var(--silver)"><a href="https://console.anthropic.com" target="_blank" style="color:var(--gold3)">console.anthropic.com</a></p></div></div>
+<script src="js/shared.js"></script>
+<script>
+const govHistory=[];
+const GOV_SYS='أنت وكيل الحوكمة القانوني في SENYX. متخصص في: أطر الملكية الفكرية الدولية، معايير درع الفطرة، إجراءات المجلس الحوكمي، وحل النزاعات. مبدأك: AI يُمكّن — الإنسان يقرر.';
+async function sendGovChat(){await chatSend({inputId:'govChatInput',bodyId:'govChatBody',btnId:'govChatSend',system:GOV_SYS,history:govHistory});}
+bindChatEnter('govChatInput',sendGovChat);
+function submitGovRequest(){
+  const t=document.getElementById('govType').value;
+  const d=document.getElementById('govDesc').value.trim();
+  if(!d){alert('يرجى وصف طلبك.');return;}
+  const num='GOV-'+Date.now().toString().slice(-6);
+  alert(`✅ تم تقديم طلبك بنجاح!\n\nرقم الطلب: ${num}\nالنوع: ${t}\n\nسيراجع مجلس الحوكمة طلبك خلال 48 ساعة وسيصلك رد عبر البريد.`);
+}
+const rejected=[
+  ['نظام تتبع سري للأفراد','انتهاك الخصوصية','ISP-4-P'],
+  ['برنامج تلاعب إعلامي مؤتمت','فساد أخلاقي','ISP-4-E'],
+  ['آلية تعزيز الإدمان الرقمي','إدمان وإيذاء','ISP-4-H'],
+  ['نظام تحيّز خوارزمي','استغلال','ISP-4-F'],
+];
+document.getElementById('rejectedTbody').innerHTML=rejected.map(r=>`<tr><td>${r[0]}</td><td style="color:var(--red);font-size:.78rem">${r[1]}</td><td><span class="badge badge-red" style="font-size:.62rem">${r[2]}</span></td></tr>`).join('');
+</script>
+</body>
+</html>

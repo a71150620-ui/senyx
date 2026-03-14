@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>عرض المستثمرين | SENYX</title>
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.slide{display:none;animation:sIn .4s ease;}
+.slide.active{display:block;}
+@keyframes sIn{from{opacity:0;transform:translateX(-20px)}to{opacity:1;transform:translateX(0)}}
+.slide-nav{display:flex;gap:.5rem;justify-content:center;margin:1.5rem 0;flex-wrap:wrap;}
+.slide-dot{width:32px;height:6px;border-radius:3px;background:var(--bg4);cursor:pointer;transition:all .2s;}
+.slide-dot.active{background:var(--gold);width:48px;}
+.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.metric{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;text-align:center;}
+.comp-table{width:100%;border-collapse:collapse;}
+.comp-table th{background:var(--bg4);padding:.7rem 1rem;font-size:.75rem;color:var(--gold2);text-align:center;border-bottom:1px solid var(--border);}
+.comp-table td{padding:.7rem 1rem;text-align:center;font-size:.82rem;border-bottom:1px solid var(--border2);}
+@media(max-width:600px){.metric-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">عرض المستثمرين</span></div></div>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li><li><a href="ipccore.html">IP Core</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="governance.html">الحوكمة</a></li><li><a href="community.html">المجتمع</a></li><li><a href="investor.html" class="active">المستثمرون</a></li><li><a href="news.html">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions"><button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button><button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button><button class="btn-login">دخول</button></div>
+</nav>
+<section class="section" style="padding-top:5rem">
+  <div style="text-align:center;margin-bottom:2rem">
+    <div class="section-tag">INVESTOR DECK</div>
+    <h2 class="section-title">عرض المستثمرين — SENYX 2025</h2>
+    <p class="section-sub reveal" style="margin:0 auto">الفرصة الاستثمارية الأولى في منصة الابتكار السيادي العالمية.</p>
+  </div>
+  <div class="slide-nav" id="slideNav"></div>
+  <div id="slidesContainer">
+    <div class="slide active" id="slide-0">
+      <div class="card" style="text-align:center;padding:3rem">
+        <div style="font-size:3rem;margin-bottom:1rem">🌐</div>
+        <h3 style="font-family:var(--font-en);font-size:2rem;font-weight:900;color:var(--gold3);margin-bottom:.5rem">THE SENYX VISION</h3>
+        <p style="font-size:1.1rem;color:var(--white);margin-bottom:1.5rem;font-weight:300">مدينة الابتكار السيادي — أول منصة من نوعها في العالم</p>
+        <p style="font-size:.9rem;color:var(--silver);max-width:700px;margin:0 auto;line-height:1.9">SENYX تبني منظومة متكاملة تجمع بين الملكية الفكرية والذكاء الاصطناعي والحوكمة الأخلاقية والسوق السيادي — كل ذلك في منصة واحدة مدعومة بتقنية البلوكتشين وعملة $SNYX السيادية.</p>
+        <div class="divider"></div>
+        <div style="display:flex;gap:2rem;justify-content:center;flex-wrap:wrap">
+          <div><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--gold3)">$4.8B</div><div style="font-size:.75rem;color:var(--silver)">حجم السوق المستهدف</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--mkt3)">135M+</div><div style="font-size:.75rem;color:var(--silver)">براءة اختراع مفهرسة</div></div>
+          <div><div style="font-family:var(--font-mono);font-size:1.4rem;color:var(--ai3)">9</div><div style="font-size:.75rem;color:var(--silver)">وكلاء AI متخصصون</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-1">
+      <div class="card">
+        <h3 style="font-family:var(--font-en);font-size:1.4rem;font-weight:700;color:var(--gold3);margin-bottom:1.5rem">THE PROBLEM</h3>
+        <p style="color:var(--white);font-size:1rem;margin-bottom:1rem">مليارات الدولارات من الابتكارات تُهدر سنوياً بسبب:</p>
+        <div class="grid-2" style="gap:1rem">
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.5rem;margin-bottom:.5rem">❌</div><div style="font-weight:700;color:var(--red);margin-bottom:.3rem">ضعف الحماية</div><p style="font-size:.82rem;color:var(--silver)">70% من الابتكارات في منطقة MENA لا تحصل على حماية كافية للملكية الفكرية</p></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.5rem;margin-bottom:.5rem">❌</div><div style="font-weight:700;color:var(--red);margin-bottom:.3rem">غياب السوق</div><p style="font-size:.82rem;color:var(--silver)">لا يوجد سوق منظّم لتداول الملكية الفكرية في العالم العربي</p></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.5rem;margin-bottom:.5rem">❌</div><div style="font-weight:700;color:var(--red);margin-bottom:.3rem">تكاليف مرتفعة</div><p style="font-size:.82rem;color:var(--silver)">تسجيل براءة اختراع دولية يكلّف $50,000+ ويستغرق سنوات</p></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.5rem;margin-bottom:.5rem">❌</div><div style="font-weight:700;color:var(--red);margin-bottom:.3rem">فجوة الثقة</div><p style="font-size:.82rem;color:var(--silver)">غياب الشفافية والحوكمة الأخلاقية في منصات الابتكار الحالية</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-2">
+      <div class="card">
+        <h3 style="font-family:var(--font-en);font-size:1.4rem;font-weight:700;color:var(--gold3);margin-bottom:1.5rem">THE SOLUTION — SENYX PLATFORM</h3>
+        <div class="grid-2" style="gap:1rem">
+          <div style="background:rgba(61,85,200,.06);border:1px solid rgba(61,85,200,.2);border-radius:var(--r2);padding:1.2rem"><div style="color:var(--ipc3);font-weight:700;margin-bottom:.5rem">🔬 IP Core</div><p style="font-size:.82rem;color:var(--silver)">فحص 135M+ براءة في ثوانٍ، شهادات ZKP مشفرة، تسجيل دولي مبسّط</p></div>
+          <div style="background:rgba(18,137,110,.06);border:1px solid rgba(18,137,110,.2);border-radius:var(--r2);padding:1.2rem"><div style="color:var(--mkt3);font-weight:700;margin-bottom:.5rem">💹 Sovereign Market</div><p style="font-size:.82rem;color:var(--silver)">أول سوق عربي للملكية الفكرية، مزادات ذكية، مطابقة GNN</p></div>
+          <div style="background:rgba(128,48,192,.06);border:1px solid rgba(128,48,192,.2);border-radius:var(--r2);padding:1.2rem"><div style="color:var(--ai3);font-weight:700;margin-bottom:.5rem">🧠 AI Sovereign</div><p style="font-size:.82rem;color:var(--silver)">8 محركات AI متخصصة، 9 وكلاء ذكيين، تحليل بـ 8 لغات</p></div>
+          <div style="background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.2);border-radius:var(--r2);padding:1.2rem"><div style="color:var(--gold3);font-weight:700;margin-bottom:.5rem">⚖️ Fitrah Governance</div><p style="font-size:.82rem;color:var(--silver)">حوكمة أخلاقية فريدة، درع الفطرة، AI يُمكّن والإنسان يقرر</p></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-3">
+      <div class="card">
+        <h3 style="font-family:var(--font-en);font-size:1.4rem;font-weight:700;color:var(--gold3);margin-bottom:1.5rem">MARKET OPPORTUNITY</h3>
+        <div class="metric-grid" style="margin-bottom:2rem">
+          <div class="metric reveal"><div style="font-family:var(--font-mono);font-size:1.6rem;color:var(--gold3)">$4.8B</div><div style="font-size:.8rem;color:var(--silver);margin-top:.3rem">سوق IP MENA 2025</div></div>
+          <div class="metric reveal"><div style="font-family:var(--font-mono);font-size:1.6rem;color:var(--mkt3)">$180B</div><div style="font-size:.8rem;color:var(--silver);margin-top:.3rem">سوق IP العالمي</div></div>
+          <div class="metric reveal"><div style="font-family:var(--font-mono);font-size:1.6rem;color:var(--ai3)">42%</div><div style="font-size:.8rem;color:var(--silver);margin-top:.3rem">نمو سنوي مركّب</div></div>
+        </div>
+        <div style="background:var(--bg4);border-radius:var(--r2);padding:1.5rem">
+          <div style="font-size:.85rem;font-weight:700;color:var(--white);margin-bottom:.8rem">تحليل المنافسة</div>
+          <table class="comp-table">
+            <thead><tr><th>المنصة</th><th>IP Protection</th><th>AI Agents</th><th>Sovereign Market</th><th>Ethical Filter</th><th>Arabic Support</th></tr></thead>
+            <tbody>
+              <tr><td style="color:var(--gold3);font-weight:700">SENYX</td><td style="color:var(--green)">✅ ZKP+Blockchain</td><td style="color:var(--green)">✅ 9 وكلاء</td><td style="color:var(--green)">✅ كامل</td><td style="color:var(--green)">✅ درع الفطرة</td><td style="color:var(--green)">✅ كامل</td></tr>
+              <tr><td style="color:var(--silver)">IPlytics</td><td style="color:var(--orange)">⚠️ جزئي</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td></tr>
+              <tr><td style="color:var(--silver)">Dennemeyer</td><td style="color:var(--orange)">⚠️ تقليدي</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td></tr>
+              <tr><td style="color:var(--silver)">Anaqua</td><td style="color:var(--orange)">⚠️ جزئي</td><td style="color:var(--orange)">⚠️ محدود</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td><td style="color:var(--red)">❌</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-4">
+      <div class="card">
+        <h3 style="font-family:var(--font-en);font-size:1.4rem;font-weight:700;color:var(--gold3);margin-bottom:1.5rem">BUSINESS MODEL — REVENUE STREAMS</h3>
+        <div class="grid-2" style="gap:1rem">
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-family:var(--font-mono);font-size:.7rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.5rem">STREAM 01</div><div style="font-weight:700;color:var(--white);margin-bottom:.4rem">رسوم الاشتراك</div><p style="font-size:.82rem;color:var(--silver)">Bronze (مجاني) / Silver (499 SAR) / Gold (1,999 SAR) شهرياً</p><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--mkt3);margin-top:.5rem">متكرر</div></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-family:var(--font-mono);font-size:.7rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.5rem">STREAM 02</div><div style="font-weight:700;color:var(--white);margin-bottom:.4rem">عمولات السوق</div><p style="font-size:.82rem;color:var(--silver)">2-5% على كل صفقة مكتملة في السوق السيادي والمزادات</p><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--mkt3);margin-top:.5rem">متغير</div></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-family:var(--font-mono);font-size:.7rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.5rem">STREAM 03</div><div style="font-weight:700;color:var(--white);margin-bottom:.4rem">رسوم API</div><p style="font-size:.82rem;color:var(--silver)">رسوم استخدام APIs للمطورين والشركات المتكاملة</p><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--mkt3);margin-top:.5rem">متكرر</div></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-family:var(--font-mono);font-size:.7rem;color:var(--gold);letter-spacing:.1em;margin-bottom:.5rem">STREAM 04</div><div style="font-weight:700;color:var(--white);margin-bottom:.4rem">$SNYX Token</div><p style="font-size:.82rem;color:var(--silver)">قيمة الرمز السيادي، الاحتراق التلقائي، ومكافآت المجتمع</p><div style="font-family:var(--font-mono);font-size:.9rem;color:var(--gold3);margin-top:.5rem">طويل المدى</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-5">
+      <div class="card">
+        <h3 style="font-family:var(--font-en);font-size:1.4rem;font-weight:700;color:var(--gold3);margin-bottom:1.5rem">FINANCIAL PROJECTIONS</h3>
+        <div style="overflow-x:auto">
+          <table class="snyx-table">
+            <thead><tr><th>السنة</th><th>المستخدمون</th><th>الإيرادات</th><th>هامش الربح</th><th>$SNYX Market Cap</th></tr></thead>
+            <tbody>
+              <tr><td style="font-family:var(--font-mono)">2025</td><td style="color:var(--ipc3)">500</td><td style="color:var(--mkt3)">$850K</td><td style="color:var(--green)">22%</td><td style="color:var(--gold3)">$5M</td></tr>
+              <tr><td style="font-family:var(--font-mono)">2026</td><td style="color:var(--ipc3)">5,000</td><td style="color:var(--mkt3)">$4.2M</td><td style="color:var(--green)">38%</td><td style="color:var(--gold3)">$48M</td></tr>
+              <tr><td style="font-family:var(--font-mono)">2027</td><td style="color:var(--ipc3)">25,000</td><td style="color:var(--mkt3)">$18.5M</td><td style="color:var(--green)">52%</td><td style="color:var(--gold3)">$240M</td></tr>
+              <tr><td style="font-family:var(--font-mono)">2028</td><td style="color:var(--ipc3)">100,000</td><td style="color:var(--mkt3)">$67M</td><td style="color:var(--green)">61%</td><td style="color:var(--gold3)">$1.2B</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-6">
+      <div class="card">
+        <h3 style="font-family:var(--font-en);font-size:1.4rem;font-weight:700;color:var(--gold3);margin-bottom:1.5rem">THE ASK — INVESTMENT ROUND</h3>
+        <div style="text-align:center;padding:2rem;background:linear-gradient(135deg,rgba(184,146,42,.08),rgba(61,85,200,.04));border:1px solid rgba(184,146,42,.3);border-radius:var(--r2);margin-bottom:2rem">
+          <div style="font-family:var(--font-mono);font-size:3rem;font-weight:700;color:var(--gold3)">$5,000,000</div>
+          <div style="font-size:.9rem;color:var(--silver);margin-top:.3rem">جولة تمويل Seed — Series A</div>
+        </div>
+        <div class="grid-2" style="gap:1rem">
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-weight:700;color:var(--white);margin-bottom:.8rem">توزيع الاستخدام</div><div style="display:flex;flex-direction:column;gap:.5rem"><div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--silver)">تطوير المنصة</span><span style="color:var(--ipc3);font-family:var(--font-mono)">40%</span></div><div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--silver)">التوسع الإقليمي</span><span style="color:var(--mkt3);font-family:var(--font-mono)">25%</span></div><div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--silver)">التسويق</span><span style="color:var(--ai3);font-family:var(--font-mono)">20%</span></div><div style="display:flex;justify-content:space-between;font-size:.82rem"><span style="color:var(--silver)">تشغيل ومصاريف</span><span style="color:var(--gold2);font-family:var(--font-mono)">15%</span></div></div></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-weight:700;color:var(--white);margin-bottom:.8rem">ما يحصل عليه المستثمر</div><ul style="list-style:none;display:flex;flex-direction:column;gap:.5rem"><li style="font-size:.82rem;color:var(--silver);padding-right:1rem;position:relative"><span style="position:absolute;right:0;color:var(--gold)">◆</span>حصة مباشرة في SENYX</li><li style="font-size:.82rem;color:var(--silver);padding-right:1rem;position:relative"><span style="position:absolute;right:0;color:var(--gold)">◆</span>رموز $SNYX بسعر مبكر</li><li style="font-size:.82rem;color:var(--silver);padding-right:1rem;position:relative"><span style="position:absolute;right:0;color:var(--gold)">◆</span>مقعد في المجلس الاستشاري</li><li style="font-size:.82rem;color:var(--silver);padding-right:1rem;position:relative"><span style="position:absolute;right:0;color:var(--gold)">◆</span>عضوية Gold مجانية</li></ul></div>
+        </div>
+      </div>
+    </div>
+    <div class="slide" id="slide-7">
+      <div class="card" style="text-align:center;padding:2.5rem">
+        <div style="font-size:2.5rem;margin-bottom:1rem">🤝</div>
+        <h3 style="font-family:var(--font-en);font-size:1.6rem;font-weight:900;color:var(--gold3);margin-bottom:.5rem">CONTACT US</h3>
+        <p style="color:var(--silver);font-size:.9rem;line-height:1.9;margin-bottom:2rem">نسعد بلقائك ومناقشة فرصة الاستثمار في SENYX. تواصل معنا لجدولة جلسة تقديم مخصصة.</p>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:2rem">
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.2rem;margin-bottom:.4rem">📧</div><div style="font-size:.75rem;color:var(--silver)">as.br777@gmail.com</div></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.2rem;margin-bottom:.4rem">📱</div><div style="font-size:.75rem;color:var(--silver)">+966540040405</div></div>
+          <div style="background:var(--bg4);border-radius:var(--r2);padding:1.2rem"><div style="font-size:1.2rem;margin-bottom:.4rem">🌐</div><div style="font-size:.75rem;color:var(--silver)">www.senyx.com</div></div>
+        </div>
+        <div>
+          <button class="btn-primary" style="padding:.9rem 2.5rem;font-size:.95rem" onclick="openModal('contactInvestor')">📅 احجز جلسة تقديم</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;gap:1rem;justify-content:center;margin-top:1.5rem">
+    <button class="btn-outline" onclick="prevSlide()">&#8594; السابق</button>
+    <span id="slideCounter" style="display:flex;align-items:center;font-family:var(--font-mono);font-size:.8rem;color:var(--silver)">1 / 8</span>
+    <button class="btn-outline" onclick="nextSlide()">التالي &#8592;</button>
+  </div>
+</section>
+<section class="section" style="background:var(--bg2);max-width:100%;padding:5rem 0">
+  <div style="max-width:900px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag">وكيل المستثمرين</div>
+    <h2 class="section-title">Investor AI Analyst</h2>
+    <div class="chat-box" style="height:380px">
+      <div class="chat-head" style="color:var(--gold2)">📊 محلل الاستثمار الذكي<span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">Investor AI</span></div>
+      <div class="chat-body" id="invChatBody"><div class="msg msg-ai">مرحباً! أنا محلل الاستثمار الذكي في SENYX. أستطيع الإجابة على جميع أسئلتك حول فرصة الاستثمار، نموذج العمل، التوقعات المالية، وخطط التوسع. كيف يمكنني مساعدتك؟</div></div>
+      <div class="chat-foot"><input class="chat-input" id="invChatInput" placeholder="اسألني عن الاستثمار، العوائد، الخطط..."><button class="chat-send" id="invChatSend" onclick="sendInvChat()">إرسال</button></div>
+    </div>
+  </div>
+</section>
+<footer class="snyx-footer"><div style="max-width:1280px;margin:0 auto;text-align:center"><div style="font-family:var(--font-en);font-size:1.2rem;font-weight:900;color:var(--gold3)">SENYX — INVESTOR RELATIONS</div><p style="font-size:.82rem;color:var(--silver);margin-top:.5rem">المدينة المنورة، المملكة العربية السعودية | as.br777@gmail.com</p><div style="margin-top:1rem"><a href="index.html" style="font-size:.82rem">← الرئيسية</a></div></div></footer>
+<div class="modal-overlay" id="modal-apikey"><div class="modal-box"><button class="modal-close" onclick="closeModal('apikey')">✕</button><div class="modal-title">🔑 مفتاح API</div><div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)"></div><div class="form-group"><label class="form-label">sk-ant-...</label><input class="form-input" id="apiKeyInput" type="password"></div><div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ</button><button class="btn-outline" onclick="clearApiKey()">🗑</button></div></div></div>
+<div class="modal-overlay" id="modal-contactInvestor"><div class="modal-box"><button class="modal-close" onclick="closeModal('contactInvestor')">✕</button><div class="modal-title">📅 احجز جلسة تقديم</div><div class="form-group"><label class="form-label">الاسم الكامل</label><input class="form-input" id="contName" placeholder="اسمك الكامل"></div><div class="form-group"><label class="form-label">البريد الإلكتروني</label><input class="form-input" id="contEmail" type="email" placeholder="email@company.com"></div><div class="form-group"><label class="form-label">حجم الاستثمار المتوقع</label><select class="form-select" id="contSize"><option>أقل من $100K</option><option>$100K - $500K</option><option>$500K - $1M</option><option>أكثر من $1M</option></select></div><div class="form-group"><label class="form-label">تاريخ مناسب للاجتماع</label><input class="form-input" id="contDate" type="date"></div><button class="btn-primary" style="width:100%" onclick="submitContact()">✅ إرسال الطلب</button></div></div>
+<script src="js/shared.js"></script>
+<script>
+let currentSlide=0;
+const totalSlides=8;
+const invHistory=[];
+const INV_SYS='أنت محلل استثماري متخصص في SENYX. تجيب على أسئلة المستثمرين عن: نموذج العمل، التوقعات المالية، المنافسة، فرص العائد، $SNYX Token، وخطط التوسع. كن دقيقاً وشفافاً وجاذباً للاستثمار.';
+function buildSlideNav(){
+  const nav=document.getElementById('slideNav');
+  nav.innerHTML=Array.from({length:totalSlides},(_,i)=>`<div class="slide-dot ${i===0?'active':''}" onclick="goSlide(${i})"></div>`).join('');
+}
+function goSlide(n){
+  document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.slide-dot').forEach((d,i)=>d.classList.toggle('active',i===n));
+  document.getElementById('slide-'+n).classList.add('active');
+  currentSlide=n;
+  document.getElementById('slideCounter').textContent=(n+1)+' / '+totalSlides;
+}
+function nextSlide(){goSlide(Math.min(currentSlide+1,totalSlides-1));}
+function prevSlide(){goSlide(Math.max(currentSlide-1,0));}
+async function sendInvChat(){await chatSend({inputId:'invChatInput',bodyId:'invChatBody',btnId:'invChatSend',system:INV_SYS,history:invHistory});}
+bindChatEnter('invChatInput',sendInvChat);
+function submitContact(){
+  const n=document.getElementById('contName').value.trim();
+  const e=document.getElementById('contEmail').value.trim();
+  if(!n||!e){alert('يرجى ملء جميع الحقول.');return;}
+  alert('✅ تم استلام طلبك!\n\nسيتواصل معك فريق SENYX خلال 24 ساعة لتأكيد موعد الجلسة.\n\nas.br777@gmail.com | +966540040405');
+  closeModal('contactInvestor');
+}
+buildSlideNav();
+</script>
+</body>
+</html>

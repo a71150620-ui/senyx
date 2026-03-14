@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SENYX — مدينة الابتكار السيادي</title>
+<meta name="description" content="SENYX: منصة الابتكار السيادي الأولى في العالم — المدينة المنورة، المملكة العربية السعودية">
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(184,146,42,.07) 0%,transparent 70%);pointer-events:none;}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(184,146,42,.08);border:1px solid rgba(184,146,42,.25);padding:.35rem 1rem;border-radius:20px;margin-bottom:1.5rem;font-family:var(--font-mono);font-size:.68rem;color:var(--gold);letter-spacing:.15em;}
+.hero-title{font-family:var(--font-en);font-size:clamp(3rem,8vw,7rem);font-weight:900;letter-spacing:.1em;background:linear-gradient(135deg,var(--gold4),var(--gold3),var(--gold2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:.9;margin-bottom:.5rem;}
+.hero-subtitle-ar{font-family:var(--font-ar);font-size:clamp(1.2rem,3vw,2rem);color:var(--white);font-weight:300;margin-bottom:2rem;}
+.hero-desc{max-width:640px;font-size:1rem;color:var(--silver);line-height:1.9;margin:0 auto 2.5rem;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-bottom:3.5rem;}
+.stats-bar{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:1.8rem 0;position:relative;z-index:1;}
+.stats-grid{max-width:1280px;margin:0 auto;padding:0 2rem;display:grid;grid-template-columns:repeat(5,1fr);gap:1rem;}
+.stat-item{text-align:center;}
+.platforms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.pcard{background:var(--bg3);border-radius:var(--r2);padding:2rem;position:relative;overflow:hidden;transition:all .3s;cursor:pointer;border:1px solid transparent;display:block;color:inherit;}
+.pcard-ipc{border-color:rgba(61,85,200,.2);}
+.pcard-mkt{border-color:rgba(18,137,110,.2);}
+.pcard-ai{border-color:rgba(128,48,192,.2);}
+.pcard-gov{border-color:rgba(184,146,42,.2);}
+.pcard:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.4);}
+.pcard-icon{font-size:2.5rem;margin-bottom:1rem;display:block;}
+.pcard-title{font-family:var(--font-en);font-size:1.2rem;font-weight:700;margin-bottom:.3rem;}
+.pcard-title-ar{font-family:var(--font-ar);font-size:1rem;margin-bottom:.8rem;}
+.pcard-desc{font-size:.82rem;color:var(--silver);line-height:1.8;margin-bottom:1.2rem;}
+.pcard-link{font-family:var(--font-mono);font-size:.72rem;font-weight:700;display:inline-flex;align-items:center;gap:.4rem;}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;}
+.step-card{text-align:center;padding:1.5rem;}
+.step-num{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold2));color:var(--bg);font-family:var(--font-en);font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;}
+.step-title{font-weight:700;color:var(--white);margin-bottom:.5rem;font-size:.95rem;}
+.step-desc{font-size:.78rem;color:var(--silver);line-height:1.7;}
+.token-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.donut-wrap{position:relative;width:240px;height:240px;margin:0 auto;}
+.donut-wrap svg{transform:rotate(-90deg);}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.donut-center .val{font-family:var(--font-mono);font-size:1.4rem;font-weight:700;color:var(--gold3);}
+.donut-center .lbl{font-size:.72rem;color:var(--silver);}
+.token-legend{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
+.legend-item{display:flex;align-items:center;gap:.8rem;font-size:.85rem;}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.legend-name{flex:1;color:var(--white);}
+.legend-pct{font-family:var(--font-mono);font-size:.8rem;color:var(--gold2);font-weight:700;}
+.roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.phase-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;position:relative;}
+.phase-card.active{border-color:var(--gold);box-shadow:0 0 30px rgba(184,146,42,.1);}
+.phase-num{font-family:var(--font-mono);font-size:.65rem;color:var(--gold);letter-spacing:.15em;margin-bottom:.5rem;}
+.phase-title{font-weight:700;color:var(--white);margin-bottom:.3rem;}
+.phase-date{font-size:.75rem;color:var(--silver);margin-bottom:1rem;}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.phase-items li{font-size:.78rem;color:var(--silver);padding-right:.8rem;position:relative;}
+.phase-items li::before{content:'◆';position:absolute;right:0;color:var(--gold);font-size:.5rem;top:.2rem;}
+.phase-badge{position:absolute;top:1rem;left:1rem;}
+@media(max-width:900px){.platforms-grid{grid-template-columns:1fr;}.how-steps{grid-template-columns:repeat(2,1fr);}.token-grid{grid-template-columns:1fr;}.roadmap-grid{grid-template-columns:repeat(2,1fr);}.stats-grid{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.stats-grid{grid-template-columns:repeat(2,1fr);}.how-steps{grid-template-columns:1fr;}.roadmap-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo">
+    <div class="nav-logo-mark">SX</div>
+    <div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">مدينة الابتكار السيادي</span></div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">الرئيسية</a></li>
+    <li><a href="ipccore.html">نواة الملكية الفكرية</a></li>
+    <li><a href="market.html">السوق</a></li>
+    <li><a href="ai-platform.html">منصة AI</a></li>
+    <li><a href="dashboards.html">لوحات التحكم</a></li>
+    <li><a href="governance.html">الحوكمة</a></li>
+    <li><a href="community.html">المجتمع</a></li>
+    <li><a href="investor.html">المستثمرون</a></li>
+    <li><a href="news.html">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button>
+    <button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="btn-login" onclick="openModal('login')">دخول / تسجيل</button>
+  </div>
+</nav>
+<section class="hero">
+  <div class="hero-eyebrow"><span class="pulse-dot"></span><span>المدينة المنورة — المملكة العربية السعودية</span></div>
+  <h1 class="hero-title">SENYX</h1>
+  <p class="hero-subtitle-ar">مدينة الابتكار السيادي</p>
+  <p class="hero-desc">المنصة السيادية الأولى عالمياً التي تجمع بين الابتكار والملكية الفكرية والذكاء الاصطناعي والحوكمة الأخلاقية في نظام بيئي متكامل مدعوم بتقنية البلوكتشين وعملة $SNYX السيادية.</p>
+  <div class="hero-btns">
+    <a href="ipccore.html" class="btn-primary" style="font-size:.9rem;padding:.85rem 2rem">🚀 ابدأ الابتكار</a>
+    <a href="investor.html" class="btn-outline" style="font-size:.9rem;padding:.85rem 2rem">📈 للمستثمرين</a>
+    <a href="ai-platform.html" class="btn-ai" style="font-size:.9rem;padding:.85rem 2rem">🧠 منصة AI</a>
+  </div>
+  <div style="position:absolute;bottom:0;left:0;right:0">
+    <div class="ticker-wrap"><div class="ticker-inner" id="tickerInner"></div></div>
+  </div>
+</section>
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div class="stat-item reveal"><div class="stat-num" data-target="135000000" data-suffix="+">0</div><div class="stat-label">براءة اختراع مفهرسة</div></div>
+    <div class="stat-item reveal"><div class="stat-num" data-target="8" data-suffix=" لغات">0</div><div class="stat-label">لغات التحليل الدلالي</div></div>
+    <div class="stat-item reveal"><div class="stat-num" data-target="99" data-suffix="%">0</div><div class="stat-label">دقة الكشف الاحتيالي</div></div>
+    <div class="stat-item reveal"><div class="stat-num" data-target="1000000000">0</div><div class="stat-label">الحد الأقصى لـ $SNYX</div></div>
+    <div class="stat-item reveal"><div class="stat-num" data-target="9" data-suffix=" وكلاء">0</div><div class="stat-label">وكلاء الذكاء الاصطناعي</div></div>
+  </div>
+</div>
+<section class="section">
+  <div class="section-tag">المنصات السيادية</div>
+  <h2 class="section-title">Four Pillars of Sovereignty</h2>
+  <p class="section-sub reveal">كل منصة نظام بيئي متكامل، مترابط مع الأخريات، محكوم بالفطرة الإنسانية.</p>
+  <div class="divider"></div>
+  <div class="platforms-grid">
+    <a href="ipccore.html" class="pcard pcard-ipc reveal">
+      <span class="pcard-icon">🔬</span>
+      <div class="pcard-title" style="color:var(--ipc3)">IP CORE</div>
+      <div class="pcard-title-ar">نواة الملكية الفكرية</div>
+      <p class="pcard-desc">منصة الفحص والتوثيق والحماية الذكية للابتكارات. تحليل دلالي بـ 8 لغات، شهادات ZKP مشفرة، مسار ISP رباعي المراحل من الفكرة للتسجيل الدولي.</p>
+      <div class="pcard-link" style="color:var(--ipc3)">استكشف المنصة ◄</div>
+    </a>
+    <a href="market.html" class="pcard pcard-mkt reveal">
+      <span class="pcard-icon">💹</span>
+      <div class="pcard-title" style="color:var(--mkt3)">SOVEREIGN MARKET</div>
+      <div class="pcard-title-ar">السوق السيادي</div>
+      <p class="pcard-desc">سوق الملكية الفكرية الأول من نوعه. دفتر أوامر حي، مزادات سيادية بـ 5 أنواع، مطابقة GNN بالذكاء الاصطناعي، غرفة صفقات مشفرة.</p>
+      <div class="pcard-link" style="color:var(--mkt3)">ادخل السوق ◄</div>
+    </a>
+    <a href="ai-platform.html" class="pcard pcard-ai reveal">
+      <span class="pcard-icon">🧠</span>
+      <div class="pcard-title" style="color:var(--ai3)">AI SOVEREIGN PLATFORM</div>
+      <div class="pcard-title-ar">منصة الذكاء الاصطناعي السيادي</div>
+      <p class="pcard-desc">8 محركات ذكاء اصطناعي متخصصة: SNA، ISA، FSE، VE، MI، FD، CE، MKI. كل محرك وكيل مستقل يعمل بشفافية كاملة ويتشاور مع الإنسان.</p>
+      <div class="pcard-link" style="color:var(--ai3)">استكشف المحركات ◄</div>
+    </a>
+    <a href="governance.html" class="pcard pcard-gov reveal">
+      <span class="pcard-icon">⚖️</span>
+      <div class="pcard-title" style="color:var(--gold3)">FITRAH GOVERNANCE</div>
+      <div class="pcard-title-ar">حوكمة الفطرة</div>
+      <p class="pcard-desc">نظام حوكمة ثلاثي المستويات مدعوم بدرع الفطرة الأخلاقي. AI يُمكّن — الإنسان يقرر. حماية من الابتكارات الضارة بضمانة إسلامية وإنسانية.</p>
+      <div class="pcard-link" style="color:var(--gold3)">اعرف الحوكمة ◄</div>
+    </a>
+  </div>
+</section>
+<section style="background:var(--bg2);padding:5rem 0;position:relative;z-index:1;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag">كيف يعمل SENYX</div>
+    <h2 class="section-title">The Innovation Pipeline</h2>
+    <div class="how-steps" style="margin-top:3rem">
+      <div class="step-card reveal"><div class="step-num">1</div><div class="step-title">تقديم الابتكار</div><p class="step-desc">أدخل فكرتك وتفاصيلها، يبدأ ISP-1 بالبحث الفوري في 135M+ براءة اختراع.</p></div>
+      <div class="step-card reveal"><div class="step-num">2</div><div class="step-title">التحليل الذكي</div><p class="step-desc">محركات SNA وISA تحلل دلالياً بـ 8 لغات وتحسب درجة الابتكار من 0-100.</p></div>
+      <div class="step-card reveal"><div class="step-num">3</div><div class="step-title">درع الفطرة</div><p class="step-desc">الفلتر الأخلاقي الإسلامي والإنساني يضمن أن الابتكار لا يضر بالمجتمع.</p></div>
+      <div class="step-card reveal"><div class="step-num">4</div><div class="step-title">شهادة ZKP</div><p class="step-desc">شهادة موثقة بالبلوكتشين تحفظ حقوقك وتفتح أبواب السوق السيادي.</p></div>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-tag">$SNYX TOKEN</div>
+  <h2 class="section-title">Sovereign Token Economics</h2>
+  <p class="section-sub reveal">العملة السيادية للمنصة — حد أقصى 1 مليار رمز، احتراق تلقائي 0.1% لكل معاملة.</p>
+  <div class="divider"></div>
+  <div class="token-grid reveal">
+    <div class="donut-wrap">
+      <svg width="240" height="240" viewBox="0 0 240 240">
+        <circle cx="120" cy="120" r="90" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="30"/>
+        <circle cx="120" cy="120" r="90" fill="none" stroke="#b8922a" stroke-width="30" stroke-dasharray="169.6 395.8" stroke-dashoffset="0"/>
+        <circle cx="120" cy="120" r="90" fill="none" stroke="#3d55c8" stroke-width="30" stroke-dasharray="141.4 424" stroke-dashoffset="-169.6"/>
+        <circle cx="120" cy="120" r="90" fill="none" stroke="#12896e" stroke-width="30" stroke-dasharray="113.1 452.4" stroke-dashoffset="-311"/>
+        <circle cx="120" cy="120" r="90" fill="none" stroke="#8030c0" stroke-width="30" stroke-dasharray="84.8 480.7" stroke-dashoffset="-424.1"/>
+        <circle cx="120" cy="120" r="90" fill="none" stroke="#c03030" stroke-width="30" stroke-dasharray="56.5 509" stroke-dashoffset="-508.9"/>
+      </svg>
+      <div class="donut-center"><span class="val">1B</span><span class="lbl">$SNYX</span></div>
+    </div>
+    <ul class="token-legend">
+      <li class="legend-item"><span class="legend-dot" style="background:#b8922a"></span><span class="legend-name">مجتمع المبتكرين</span><span class="legend-pct">30%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#3d55c8"></span><span class="legend-name">النظام البيئي</span><span class="legend-pct">25%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#12896e"></span><span class="legend-name">المستثمرون</span><span class="legend-pct">20%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#8030c0"></span><span class="legend-name">الفريق المؤسس</span><span class="legend-pct">15%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#c03030"></span><span class="legend-name">صندوق الحوكمة</span><span class="legend-pct">10%</span></li>
+      <li class="legend-item" style="padding-top:.5rem;border-top:1px solid var(--border)"><span style="font-size:.78rem;color:var(--silver)">احتراق تلقائي: 0.1% لكل معاملة | خصم عضوية: 30%</span></li>
+    </ul>
+  </div>
+</section>
+<section style="background:var(--bg2);padding:5rem 0;position:relative;z-index:1;">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag">خارطة الطريق</div>
+    <h2 class="section-title">Strategic Roadmap 2025–2028</h2>
+    <div class="roadmap-grid" style="margin-top:2.5rem">
+      <div class="phase-card active reveal"><div class="phase-badge"><span class="badge badge-green">نشط</span></div><div class="phase-num">PHASE 01</div><div class="phase-title">الأساس السيادي</div><div class="phase-date">2025 — Q1/Q2</div><ul class="phase-items"><li>إطلاق المنصة الرئيسية</li><li>تفعيل نواة الملكية الفكرية</li><li>تدريب محركات الذكاء الاصطناعي</li><li>إطلاق برنامج المبكرين</li></ul></div>
+      <div class="phase-card reveal"><div class="phase-num">PHASE 02</div><div class="phase-title">السوق السيادي</div><div class="phase-date">2025 — Q3/Q4</div><ul class="phase-items"><li>تفعيل المزادات الذكية</li><li>إطلاق $SNYX Token</li><li>فتح 6 مكاتب دولية</li><li>نادي VIP البلاتيني</li></ul></div>
+      <div class="phase-card reveal"><div class="phase-num">PHASE 03</div><div class="phase-title">التوسع الإقليمي</div><div class="phase-date">2026 — Q1/Q2</div><ul class="phase-items"><li>شراكات الخليج العربي</li><li>دمج بلوكتشين سيادي</li><li>مدينة الابتكار المادية</li><li>1000 مبتكر موثق</li></ul></div>
+      <div class="phase-card reveal"><div class="phase-num">PHASE 04</div><div class="phase-title">السيادة العالمية</div><div class="phase-date">2027–2028</div><ul class="phase-items"><li>25 دولة شريكة</li><li>صندوق ابتكار 1 مليار$</li><li>10,000 ابتكار مسجل</li><li>قيادة الذكاء الاصطناعي السيادي</li></ul></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="text-align:center">
+  <div class="glow-line" style="margin-bottom:4rem"></div>
+  <div class="section-tag">ابدأ رحلتك</div>
+  <h2 class="section-title">انضم إلى الثورة السيادية</h2>
+  <p class="section-sub reveal" style="margin:0 auto 2.5rem">ابتكارك يستحق الحماية الحقيقية. انضم إلى SENYX اليوم واصنع الفرق في مستقبل الإنسانية.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="ipccore.html" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem">🚀 ابدأ الابتكار مجاناً</a>
+    <a href="community.html" class="btn-outline" style="font-size:1rem;padding:1rem 2.5rem">🏛 انضم للمجتمع</a>
+  </div>
+  <div class="glow-line" style="margin-top:4rem"></div>
+</section>
+<footer class="snyx-footer">
+  <div class="footer-grid">
+    <div><div class="footer-brand-name">SENYX</div><p class="footer-brand-sub">مدينة الابتكار السيادي — المدينة المنورة، المملكة العربية السعودية. منصة الابتكار الحضاري التي تحفظ كرامة الإنسان وتُمكّن إبداعه.</p><div style="display:flex;gap:.5rem;flex-wrap:wrap"><span class="badge badge-gold">VISION 2030</span><span class="badge badge-ipc">AI SOVEREIGN</span><span class="badge badge-mkt">ZKP CERTIFIED</span></div></div>
+    <div><div class="footer-col-title">المنصات</div><ul class="footer-links"><li><a href="ipccore.html">نواة الملكية الفكرية</a></li><li><a href="market.html">السوق السيادي</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="governance.html">الحوكمة</a></li></ul></div>
+    <div><div class="footer-col-title">المجتمع</div><ul class="footer-links"><li><a href="community.html">نادي VIP</a></li><li><a href="community.html">مقهى الابتكار</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="news.html">الأخبار</a></li></ul></div>
+    <div><div class="footer-col-title">تواصل معنا</div><ul class="footer-links"><li><a href="mailto:info@senyx.com">info@senyx.com</a></li><li><a href="https://senyx.com">www.senyx.com</a></li><li><span style="color:var(--silver)">المدينة المنورة، KSA</span></li><li><a href="investor.html">عرض المستثمرين</a></li></ul></div>
+  </div>
+  <div class="footer-bottom"><span>© 2025 SENYX — جميع الحقوق محفوظة</span><span>مدينة الابتكار السيادي | المدينة المنورة | المملكة العربية السعودية</span></div>
+</footer>
+<div class="modal-overlay" id="modal-apikey">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('apikey')">✕</button>
+    <div class="modal-title">🔑 مفتاح API — تفعيل الوكلاء الذكيين</div>
+    <div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1.2rem;padding:.8rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)">جارٍ التحقق...</div>
+    <p style="font-size:.82rem;color:var(--silver);line-height:1.9;margin-bottom:1.2rem">لتشغيل جميع وكلاء SENYX الذكيين، تحتاج مفتاح API من Anthropic.<br><strong style="color:var(--gold2)">احصل عليه:</strong> <a href="https://console.anthropic.com" target="_blank" style="color:var(--gold3)">console.anthropic.com</a><br><span style="font-size:.72rem;color:var(--silver)">⚡ يُحفظ في متصفحك محلياً فقط.</span></p>
+    <div class="form-group"><label class="form-label">مفتاح API (يبدأ بـ sk-ant-)</label><input class="form-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-..."></div>
+    <div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ وتفعيل</button><button class="btn-outline" onclick="clearApiKey()">🗑 حذف</button></div>
+    <div style="margin-top:1rem;padding:.8rem;background:rgba(34,170,102,.04);border:1px solid rgba(34,170,102,.12);border-radius:var(--r);font-size:.75rem;color:var(--silver)"><strong style="color:var(--green)">الخطوات:</strong> console.anthropic.com → تسجيل → API Keys → Create Key → نسخ ولصق هنا</div>
+  </div>
+</div>
+<div class="modal-overlay" id="modal-login">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('login')">✕</button>
+    <div class="modal-title">دخول إلى SENYX</div>
+    <div class="form-group"><label class="form-label">البريد الإلكتروني</label><input class="form-input" type="email" placeholder="innovator@senyx.com"></div>
+    <div class="form-group"><label class="form-label">كلمة المرور</label><input class="form-input" type="password" placeholder="••••••••"></div>
+    <button class="btn-primary" style="width:100%" onclick="alert('نظام المصادقة قيد التطوير')">دخول</button>
+    <p style="text-align:center;margin-top:1rem;font-size:.82rem;color:var(--silver)">ليس لديك حساب؟ <a href="#" style="color:var(--gold2)">سجّل مجاناً</a></p>
+  </div>
+</div>
+<script src="js/shared.js"></script>
+<script>
+buildTicker([
+  '🔬 IP CORE — حماية براءات الاختراع بالذكاء الاصطناعي',
+  '💹 $SNYX — +12.4% ● حجم التداول: 2.4M',
+  '🧠 محرك SNA — دقة 97%',
+  '⚖️ درع الفطرة — 23 ابتكار محمي اليوم',
+  '🔬 ISP-4 — مسار التوثيق الدولي مفتوح',
+  '💹 مزاد نشط: براءة اختراع الطاقة الشمسية — 4 ساعات',
+  '🧠 محرك FSE — دقة 100% كشف احتيالي',
+  '🏛 نادي VIP — 47 عضو جديد هذا الأسبوع',
+  '📰 SENYX تعلن شراكة مع وزارة الاتصالات',
+  '🎓 دورة الابتكار في عصر AI — تسجيل مفتوح'
+]);
+</script>
+</body>
+</html>

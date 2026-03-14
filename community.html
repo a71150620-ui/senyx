@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>المجتمع | SENYX</title>
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.vip-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.vip-card{border-radius:var(--r2);padding:2rem;text-align:center;position:relative;overflow:hidden;transition:all .3s;}
+.vip-card:hover{transform:translateY(-6px);}
+.vip-bronze{background:linear-gradient(135deg,rgba(180,100,50,.1),rgba(180,100,50,.03));border:1px solid rgba(180,100,50,.3);}
+.vip-silver{background:linear-gradient(135deg,rgba(180,180,200,.1),rgba(180,180,200,.03));border:1px solid rgba(180,180,200,.3);}
+.vip-gold{background:linear-gradient(135deg,rgba(184,146,42,.15),rgba(184,146,42,.04));border:1px solid rgba(184,146,42,.4);}
+.vip-crown{font-size:2.5rem;margin-bottom:.8rem;}
+.vip-name{font-family:var(--font-en);font-size:1.3rem;font-weight:900;letter-spacing:.1em;margin-bottom:.3rem;}
+.vip-price{font-family:var(--font-mono);font-size:1.4rem;font-weight:700;margin-bottom:1.2rem;}
+.vip-features{list-style:none;display:flex;flex-direction:column;gap:.6rem;text-align:right;margin-bottom:1.5rem;}
+.vip-features li{font-size:.8rem;color:var(--silver);padding-right:1.2rem;position:relative;}
+.vip-features li::before{content:'◆';position:absolute;right:0;font-size:.5rem;top:.3rem;}
+.cafe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.cafe-room{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1.2rem;cursor:pointer;transition:all .2s;}
+.cafe-room:hover{border-color:var(--gold);background:rgba(184,146,42,.04);}
+.pathways-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;}
+.pathway-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1.5rem;}
+@media(max-width:900px){.vip-grid,.cafe-grid{grid-template-columns:1fr;}.pathways-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">المجتمع</span></div></div>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li><li><a href="ipccore.html">IP Core</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="governance.html">الحوكمة</a></li><li><a href="community.html" class="active">المجتمع</a></li><li><a href="investor.html">المستثمرون</a></li><li><a href="news.html">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions"><button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button><button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button><button class="btn-login">دخول</button></div>
+</nav>
+<section class="section" style="padding-top:5rem;text-align:center">
+  <div class="section-tag">🏛 المجتمع السيادي</div>
+  <h2 class="section-title">Sovereign Innovation Community</h2>
+  <p class="section-sub reveal" style="margin:0 auto">مجتمع حضاري يجمع المبتكرين والمستثمرين والمطورين في فضاء سيادي آمن.</p>
+</section>
+
+<!-- VIP CLUB -->
+
+<section class="section" style="background:var(--bg2);max-width:100%;padding:5rem 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag">نادي VIP</div>
+    <h2 class="section-title">VIP Innovation Club</h2>
+    <p class="section-sub reveal" style="margin-bottom:2.5rem">انضم إلى نادي المبتكرين الحصري واحصل على امتيازات حصرية ودعم متواصل.</p>
+    <div class="vip-grid">
+      <div class="vip-card vip-bronze reveal">
+        <div class="vip-crown">🥉</div>
+        <div class="vip-name" style="color:#b46432">BRONZE</div>
+        <div class="vip-price" style="color:#b46432">مجاني</div>
+        <ul class="vip-features">
+          <li>5 ابتكارات شهرياً</li><li>تحليل ISP-1 و ISP-2</li><li>الوصول لمقهى الابتكار</li><li>شهادة ZKP الأساسية</li><li>دعم مجتمعي</li>
+        </ul>
+        <button class="btn-outline" style="width:100%" onclick="joinVIP('Bronze')">انضم مجاناً</button>
+      </div>
+      <div class="vip-card vip-silver reveal">
+        <div class="vip-crown">🥈</div>
+        <div class="vip-name" style="color:#b0b0c8">SILVER</div>
+        <div class="vip-price" style="color:#b0b0c8">SAR 499<span style="font-size:.8rem">/شهر</span></div>
+        <ul class="vip-features">
+          <li>20 ابتكار شهرياً</li><li>تحليل ISP كامل (1-4)</li><li>وكيل AI شخصي</li><li>إدراج مجاني في السوق</li><li>دورات تدريبية حصرية</li><li>خصم 15% على الرسوم</li>
+        </ul>
+        <button class="btn-outline" style="width:100%;border-color:rgba(180,180,200,.4)" onclick="joinVIP('Silver')">اشترك الآن</button>
+      </div>
+      <div class="vip-card vip-gold reveal" style="transform:scale(1.03)">
+        <div style="position:absolute;top:1rem;left:1rem"><span class="badge badge-gold" style="font-size:.65rem">⭐ الأشهر</span></div>
+        <div class="vip-crown">👑</div>
+        <div class="vip-name" style="color:var(--gold3)">GOLD</div>
+        <div class="vip-price" style="color:var(--gold3)">SAR 1,999<span style="font-size:.8rem">/شهر</span></div>
+        <ul class="vip-features">
+          <li>ابتكارات غير محدودة</li><li>كل مزايا Silver</li><li>خبير IP مخصص</li><li>وصول مبكر للمزادات</li><li>عرض مباشر للمستثمرين</li><li>خصم 30% $SNYX</li><li>جلسة استشارية شهرية</li>
+        </ul>
+        <button class="btn-primary" style="width:100%" onclick="joinVIP('Gold')">🌟 انضم Gold</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INNOVATION CAFÉ -->
+
+<section class="section" id="cafe">
+  <div class="section-tag">☕ مقهى الابتكار</div>
+  <h2 class="section-title">Innovation Café</h2>
+  <p class="section-sub reveal" style="margin-bottom:2rem">6 غرف تفاعلية للنقاش والتعاون بين المبتكرين من جميع أنحاء العالم.</p>
+  <div class="cafe-grid">
+    <div class="cafe-room reveal" onclick="enterRoom('التقنية والذكاء الاصطناعي')"><div style="font-size:1.5rem;margin-bottom:.5rem">🤖</div><div style="font-weight:700;color:var(--white);margin-bottom:.3rem">التقنية والذكاء الاصطناعي</div><div style="font-size:.75rem;color:var(--silver)">247 عضو نشط</div></div>
+    <div class="cafe-room reveal" onclick="enterRoom('الطاقة والاستدامة')"><div style="font-size:1.5rem;margin-bottom:.5rem">🌱</div><div style="font-weight:700;color:var(--white);margin-bottom:.3rem">الطاقة والاستدامة</div><div style="font-size:.75rem;color:var(--silver)">183 عضو نشط</div></div>
+    <div class="cafe-room reveal" onclick="enterRoom('الصحة والطب')"><div style="font-size:1.5rem;margin-bottom:.5rem">🏥</div><div style="font-weight:700;color:var(--white);margin-bottom:.3rem">الصحة والطب</div><div style="font-size:.75rem;color:var(--silver)">156 عضو نشط</div></div>
+    <div class="cafe-room reveal" onclick="enterRoom('المال والاقتصاد')"><div style="font-size:1.5rem;margin-bottom:.5rem">💰</div><div style="font-weight:700;color:var(--white);margin-bottom:.3rem">المال والاقتصاد</div><div style="font-size:.75rem;color:var(--silver)">312 عضو نشط</div></div>
+    <div class="cafe-room reveal" onclick="enterRoom('التعليم والمجتمع')"><div style="font-size:1.5rem;margin-bottom:.5rem">📚</div><div style="font-weight:700;color:var(--white);margin-bottom:.3rem">التعليم والمجتمع</div><div style="font-size:.75rem;color:var(--silver)">201 عضو نشط</div></div>
+    <div class="cafe-room reveal" onclick="enterRoom('الحضارة والتراث')"><div style="font-size:1.5rem;margin-bottom:.5rem">🕌</div><div style="font-weight:700;color:var(--white);margin-bottom:.3rem">الحضارة والتراث</div><div style="font-size:.75rem;color:var(--silver)">134 عضو نشط</div></div>
+  </div>
+  <div id="cafeChat" style="display:none;margin-top:1.5rem">
+    <div class="chat-box" style="height:320px">
+      <div class="chat-head" style="color:var(--gold2)"><span>☕</span><span id="roomName">—</span><span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">مقهى الابتكار</span></div>
+      <div class="chat-body" id="cafeChatBody"></div>
+      <div class="chat-foot"><input class="chat-input" id="cafeChatInput" placeholder="شارك في النقاش..."><button class="chat-send" id="cafeChatSend" onclick="sendCafeChat()">إرسال</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- PATHWAYS -->
+
+<section class="section" style="background:var(--bg2);max-width:100%;padding:5rem 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag">مسارات التطوير</div>
+    <h2 class="section-title">4 Development Pathways</h2>
+    <div class="pathways-grid" style="margin-top:2rem">
+      <div class="pathway-card reveal">
+        <div style="font-size:1.8rem;margin-bottom:.7rem">🚀</div>
+        <div style="font-weight:700;color:var(--white);font-size:1rem;margin-bottom:.5rem">مسار المبتكر</div>
+        <p style="font-size:.8rem;color:var(--silver);line-height:1.8;margin-bottom:1rem">من الفكرة إلى براءة الاختراع الدولية. يشمل: الفحص، التحليل، الحماية، والتسويق في السوق السيادي.</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+        <div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">12 مرحلة | مدة: 3-6 أشهر</div>
+      </div>
+      <div class="pathway-card reveal">
+        <div style="font-size:1.8rem;margin-bottom:.7rem">📈</div>
+        <div style="font-weight:700;color:var(--white);font-size:1rem;margin-bottom:.5rem">مسار المستثمر</div>
+        <p style="font-size:.8rem;color:var(--silver);line-height:1.8;margin-bottom:1rem">اكتشاف الفرص الاستثمارية في الملكية الفكرية. يشمل: تحليل السوق، التقييم، المزادات، وإدارة المحفظة.</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:70%"></div></div>
+        <div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">8 مراحل | مدة: 1-3 أشهر</div>
+      </div>
+      <div class="pathway-card reveal">
+        <div style="font-size:1.8rem;margin-bottom:.7rem">⚖️</div>
+        <div style="font-weight:700;color:var(--white);font-size:1rem;margin-bottom:.5rem">مسار المحامي</div>
+        <p style="font-size:.8rem;color:var(--silver);line-height:1.8;margin-bottom:1rem">التخصص في قانون الملكية الفكرية السيادي. يشمل: الأطر الدولية، العقود، النزاعات، وحوكمة الفطرة.</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:60%"></div></div>
+        <div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">10 مراحل | مدة: 2-4 أشهر</div>
+      </div>
+      <div class="pathway-card reveal">
+        <div style="font-size:1.8rem;margin-bottom:.7rem">💻</div>
+        <div style="font-weight:700;color:var(--white);font-size:1rem;margin-bottom:.5rem">مسار المطور</div>
+        <p style="font-size:.8rem;color:var(--silver);line-height:1.8;margin-bottom:1rem">بناء تطبيقات فوق منصة SENYX. يشمل: APIs، SDKs، الوكلاء الذكيين، وتكامل البلوكتشين.</p>
+        <div class="progress-bar"><div class="progress-fill" style="width:75%"></div></div>
+        <div style="font-size:.72rem;color:var(--silver);margin-top:.3rem">9 مراحل | مدة: 1-2 أشهر</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="snyx-footer"><div style="max-width:1280px;margin:0 auto;text-align:center"><div style="font-family:var(--font-en);font-size:1.2rem;font-weight:900;color:var(--gold3)">SENYX COMMUNITY</div><p style="font-size:.82rem;color:var(--silver);margin-top:.5rem">المجتمع السيادي | المدينة المنورة، المملكة العربية السعودية</p><div style="margin-top:1rem"><a href="index.html" style="font-size:.82rem">← الرئيسية</a></div></div></footer>
+<div class="modal-overlay" id="modal-apikey"><div class="modal-box"><button class="modal-close" onclick="closeModal('apikey')">✕</button><div class="modal-title">🔑 مفتاح API</div><div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)"></div><div class="form-group"><label class="form-label">sk-ant-...</label><input class="form-input" id="apiKeyInput" type="password"></div><div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ</button><button class="btn-outline" onclick="clearApiKey()">🗑</button></div><p style="margin-top:.8rem;font-size:.73rem;color:var(--silver)"><a href="https://console.anthropic.com" target="_blank" style="color:var(--gold3)">console.anthropic.com</a></p></div></div>
+<script src="js/shared.js"></script>
+<script>
+const cafeHistory=[];
+let currentRoom='';
+function enterRoom(name){
+  currentRoom=name;
+  document.getElementById('roomName').textContent=name;
+  document.getElementById('cafeChat').style.display='block';
+  document.getElementById('cafeChatBody').innerHTML='';
+  appendMsg('cafeChatBody','ai',`مرحباً بك في غرفة "${name}"! هذا فضاء للنقاش والتعاون مع المبتكرين والمتخصصين في هذا المجال. ما الذي تودّ مناقشته أو مشاركته؟`);
+  document.getElementById('cafeChat').scrollIntoView({behavior:'smooth'});
+}
+async function sendCafeChat(){
+  if(!currentRoom){return;}
+  const sys=`أنت مشرف غرفة "${currentRoom}" في مقهى الابتكار بمنصة SENYX. تشجع النقاش البنّاء، تربط الأفكار، وتساعد المبتكرين في التعاون.`;
+  await chatSend({inputId:'cafeChatInput',bodyId:'cafeChatBody',btnId:'cafeChatSend',system:sys,history:cafeHistory});
+}
+bindChatEnter('cafeChatInput',sendCafeChat);
+function joinVIP(tier){
+  const prices={Bronze:'مجاناً',Silver:'SAR 499/شهر',Gold:'SAR 1,999/شهر'};
+  alert(`🎉 أهلاً بك في نادي ${tier} VIP!\n\nالسعر: ${prices[tier]}\n\nسيتم التواصل معك لإتمام التسجيل.\ninfo@senyx.com | +966540040405`);
+}
+</script>
+</body>
+</html>

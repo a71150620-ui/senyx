@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>السوق السيادي | SENYX</title>
+<link rel="stylesheet" href="css/shared.css">
+<style>
+.mkt-hero{padding:6rem 2rem 3rem;background:linear-gradient(180deg,rgba(18,137,110,.06) 0%,transparent 100%);text-align:center;}
+.mkt-hero h1{font-family:var(--font-en);font-size:clamp(2rem,5vw,4rem);font-weight:900;color:var(--mkt3);letter-spacing:.1em;margin-bottom:.5rem;}
+.market-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:2rem;}
+.order-book{background:var(--bg3);border:1px solid rgba(18,137,110,.2);border-radius:var(--r2);overflow:hidden;}
+.ob-head{padding:1rem 1.2rem;background:rgba(18,137,110,.06);border-bottom:1px solid rgba(18,137,110,.2);display:flex;justify-content:space-between;align-items:center;}
+.ob-title{font-family:var(--font-mono);font-size:.72rem;color:var(--mkt3);letter-spacing:.1em;}
+.ob-body{padding:0;}
+.ob-row{display:grid;grid-template-columns:1fr 1fr 1fr;padding:.5rem 1.2rem;font-family:var(--font-mono);font-size:.75rem;border-bottom:1px solid var(--border2);transition:background .15s;}
+.ob-row:hover{background:rgba(18,137,110,.04);}
+.ob-row.sell{color:var(--red);}
+.ob-row.buy{color:var(--green);}
+.ob-row.mid{background:rgba(18,137,110,.05);font-weight:700;color:var(--mkt2);}
+.auctions-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
+.auction-card{background:var(--bg3);border:1px solid rgba(18,137,110,.15);border-radius:var(--r2);padding:1.2rem;transition:all .3s;}
+.auction-card:hover{border-color:var(--mkt2);box-shadow:0 8px 30px rgba(18,137,110,.1);}
+.auction-timer{font-family:var(--font-mono);font-size:1.1rem;font-weight:700;color:var(--orange);}
+.bid-row{display:flex;align-items:center;gap:.6rem;margin-top:.8rem;}
+.bid-input{flex:1;background:var(--bg4);border:1px solid var(--border);color:var(--white);padding:.5rem .8rem;border-radius:var(--r);font-size:.82rem;font-family:var(--font-mono);outline:none;}
+.bid-input:focus{border-color:var(--mkt);}
+.auction-types{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;margin-bottom:2rem;}
+.atype{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:1rem;text-align:center;cursor:pointer;transition:all .2s;}
+.atype.active,.atype:hover{border-color:var(--mkt2);background:rgba(18,137,110,.08);}
+.atype-icon{font-size:1.5rem;margin-bottom:.4rem;}
+.atype-name{font-size:.72rem;color:var(--silver);font-weight:700;}
+.deal-room{background:var(--bg3);border:1px solid rgba(18,137,110,.2);border-radius:var(--r2);padding:1.5rem;}
+@media(max-width:900px){.market-grid{grid-template-columns:1fr;}.auction-types{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:600px){.auction-types{grid-template-columns:repeat(2,1fr);}}
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas>
+<nav class="snyx-nav">
+  <div class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub">السوق السيادي</span></div></div>
+  <ul class="nav-links">
+    <li><a href="index.html">الرئيسية</a></li>
+    <li><a href="ipccore.html">IP Core</a></li>
+    <li><a href="market.html" class="active">السوق</a></li>
+    <li><a href="ai-platform.html">منصة AI</a></li>
+    <li><a href="dashboards.html">لوحات التحكم</a></li>
+    <li><a href="governance.html">الحوكمة</a></li>
+    <li><a href="community.html">المجتمع</a></li>
+    <li><a href="investor.html">المستثمرون</a></li>
+    <li><a href="news.html">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="btn-api-key" id="apiBtnNav" onclick="openModal('apikey')">🔑 API</button>
+    <button class="btn-lang" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="btn-login" onclick="openModal('login')">دخول</button>
+  </div>
+</nav>
+<div class="mkt-hero">
+  <div class="section-tag" style="border-color:rgba(18,137,110,.3);color:var(--mkt3)">💹 SOVEREIGN MARKET</div>
+  <h1>السوق السيادي</h1>
+  <p style="color:var(--silver);max-width:600px;margin:.8rem auto 0;font-size:.95rem;line-height:1.9">أول سوق عالمي للملكية الفكرية السيادية — مزادات ذكية، مطابقة GNN، وغرفة صفقات مشفرة.</p>
+</div>
+<section class="section">
+  <div class="section-tag" style="color:var(--mkt3);border-color:rgba(18,137,110,.3)">أنواع المزادات</div>
+  <div class="auction-types">
+    <div class="atype active" onclick="selectType(this,'عادي')"><div class="atype-icon">🔨</div><div class="atype-name">مزاد عادي</div></div>
+    <div class="atype" onclick="selectType(this,'هولندي')"><div class="atype-icon">🌷</div><div class="atype-name">هولندي</div></div>
+    <div class="atype" onclick="selectType(this,'مختوم')"><div class="atype-icon">✉️</div><div class="atype-name">عطاء مختوم</div></div>
+    <div class="atype" onclick="selectType(this,'مزدوج')"><div class="atype-icon">⚖️</div><div class="atype-name">ثنائي التسعير</div></div>
+    <div class="atype" onclick="selectType(this,'ترخيص')"><div class="atype-icon">🔑</div><div class="atype-name">ترخيص ذكي</div></div>
+  </div>
+  <div class="market-grid">
+    <div>
+      <div class="order-book">
+        <div class="ob-head"><span class="ob-title">📖 دفتر الأوامر — SNYX/USD</span><span style="color:var(--mkt3);font-family:var(--font-mono);font-size:.8rem" id="livePrice">$0.482</span></div>
+        <div class="ob-row" style="background:var(--bg4);font-size:.68rem;color:var(--silver);font-family:var(--font-mono);letter-spacing:.05em"><span>السعر</span><span style="text-align:center">الكمية</span><span style="text-align:left">الإجمالي</span></div>
+        <div id="sellOrders"></div>
+        <div class="ob-row mid"><span id="midPrice">$0.482</span><span style="text-align:center;font-size:.68rem;color:var(--silver)">آخر صفقة</span><span style="text-align:left;font-size:.68rem;color:var(--mkt2)">↑ +2.4%</span></div>
+        <div id="buyOrders"></div>
+      </div>
+      <div class="deal-room" style="margin-top:1.5rem">
+        <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--mkt3);margin-bottom:1rem;letter-spacing:.1em">🤝 غرفة الصفقات المشفرة</div>
+        <div class="chat-box" style="height:280px">
+          <div class="chat-head" style="color:var(--mkt3)"><span>🧠</span><span>وكيل مطابقة GNN</span><span class="badge badge-mkt" style="font-size:.6rem">AI Matching</span></div>
+          <div class="chat-body" id="mktChatBody">
+            <div class="msg msg-ai">مرحباً! أنا وكيل مطابقة GNN. أساعدك في إيجاد أفضل المشترين والبائعين لملكيتك الفكرية. أخبرني ماذا تبحث عنه.</div>
+          </div>
+          <div class="chat-foot">
+            <input class="chat-input" id="mktChatInput" placeholder="مثال: أبحث عن مستثمر لبراءة اختراع في تقنية الطاقة...">
+            <button class="chat-send" id="mktChatSend" onclick="sendMktChat()">إرسال</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div style="font-family:var(--font-mono);font-size:.72rem;color:var(--mkt3);margin-bottom:1rem;letter-spacing:.1em">🔥 المزادات النشطة</div>
+      <div class="auctions-grid" id="auctionsGrid"></div>
+    </div>
+  </div>
+</section>
+<section class="section" style="background:var(--bg2);max-width:100%;padding:5rem 0">
+  <div style="max-width:1280px;margin:0 auto;padding:0 2rem">
+    <div class="section-tag" style="color:var(--mkt3);border-color:rgba(18,137,110,.3)">إضافة عرض للسوق</div>
+    <h2 class="section-title" style="-webkit-text-fill-color:var(--mkt3);background:none;color:var(--mkt3)">List Your Innovation</h2>
+    <div style="max-width:600px">
+      <div class="card" style="border-color:rgba(18,137,110,.2)">
+        <div class="form-group"><label class="form-label">ابتكارك (رقم شهادة ZKP)</label><input class="form-input" id="listCert" placeholder="مثال: ZKP-2025-0x...أو اسم الابتكار"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div class="form-group"><label class="form-label">نوع العرض</label>
+            <select class="form-select" id="listType">
+              <option>بيع كامل</option><option>ترخيص حصري</option><option>ترخيص غير حصري</option><option>شراكة استثمارية</option>
+            </select>
+          </div>
+          <div class="form-group"><label class="form-label">السعر الأدنى (USD)</label><input class="form-input" id="listPrice" type="number" placeholder="10000"></div>
+        </div>
+        <div class="form-group"><label class="form-label">وصف موجز للعرض</label><textarea class="form-textarea" id="listDesc" style="min-height:80px" placeholder="ما يجعل ابتكارك فريداً في السوق..."></textarea></div>
+        <button class="btn-mkt" style="width:100%;padding:.8rem" onclick="listOnMarket()">💹 إدراج في السوق السيادي</button>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="snyx-footer">
+  <div style="max-width:1280px;margin:0 auto;text-align:center">
+    <div style="font-family:var(--font-en);font-size:1.2rem;font-weight:900;color:var(--mkt3);margin-bottom:.5rem">SOVEREIGN MARKET — SENYX</div>
+    <p style="font-size:.82rem;color:var(--silver)">سوق الملكية الفكرية السيادي | المدينة المنورة، المملكة العربية السعودية</p>
+    <div style="margin-top:1rem"><a href="index.html" style="font-size:.82rem">← العودة للرئيسية</a></div>
+  </div>
+</footer>
+<div class="modal-overlay" id="modal-apikey">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('apikey')">✕</button>
+    <div class="modal-title">🔑 مفتاح API</div>
+    <div id="apiKeyStatus" style="font-size:.8rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)"></div>
+    <div class="form-group"><label class="form-label">مفتاح API Anthropic</label><input class="form-input" id="apiKeyInput" type="password" placeholder="sk-ant-api03-..."></div>
+    <div style="display:flex;gap:.8rem"><button class="btn-primary" style="flex:1" onclick="saveApiKey()">✅ حفظ وتفعيل</button><button class="btn-outline" onclick="clearApiKey()">🗑 حذف</button></div>
+    <p style="margin-top:.8rem;font-size:.73rem;color:var(--silver)"><a href="https://console.anthropic.com" target="_blank" style="color:var(--gold3)">console.anthropic.com</a></p>
+  </div>
+</div>
+<script src="js/shared.js"></script>
+<script>
+const mktHistory=[];
+const MKT_SYS=`أنت وكيل السوق السيادي في SENYX. متخصص في:
+- تداول الملكية الفكرية والابتكارات
+- أنواع المزادات (عادي، هولندي، مختوم، ثنائي، ترخيص)
+- مطابقة GNN بين البائعين والمشترين
+- تقييم الملكية الفكرية
+- صفقات الترخيص والاستثمار
+أجب باللغة التي يكتب بها المستخدم.`;
+async function sendMktChat(){await chatSend({inputId:'mktChatInput',bodyId:'mktChatBody',btnId:'mktChatSend',system:MKT_SYS,history:mktHistory});}
+bindChatEnter('mktChatInput',sendMktChat);
+function selectType(el,type){document.querySelectorAll('.atype').forEach(a=>a.classList.remove('active'));el.classList.add('active');}
+function buildOrderBook(){
+  const base=0.482;
+  let sells='',buys='';
+  for(let i=5;i>0;i--){const p=(base+i*.003).toFixed(3);const q=(Math.random()*500+50).toFixed(0);sells+=`<div class="ob-row sell"><span>$${p}</span><span style="text-align:center">${q}</span><span style="text-align:left">${(p*q).toFixed(0)}</span></div>`;}
+  for(let i=1;i<=5;i++){const p=(base-i*.003).toFixed(3);const q=(Math.random()*500+50).toFixed(0);buys+=`<div class="ob-row buy"><span>$${p}</span><span style="text-align:center">${q}</span><span style="text-align:left">${(p*q).toFixed(0)}</span></div>`;}
+  document.getElementById('sellOrders').innerHTML=sells;
+  document.getElementById('buyOrders').innerHTML=buys;
+}
+const auctions=[
+  {title:'براءة اختراع — نظام توليد طاقة شمسية متنقل',type:'مزاد عادي',minBid:50000,curr:67500,ends:4*3600},
+  {title:'اختراع — تقنية تحلية المياه النانوية',type:'هولندي',minBid:120000,curr:145000,ends:1*3600+23*60},
+  {title:'نموذج نفعي — روبوت الزراعة الذكية',type:'ترخيص حصري',minBid:25000,curr:31000,ends:2*3600+45*60},
+  {title:'علامة تجارية — منصة التعليم الذكي',type:'بيع كامل',minBid:80000,curr:88000,ends:6*3600+10*60}
+];
+function renderAuctions(){
+  document.getElementById('auctionsGrid').innerHTML=auctions.map((a,i)=>`
+    <div class="auction-card">
+      <div style="font-size:.72rem;color:var(--silver);margin-bottom:.3rem">${a.type}</div>
+      <div style="font-weight:700;color:var(--white);font-size:.85rem;margin-bottom:.6rem">${a.title}</div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
+        <span style="font-size:.75rem;color:var(--silver)">أعلى عرض</span>
+        <span style="font-family:var(--font-mono);color:var(--mkt3);font-weight:700">$${a.curr.toLocaleString()}</span>
+      </div>
+      <div style="font-size:.72rem;color:var(--silver);margin-bottom:.6rem">⏱ ينتهي خلال: <span class="auction-timer" id="timer${i}"></span></div>
+      <div class="bid-row">
+        <input class="bid-input" id="bid${i}" type="number" placeholder="أدخل عرضك..." min="${a.curr+100}">
+        <button class="btn-mkt" style="font-size:.75rem;padding:.45rem .9rem;flex-shrink:0" onclick="placeBid(${i})">عروض</button>
+      </div>
+    </div>`).join('');
+}
+function updateTimers(){
+  auctions.forEach((a,i)=>{
+    const el=document.getElementById('timer'+i);
+    if(!el)return;
+    if(a.ends<=0){el.textContent='انتهى';el.style.color='var(--red)';return;}
+    a.ends--;
+    const h=Math.floor(a.ends/3600),m=Math.floor((a.ends%3600)/60),s=a.ends%60;
+    el.textContent=`${h}:${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+  });
+}
+function placeBid(i){
+  const val=+document.getElementById('bid'+i).value;
+  if(!val||val<=auctions[i].curr){alert(`العرض يجب أن يكون أعلى من $${auctions[i].curr.toLocaleString()}`);return;}
+  auctions[i].curr=val;
+  renderAuctions();
+  setTimeout(updateTimers,0);
+  appendMsg('mktChatBody','ai',`✅ تم قبول عرضك بقيمة $${val.toLocaleString()} على "${auctions[i].title}". أنت حالياً أعلى مزايد! 🎉`);
+}
+function listOnMarket(){
+  const cert=document.getElementById('listCert').value.trim();
+  const type=document.getElementById('listType').value;
+  const price=document.getElementById('listPrice').value;
+  if(!cert||!price){alert('يرجى ملء جميع الحقول المطلوبة.');return;}
+  alert(`✅ تم إدراج ابتكارك في السوق السيادي!\n\nالابتكار: ${cert}\nنوع العرض: ${type}\nالسعر الأدنى: $${(+price).toLocaleString()}\n\nسيراجع فريق SENYX طلبك خلال 24 ساعة.`);
+}
+setInterval(()=>{buildOrderBook();},3000);
+buildOrderBook();renderAuctions();
+setInterval(updateTimers,1000);updateTimers();
+setInterval(()=>{
+  const p=(0.482+(Math.random()-.5)*.01).toFixed(3);
+  document.getElementById('livePrice').textContent='$'+p;
+  document.getElementById('midPrice').textContent='$'+p;
+},2000);
+</script>
+</body>
+</html>
