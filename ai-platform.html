@@ -1,404 +1,859 @@
 <!DOCTYPE html>
 
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>منصة AI السيادي | SENYX</title><meta name="theme-color" content="#b8922a">
-<meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="/manifest.json">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>منصة AI السيادي | SENYX</title>
+<meta name="theme-color" content="#b8922a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<link rel="manifest" href="/manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+
+/* ═══ RESET ═══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+
+/* ═══ VARIABLES — DARK (DEFAULT) ═══ */
 :root{
-  --bg:#010608;--bg2:#020b12;--bg3:#031018;--bg4:#041520;
-  --g1:#b8922a;--g2:#d4a843;--g3:#f0c84a;--g4:#fde068;--g5:#fff3b0;
-  --w:#e8ecf5;--sv:#7888aa;--dim:#4a5870;
-  --red:#d03040;--green:#22a866;--orange:#d07020;
-  --bd:rgba(184,146,42,.16);--bd2:rgba(184,146,42,.07);
-  --r:7px;--r2:14px;--r3:20px;
-  --sh:0 8px 48px rgba(0,0,0,.7);
-  --sh2:0 0 40px rgba(184,146,42,.12);
+–bg:#02080f;–bg2:#040d17;–bg3:#060f1e;–bg4:#0a1628;
+–gold:#b8922a;–gold2:#d4a843;–gold3:#fde068;–gold4:#fff3b0;
+–silver:#8899bb;–white:#e8ecf5;
+–green:#22aa66;–red:#e03040;–orange:#e07020;
+–border:rgba(184,146,42,.18);–border2:rgba(184,146,42,.08);
+–r:6px;–r2:12px;
+–shadow:0 8px 40px rgba(0,0,0,.6);
 }
-body{background:var(--bg);color:var(--w);font-family:'Cairo',sans-serif;min-height:100vh;overflow-x:hidden;cursor:none}
-a{color:var(--g2);text-decoration:none;transition:color .2s}
-a:hover{color:var(--g3)}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--g1);border-radius:2px}
-::selection{background:rgba(184,146,42,.25);color:var(--g4)}
 
-/* ══ CURSOR ══ */
-#cr{position:fixed;width:8px;height:8px;background:var(–g3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s}
-#rg{position:fixed;width:28px;height:28px;border:1px solid rgba(184,146,42,.4);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%)}
+/* ═══════════════════════════════════════
+THEME: LIGHT — فاتح حليبي ذهبي
+═══════════════════════════════════════ */
+body.theme-light {
+background: #f8f2e4 !important;
+color: #1a1008 !important;
+}
+body.theme-light * { transition: background-color .3s, color .3s, border-color .3s; }
+body.theme-light { –bg:#f8f2e4;–bg2:#ede5d0;–bg3:#e2d8c0;–bg4:#d5ccb0;–gold:#6a4808;–gold2:#885e10;–gold3:#a87620;–gold4:#4a3006;–silver:#4a3818;–white:#1a1008;–border:rgba(70,48,8,.22);–border2:rgba(70,48,8,.1); }
+body.theme-light .snyx-nav { background: rgba(235,224,200,.98) !important; border-bottom: 1px solid rgba(70,48,8,.18) !important; box-shadow: 0 2px 20px rgba(70,48,8,.12) !important; }
+body.theme-light .nav-links a { color: #5a4020 !important; }
+body.theme-light .nav-links a:hover, body.theme-light .nav-links a.active { color: #6a4808 !important; background: rgba(70,48,8,.08) !important; }
+body.theme-light .nav-logo-text { color: #6a4808 !important; }
+body.theme-light .nav-logo-sub { color: #8a6030 !important; }
+body.theme-light .hero-title { filter: drop-shadow(0 0 20px rgba(70,48,8,.3)) !important; }
+body.theme-light .hero-sub { color: #2a1808 !important; }
+body.theme-light .hero-tag { color: #7a5828 !important; }
+body.theme-light .hero-stat-num { color: #6a4808 !important; }
+body.theme-light .hero-stat-lbl { color: #7a5828 !important; }
+body.theme-light .hero-eyebrow { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .pulse-dot { background: #6a4808 !important; }
+body.theme-light .ticker-wrap { background: rgba(70,48,8,.06) !important; border-color: rgba(70,48,8,.12) !important; }
+body.theme-light .ticker-item { color: #6a5030 !important; }
+body.theme-light .sec-tag { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.18) !important; color: #6a4808 !important; }
+body.theme-light .sec-sub { color: #5a4020 !important; }
+body.theme-light .pcard { border-color: rgba(70,48,8,.15) !important; }
+body.theme-light .pcard-ipc { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-mkt { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-ai  { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-gov { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-name-ar { color: #1a1008 !important; }
+body.theme-light .pcard-desc { color: #5a4020 !important; }
+body.theme-light .step-num { background: linear-gradient(135deg,#885e10,#a87620) !important; }
+body.theme-light .step-title { color: #1a1008 !important; }
+body.theme-light .step-desc { color: #5a4020 !important; }
+body.theme-light .how-grid::before { background: linear-gradient(90deg,transparent,#885e10,#a87620,#885e10,transparent) !important; }
+body.theme-light .legend-name { color: #2a1808 !important; }
+body.theme-light .phase { background: #e2d8c0 !important; border-color: rgba(70,48,8,.18) !important; }
+body.theme-light .phase.active { border-color: #885e10 !important; box-shadow: 0 0 24px rgba(70,48,8,.15) !important; }
+body.theme-light .phase-title { color: #1a1008 !important; }
+body.theme-light .phase-date { color: #7a5828 !important; }
+body.theme-light .phase-items li { color: #5a4020 !important; }
+body.theme-light .phase-items li::before { color: #885e10 !important; }
+body.theme-light .sec-full { background: linear-gradient(180deg,#ede5d0,#e2d8c0) !important; }
+body.theme-light .glow-line { background: linear-gradient(90deg,transparent,#885e10,#a87620,#885e10,transparent) !important; }
+body.theme-light .snyx-footer { background: #ede5d0 !important; border-top-color: rgba(70,48,8,.15) !important; }
+body.theme-light .footer-brand { color: #6a4808 !important; }
+body.theme-light .footer-col-title { color: #885e10 !important; }
+body.theme-light .footer-sub { color: #7a5828 !important; }
+body.theme-light .footer-links a { color: #7a5828 !important; }
+body.theme-light .footer-bottom { color: #8a6838 !important; border-top-color: rgba(70,48,8,.1) !important; }
+body.theme-light .btn-lang { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .btn-api { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .btn-voice { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .btn-theme { background: #e2d8c0 !important; border-color: rgba(70,48,8,.2) !important; }
+body.theme-light .theme-drop { background: #ede5d0 !important; border-color: rgba(70,48,8,.2) !important; }
+body.theme-light .theme-opt { color: #5a4020 !important; }
+body.theme-light .modal-overlay { background: rgba(50,30,0,.75) !important; }
+body.theme-light .modal-box { background: #ede5d0 !important; border-color: rgba(70,48,8,.2) !important; }
+body.theme-light .form-input { background: #e2d8c0 !important; border-color: rgba(70,48,8,.2) !important; color: #1a1008 !important; }
+body.theme-light #starsCanvas { opacity: .03 !important; }
 
-/* ══ STAR CANVAS — always above content ══ */
-#sc{position:fixed;inset:0;z-index:2;pointer-events:none}
+/* ═══════════════════════════════════════
+THEME: GOLD — ذهبي ملكي عميق
+═══════════════════════════════════════ */
+body.theme-gold {
+background: #050300 !important;
+color: #fff4c8 !important;
+}
+body.theme-gold { –bg:#050300;–bg2:#0c0900;–bg3:#141000;–bg4:#1c1600;–gold:#c89820;–gold2:#dca830;–gold3:#f0c040;–gold4:#ffd860;–silver:#b08820;–white:#fff4c8;–border:rgba(200,152,32,.3);–border2:rgba(200,152,32,.12); }
+body.theme-gold .snyx-nav { background: rgba(5,3,0,.96) !important; border-bottom: 1px solid rgba(200,152,32,.25) !important; }
+body.theme-gold .nav-logo-text { color: #f0c040 !important; }
+body.theme-gold .nav-logo-sub { color: #b08820 !important; }
+body.theme-gold .nav-links a { color: #b08820 !important; }
+body.theme-gold .nav-links a:hover, body.theme-gold .nav-links a.active { color: #dca830 !important; background: rgba(200,152,32,.1) !important; }
+body.theme-gold .hero-tag { color: #b08820 !important; }
+body.theme-gold .ticker-wrap { background: rgba(200,152,32,.06) !important; border-color: rgba(200,152,32,.15) !important; }
+body.theme-gold .ticker-item { color: #c89820 !important; }
+body.theme-gold .sec-full { background: linear-gradient(180deg,#0c0900,#141000) !important; }
+body.theme-gold .pcard-ipc,body.theme-gold .pcard-mkt,body.theme-gold .pcard-ai,body.theme-gold .pcard-gov { border-color: rgba(200,152,32,.2) !important; background: rgba(200,152,32,.05) !important; }
+body.theme-gold .pcard-desc { color: #c0a060 !important; }
+body.theme-gold .sec-sub { color: #b08820 !important; }
+body.theme-gold .step-num { background: linear-gradient(135deg,#c89820,#dca830) !important; color: #050300 !important; }
+body.theme-gold .step-desc { color: #b08820 !important; }
+body.theme-gold .phase { background: #141000 !important; border-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .phase.active { border-color: #dca830 !important; box-shadow: 0 0 30px rgba(200,152,32,.15) !important; }
+body.theme-gold .phase-items li { color: #b08820 !important; }
+body.theme-gold .snyx-footer { background: #0c0900 !important; border-top-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .footer-col-title { color: #dca830 !important; }
+body.theme-gold .footer-sub,body.theme-gold .footer-links a { color: #b08820 !important; }
+body.theme-gold .btn-lang,body.theme-gold .btn-api,body.theme-gold .btn-voice { border-color: rgba(200,152,32,.25) !important; color: #dca830 !important; }
+body.theme-gold .btn-theme { background: #141000 !important; border-color: rgba(200,152,32,.25) !important; }
+body.theme-gold .theme-drop { background: #0c0900 !important; border-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .modal-box { background: #141000 !important; border-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .form-input { background: #1c1600 !important; border-color: rgba(200,152,32,.2) !important; }
 
-/* ══ NAV ══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:60px;
-display:flex;align-items:center;padding:0 1.2rem;gap:.8rem;
-background:rgba(1,6,8,.88);backdrop-filter:blur(28px);
-border-bottom:1px solid var(–bd)}
-.nav-logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0}
-.nav-hex{width:34px;height:34px;background:linear-gradient(135deg,var(–g1),var(–g2));
+/* ═══ BASE ═══ */
+body{
+background:var(–bg);color:var(–white);
+font-family:‘Cairo’,sans-serif;
+min-height:100vh;overflow-x:hidden;
+cursor:none;
+transition:background .4s,color .3s;
+}
+a{color:var(–gold2);text-decoration:none;transition:color .2s}
+a:hover{color:var(–gold3)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(–bg2)}
+::-webkit-scrollbar-thumb{background:var(–gold);border-radius:2px}
+::selection{background:rgba(184,146,42,.3);color:var(–gold3)}
+
+/* ═══ CURSOR ═══ */
+#cur{position:fixed;width:10px;height:10px;background:var(–gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#ring{position:fixed;width:32px;height:32px;border:1px solid rgba(184,146,42,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s}
+
+/* ═══ STARS ═══ */
+#starsCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ═══ NAV ═══ */
+.snyx-nav{
+position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;
+display:flex;align-items:center;padding:0 1.5rem;gap:1rem;
+background:rgba(2,8,15,.92);backdrop-filter:blur(20px);
+border-bottom:1px solid var(–border);
+}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{
+width:36px;height:36px;
+background:linear-gradient(135deg,var(–gold),var(–gold2));
 clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
 display:flex;align-items:center;justify-content:center;
-font-family:‘Cinzel’,serif;font-weight:900;font-size:.82rem;color:var(–bg)}
-.nav-brand{font-family:‘Cinzel’,serif;font-size:.95rem;font-weight:700;color:var(–g4);letter-spacing:.14em}
-.nav-sub{font-size:.5rem;color:var(–sv);display:block;line-height:1.2}
-.nav-links{display:flex;align-items:center;gap:0;flex:1;justify-content:center;list-style:none}
-.nav-links a{padding:.3rem .5rem;border-radius:var(–r);font-size:.63rem;color:var(–sv);transition:all .18s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.on{color:var(–g2);background:rgba(184,146,42,.08)}
-.nav-links a.on{border-bottom:2px solid var(–g1)}
-.nav-acts{display:flex;align-items:center;gap:.25rem;flex-shrink:0;position:relative}
-.nb{height:28px;padding:0 .55rem;border-radius:14px;border:1px solid var(–bd);
-background:rgba(184,146,42,.05);color:var(–g2);font-size:.62rem;cursor:pointer;
-font-family:‘Space Mono’,monospace;transition:all .18s;white-space:nowrap;
-display:flex;align-items:center;gap:.2rem}
-.nb:hover{background:rgba(184,146,42,.13);border-color:rgba(184,146,42,.35)}
-.nb-icon{width:28px;padding:0;justify-content:center;font-size:.82rem;border-radius:50%}
-.nb-login{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);
-border-color:transparent;font-family:‘Cairo’,sans-serif;font-weight:700;font-size:.66rem;padding:0 .7rem}
-.nb-login:hover{box-shadow:0 4px 18px rgba(184,146,42,.4);transform:translateY(-1px)}
-.td{position:fixed;top:66px;background:rgba(3,16,24,.96);border:1px solid var(–bd);
-border-radius:var(–r2);padding:.55rem;display:none;flex-direction:column;gap:.25rem;
-min-width:138px;z-index:3000;box-shadow:var(–sh);backdrop-filter:blur(20px)}
-.td.on{display:flex}
-.td-hd{font-family:‘Space Mono’,monospace;font-size:.55rem;color:var(–g1);
-letter-spacing:.12em;padding:.1rem .35rem;opacity:.8}
-.to{display:flex;align-items:center;gap:.55rem;padding:.38rem .6rem;border-radius:var(–r);
-cursor:pointer;font-size:.76rem;color:var(–sv);transition:all .18s;
-border:1px solid transparent;font-family:‘Cairo’,sans-serif}
-.to:hover,.to.on{background:rgba(184,146,42,.09);color:var(–g2);border-color:var(–bd)}
-.to.on{font-weight:700}
-.ts{width:15px;height:15px;border-radius:50%;flex-shrink:0}
+font-family:‘Cinzel’,serif;font-weight:900;font-size:.85rem;color:var(–bg);
+}
+.nav-logo-text{font-family:‘Cinzel’,serif;font-size:1rem;font-weight:700;color:var(–gold3);letter-spacing:.15em}
+.nav-logo-sub{font-size:.55rem;color:var(–silver);display:block;line-height:1.2}
+.nav-links{display:flex;align-items:center;gap:.1rem;flex:1;justify-content:center;list-style:none}
+.nav-links a{padding:.35rem .55rem;border-radius:var(–r);font-size:.68rem;color:var(–silver);transition:all .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(–gold2);background:rgba(184,146,42,.1)}
+.nav-links a.active{border-bottom:2px solid var(–gold)}
 
-/* ══ THEMES ══ */
-body.lt{–bg:#f8f3e8;–bg2:#f0e8d4;–bg3:#e6dbc4;–bg4:#d8ceб8;
-–g1:#6a4a08;–g2:#8a6010;–g3:#aa7820;–g4:#6a4808;
-–w:#1a1008;–sv:#5a4828;–dim:#8a7050;
-–bd:rgba(80,52,8,.22);–bd2:rgba(80,52,8,.1)}
-body.lt{background:#f8f3e8}
-body.lt .nav{background:rgba(240,230,210,.92)}
-body.lt #sc{opacity:.18}
-body.lt .card,.lt .pcard,.lt .phase,.lt .chat-box,.lt .sidebar-widget{background:rgba(240,230,210,.7)!important}
+.btn-voice:hover{background:rgba(184,146,42,.18)}
 
-body.gd{–bg:#050300;–bg2:#0c0800;–bg3:#141000;–bg4:#1c1600;
-–g1:#c89820;–g2:#dca830;–g3:#f0c040;–g4:#ffd060;
-–w:#fff4c0;–sv:#b09020;
-–bd:rgba(200,152,32,.28);–bd2:rgba(200,152,32,.1)}
-body.gd{background:#050300}
-body.gd .nav{background:rgba(5,3,0,.92)}
+/* Theme toggle */
 
-/* ══ PAGE ══ */
-.pw{position:relative;z-index:3;padding-top:60px}
+/* ═══ NAV BUTTONS NEW SYSTEM ═══ */
+.nav-actions{display:flex;align-items:center;gap:.3rem;flex-shrink:0;position:relative}
+.nbtn{height:30px;padding:0 .6rem;border-radius:16px;border:1px solid var(–border);background:rgba(184,146,42,.06);color:var(–gold2);font-size:.68rem;cursor:pointer;font-family:‘Space Mono’,monospace;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.25rem}
+.nbtn:hover{background:rgba(184,146,42,.15);border-color:rgba(184,146,42,.4)}
+.nbtn-icon{width:30px;padding:0;justify-content:center;font-size:.9rem;border-radius:50%}
+.nbtn-login{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);border-color:transparent;font-family:inherit;font-weight:700;font-size:.7rem;padding:0 .85rem}
+.nbtn-login:hover{box-shadow:0 4px 16px rgba(184,146,42,.4);transform:translateY(-1px)}
+.nbtn-lang{font-weight:700;font-size:.72rem}
 
-/* ══ SECTIONS ══ */
-.sec{padding:4.5rem 2rem;max-width:1300px;margin:0 auto}
-.sf{padding:4.5rem 0;position:relative;z-index:3;background:rgba(2,11,18,.5);backdrop-filter:blur(6px)}
-.si{max-width:1300px;margin:0 auto;padding:0 2rem}
-.stag{display:inline-block;font-family:‘Space Mono’,monospace;font-size:.58rem;
-color:var(–g1);letter-spacing:.2em;background:rgba(184,146,42,.07);
-border:1px solid rgba(184,146,42,.18);padding:.2rem .65rem;border-radius:20px;margin-bottom:.7rem}
-.sh1{font-family:‘Cinzel’,serif;font-size:clamp(1.7rem,4vw,3rem);font-weight:700;
-background:linear-gradient(135deg,var(–g5),var(–g4),var(–g2));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-margin-bottom:.7rem;line-height:1.2}
-.sub{font-size:.88rem;color:#b0bcd0;line-height:1.95;max-width:640px}
+/* Theme dropdown - positioned relative to nav-actions */
+.theme-drop{
+position:fixed;top:68px;
+background:var(–bg2);
+border:1px solid var(–border);
+border-radius:var(–r2);
+padding:.6rem;
+display:none;
+flex-direction:column;
+gap:.3rem;
+min-width:140px;
+z-index:5000;
+box-shadow:0 8px 40px rgba(0,0,0,.7);
+}
+.theme-drop.open{display:flex}
+.tdrop-title{font-family:‘Space Mono’,monospace;font-size:.58rem;color:var(–gold);letter-spacing:.12em;padding:.1rem .4rem;opacity:.8}
+.theme-opt{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:var(–r);cursor:pointer;font-size:.78rem;color:var(–silver);transition:all .2s;border:1px solid transparent;font-family:‘Cairo’,sans-serif}
+.theme-opt:hover{background:rgba(184,146,42,.1);color:var(–white);border-color:var(–border)}
+.theme-opt.active{background:rgba(184,146,42,.14);color:var(–gold2);border-color:rgba(184,146,42,.3);font-weight:700}
+.theme-swatch{width:16px;height:16px;border-radius:50%;flex-shrink:0}
 
-/* ══ CARDS — translucent so stars show through ══ */
-.card{background:rgba(3,16,24,.55);border:1px solid var(–bd);border-radius:var(–r2);
-padding:1.4rem;transition:all .3s;backdrop-filter:blur(14px)}
-.card:hover{border-color:rgba(184,146,42,.35);box-shadow:var(–sh2)}
-.pcard{border-radius:var(–r2);padding:2rem;transition:all .35s;text-decoration:none;
-color:inherit;display:block;border:1px solid var(–bd);
-background:rgba(3,16,24,.5);backdrop-filter:blur(14px)}
-.pcard:hover{transform:translateY(-7px);border-color:rgba(184,146,42,.38);box-shadow:var(–sh2)}
+/* ═══ PAGE WRAP ═══ */
+.page-wrap{position:relative;z-index:1;padding-top:62px}
 
-/* ══ BUTTONS ══ */
-.bp{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);
-border:none;padding:.62rem 1.35rem;border-radius:var(–r);font-weight:700;
-font-size:.8rem;cursor:pointer;font-family:inherit;transition:all .22s;
-display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
-.bp:hover{box-shadow:0 6px 28px rgba(184,146,42,.45);transform:translateY(-2px);color:var(–bg)}
-.bo{background:transparent;border:1px solid var(–bd);color:var(–sv);
-padding:.6rem 1.3rem;border-radius:var(–r);font-size:.8rem;cursor:pointer;
-font-family:inherit;transition:all .22s;text-decoration:none;display:inline-flex;align-items:center}
-.bo:hover{border-color:var(–g1);color:var(–g2)}
+/* ═══ SVG ICONS ═══ */
+.snyx-icon{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;margin-bottom:1.2rem;filter:drop-shadow(0 0 12px rgba(184,146,42,.5))}
+.snyx-icon:hover{filter:drop-shadow(0 0 28px rgba(212,168,67,.9))}
+.snyx-icon svg{width:100%;height:100%}
+@keyframes iconGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(184,146,42,.4))}50%{filter:drop-shadow(0 0 22px rgba(212,168,67,.9))}}
+@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.snyx-icon{animation:iconGlow 3s ease-in-out infinite,iconFloat 4s ease-in-out infinite}
 
-/* ══ CHAT ══ */
-.chat-box{border:1px solid var(–bd);border-radius:var(–r2);display:flex;
-flex-direction:column;overflow:hidden;background:rgba(2,10,16,.6);backdrop-filter:blur(16px)}
-.ch{padding:.8rem 1.1rem;border-bottom:1px solid var(–bd);
-display:flex;align-items:center;gap:.65rem;font-size:.8rem;font-weight:700;
-background:rgba(184,146,42,.03)}
-.cb{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.65rem;min-height:160px}
-.mu{align-self:flex-end;max-width:85%;background:rgba(184,146,42,.1);
-border:1px solid rgba(184,146,42,.22);color:var(–w);padding:.65rem .95rem;
-border-radius:var(–r2);font-size:.8rem;line-height:1.75}
-.ma{align-self:flex-start;max-width:88%;background:rgba(3,16,24,.7);
-border:1px solid var(–bd);color:#c0cce0;padding:.65rem .95rem;
-border-radius:var(–r2);font-size:.8rem;line-height:1.75;backdrop-filter:blur(8px)}
-.spk{background:rgba(184,146,42,.06);border:1px solid var(–bd);color:var(–g2);
-width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:.6rem;
-display:flex;align-items:center;justify-content:center;transition:all .18s}
-.spk:hover{background:rgba(184,146,42,.18)}
-.cf{padding:.7rem;border-top:1px solid var(–bd);display:flex;gap:.45rem;
-background:rgba(184,146,42,.015)}
-.ci{flex:1;background:rgba(2,10,16,.65);border:1px solid var(–bd);color:var(–w);
-padding:.5rem .85rem;border-radius:var(–r);font-size:.8rem;font-family:inherit;
-outline:none;transition:border-color .18s;backdrop-filter:blur(4px)}
-.ci:focus{border-color:var(–g1)}
-.ci::placeholder{color:var(–dim)}
-.cs{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);
-border:none;padding:.5rem .95rem;border-radius:var(–r);font-weight:700;
-font-size:.76rem;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap}
-.cs:hover{box-shadow:0 4px 16px rgba(184,146,42,.4)}
-.mb{background:rgba(184,146,42,.05);border:1px solid rgba(184,146,42,.2);color:var(–g2);
-width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.88rem;
-display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}
-.mb.rc{background:rgba(208,48,64,.25);border-color:rgba(208,48,64,.5);
-animation:rp 1s infinite}
-@keyframes rp{0%,100%{box-shadow:0 0 0 0 rgba(208,48,64,.4)}50%{box-shadow:0 0 0 7px rgba(208,48,64,0)}}
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(184,146,42,.07),transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(184,146,42,.07);border:1px solid rgba(184,146,42,.22);padding:.35rem 1rem;border-radius:20px;margin-bottom:1.8rem;font-family:‘Space Mono’,monospace;font-size:.65rem;color:var(–gold);letter-spacing:.15em;animation:fadeInDown .8s ease .2s both}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.hero-title{font-family:‘Cinzel’,serif;font-size:clamp(4rem,14vw,10rem);font-weight:900;letter-spacing:.08em;line-height:.9;margin-bottom:.5rem;background:linear-gradient(135deg,var(–gold4),var(–gold3),var(–gold2),var(–gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:heroGlow 3s ease-in-out infinite alternate}
+@keyframes heroGlow{from{filter:drop-shadow(0 0 20px rgba(184,146,42,.3))}to{filter:drop-shadow(0 0 60px rgba(184,146,42,.6))}}
+.hero-sub{font-size:clamp(1.1rem,2.5vw,1.8rem);color:var(–white);font-weight:300;margin-bottom:.4rem;letter-spacing:.06em;animation:fadeInUp .8s ease .4s both}
+.hero-tag{font-family:‘Space Mono’,monospace;font-size:.72rem;color:var(–silver);letter-spacing:.2em;margin-bottom:2.5rem;animation:fadeInUp .8s ease .5s both}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;animation:fadeInUp .8s ease .6s both}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .7s both}
+.hero-stat-num{font-family:‘Space Mono’,monospace;font-size:1.5rem;font-weight:700;color:var(–gold3)}
+.hero-stat-lbl{font-size:.7rem;color:#9aa8be;margin-top:.2rem}
 
-/* ══ FORMS ══ */
-.fg{margin-bottom:1rem}
-.fl{display:block;font-size:.73rem;color:#8898b8;margin-bottom:.32rem}
-.fi{width:100%;background:rgba(2,10,16,.6);border:1px solid var(–bd);color:var(–w);
-padding:.62rem .88rem;border-radius:var(–r);font-size:.8rem;font-family:inherit;
-outline:none;transition:border-color .18s;backdrop-filter:blur(4px)}
-.fi:focus{border-color:var(–g1)}
-.fi::placeholder{color:var(–dim)}
-.fi option{background:#031018}
+/* ═══ TICKER ═══ */
+.ticker-wrap{overflow:hidden;white-space:nowrap;background:rgba(184,146,42,.04);border-top:1px solid var(–border);border-bottom:1px solid var(–border);padding:.35rem 0;position:absolute;bottom:0;left:0;right:0}
+.ticker-inner{display:inline-block;animation:ticker 40s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:inline-block;padding:0 2rem;font-family:‘Space Mono’,monospace;font-size:.73rem;color:#c8d4e8;font-weight:500}
 
-/* ══ TABLE ══ */
-.tbl{width:100%;border-collapse:collapse;font-size:.8rem}
-.tbl th{padding:.65rem 1rem;text-align:right;font-weight:700;font-family:‘Space Mono’,monospace;
-font-size:.67rem;letter-spacing:.05em;color:var(–g2);border-bottom:1px solid var(–bd);
-background:rgba(184,146,42,.04)}
-.tbl td{padding:.6rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);color:#b0bcd0;vertical-align:middle}
-.tbl tr:hover td{background:rgba(184,146,42,.03)}
+/* ═══ SECTIONS ═══ */
+.section{padding:5rem 2rem;max-width:1280px;margin:0 auto}
+.sec-full{padding:5rem 0;position:relative;z-index:1;background:linear-gradient(180deg,var(–bg2),var(–bg3))}
+.sec-inner{max-width:1280px;margin:0 auto;padding:0 2rem}
+.sec-tag{display:inline-block;font-family:‘Space Mono’,monospace;font-size:.6rem;color:var(–gold);letter-spacing:.2em;text-transform:uppercase;background:rgba(184,146,42,.07);border:1px solid rgba(184,146,42,.18);padding:.22rem .7rem;border-radius:20px;margin-bottom:.8rem}
+.sec-title{font-family:‘Cinzel’,serif;font-size:clamp(1.7rem,4vw,3rem);font-weight:700;line-height:1.2;background:linear-gradient(135deg,var(–gold4),var(–gold3),var(–gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.8rem}
+.sec-sub{font-size:.9rem;color:#c0c8d8;line-height:1.9;max-width:620px}
 
-/* ══ MISC ══ */
-.badge{display:inline-block;padding:.16rem .6rem;border-radius:20px;font-size:.63rem;font-weight:700;font-family:‘Space Mono’,monospace}
-.bg{background:rgba(184,146,42,.1);color:var(–g2);border:1px solid rgba(184,146,42,.22)}
-.br{background:rgba(208,48,64,.1);color:#d05060;border:1px solid rgba(208,48,64,.22)}
-.bl{background:rgba(34,168,102,.1);color:#22a866;border:1px solid rgba(34,168,102,.22)}
-.pd{width:7px;height:7px;border-radius:50%;background:var(–g2);display:inline-block;
-animation:pd 2.2s infinite}
-@keyframes pd{0%,100%{box-shadow:0 0 0 0 rgba(184,146,42,.5)}50%{box-shadow:0 0 0 5px rgba(184,146,42,0)}}
-.gln{height:1px;background:linear-gradient(90deg,transparent,var(–g1),var(–g2),var(–g1),transparent)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.ldr{width:16px;height:16px;border-radius:50%;border:2px solid var(–bd);border-top-color:var(–g1);animation:sp .7s linear infinite;display:inline-block}
-@keyframes sp{to{transform:rotate(360deg)}}
-.pb{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin:.3rem 0}
-.pf{height:100%;background:linear-gradient(90deg,var(–g1),var(–g2));border-radius:3px;transition:width 1.2s ease}
-.ticker-wrap{overflow:hidden;white-space:nowrap;background:rgba(184,146,42,.04);
-border-top:1px solid var(–bd);border-bottom:1px solid var(–bd);padding:.32rem 0;
-position:absolute;bottom:0;left:0;right:0;z-index:4}
-.ticker-inner{display:inline-block;animation:tk 50s linear infinite}
-@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{display:inline-block;padding:0 2.5rem;font-family:‘Space Mono’,monospace;
-font-size:.7rem;color:#c0cce0}
+/* ═══ BUTTONS ═══ */
+.btn-p{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);border:none;padding:.65rem 1.4rem;border-radius:var(–r);font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .25s;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
+.btn-p:hover{box-shadow:0 6px 28px rgba(184,146,42,.5);transform:translateY(-2px);color:var(–bg)}
+.btn-o{background:transparent;border:1px solid var(–border);color:var(–silver);padding:.62rem 1.3rem;border-radius:var(–r);font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-o:hover{border-color:var(–gold);color:var(–gold2)}
 
-/* ══ MODAL ══ */
-.mo{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.82);
-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:1rem}
-.mo.on{display:flex}
-.mb2{background:rgba(3,16,24,.94);border:1px solid var(–bd);border-radius:var(–r2);
-padding:1.8rem;width:100%;max-width:480px;position:relative;
-box-shadow:var(–sh);animation:mi .28s ease;backdrop-filter:blur(24px)}
-@keyframes mi{from{opacity:0;transform:scale(.96) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.mc{position:absolute;top:.9rem;left:1rem;background:transparent;border:none;
-color:var(–sv);font-size:1rem;cursor:pointer;transition:color .18s}
-.mc:hover{color:var(–red)}
-.mt{font-family:‘Cinzel’,serif;font-size:1rem;font-weight:700;color:var(–g4);
-margin-bottom:1.2rem;padding-left:1.4rem}
+/* ═══ PLATFORM CARDS ═══ */
+.platforms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.pcard{border-radius:var(–r2);padding:2.2rem;position:relative;overflow:hidden;transition:all .4s;text-decoration:none;color:inherit;display:block;border:1px solid transparent}
+.pcard:hover{transform:translateY(-8px)}
+.pcard-ipc{background:linear-gradient(135deg,rgba(184,146,42,.06),rgba(184,146,42,.02));border-color:rgba(184,146,42,.18)}
+.pcard-ipc:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.08)}
+.pcard-mkt{background:linear-gradient(135deg,rgba(184,146,42,.05),rgba(184,146,42,.02));border-color:rgba(184,146,42,.15)}
+.pcard-mkt:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.08)}
+.pcard-ai{background:linear-gradient(135deg,rgba(184,146,42,.07),rgba(184,146,42,.02));border-color:rgba(184,146,42,.18)}
+.pcard-ai:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.12)}
+.pcard-gov{background:linear-gradient(135deg,rgba(184,146,42,.06),rgba(184,146,42,.02));border-color:rgba(184,146,42,.15)}
+.pcard-gov:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.08)}
+.pcard-name-en{font-family:‘Cinzel’,serif;font-size:1rem;font-weight:700;margin-bottom:.3rem;letter-spacing:.05em}
+.pcard-name-ar{font-size:.95rem;font-weight:700;color:var(–white);margin-bottom:.8rem}
+.pcard-desc{font-size:.84rem;color:#c8d4e4;line-height:2;margin-bottom:1.4rem}
+.pcard-link{font-family:‘Space Mono’,monospace;font-size:.7rem;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+.pcard:hover .pcard-link{gap:.7rem}
 
-/* ══ SVG ICONS ══ */
-.icon{display:inline-flex;align-items:center;justify-content:center;
-filter:drop-shadow(0 0 10px rgba(184,146,42,.5))}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes glow{0%,100%{filter:drop-shadow(0 0 6px rgba(184,146,42,.4))}50%{filter:drop-shadow(0 0 22px rgba(212,168,67,.9))}}
-.icon{animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite}
+/* ═══ HOW IT WORKS ═══ */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+.how-grid::before{content:’’;position:absolute;top:40px;right:12.5%;left:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(–gold),var(–gold2),var(–gold),transparent)}
+.step{text-align:center;padding:1.5rem;position:relative;z-index:1}
+.step-num{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);font-family:‘Cinzel’,serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 0 24px rgba(184,146,42,.3)}
+.step-title{font-weight:700;color:var(–white);margin-bottom:.4rem}
+.step-desc{font-size:.78rem;color:#b8c0d0;line-height:1.8}
 
-/* ══ FOOTER ══ */
-.ft{background:rgba(1,6,8,.7);border-top:1px solid var(–bd);
-padding:2.8rem 2rem 1.4rem;position:relative;z-index:3;backdrop-filter:blur(16px)}
-.ftg{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}
-.fb{font-family:‘Cinzel’,serif;font-size:1.2rem;font-weight:900;color:var(–g4);letter-spacing:.14em;margin-bottom:.45rem}
-.fct{font-family:‘Space Mono’,monospace;font-size:.63rem;color:var(–g1);letter-spacing:.1em;margin-bottom:.8rem}
-.fl2{list-style:none;display:flex;flex-direction:column;gap:.38rem}
-.fl2 a{font-size:.76rem;color:var(–sv)}
-.fl2 a:hover{color:var(–g2)}
-.fbot{max-width:1300px;margin:1.8rem auto 0;padding-top:.9rem;
-border-top:1px solid var(–bd2);display:flex;justify-content:space-between;
-font-size:.67rem;color:#5a6880}
+/* ═══ TOKENOMICS ═══ */
+.token-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.donut-wrap{position:relative;width:220px;height:220px;margin:0 auto}
+.donut-wrap svg{transform:rotate(-90deg)}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-val{font-family:‘Space Mono’,monospace;font-size:1.5rem;font-weight:700;color:var(–gold3)}
+.donut-lbl{font-size:.68rem;color:var(–silver)}
+.legend{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+.legend-item{display:flex;align-items:center;gap:.85rem;font-size:.82rem}
+.legend-dot{width:13px;height:13px;border-radius:50%;flex-shrink:0}
+.legend-name{flex:1;color:#e0e8f5}
+.legend-pct{font-family:‘Space Mono’,monospace;font-size:.78rem;color:var(–gold2);font-weight:700}
 
-/* ══ RESPONSIVE ══ */
-@media(max-width:900px){.nav-links{display:none}.ftg{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.sec{padding:3rem 1rem}.ftg{grid-template-columns:1fr}}
+/* ═══ ROADMAP ═══ */
+.roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.phase{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r2);padding:1.4rem;transition:all .3s;position:relative}
+.phase:hover{transform:translateY(-4px)}
+.phase.active{border-color:var(–gold2);box-shadow:0 0 30px rgba(184,146,42,.1)}
+.phase-num{font-family:‘Space Mono’,monospace;font-size:.6rem;color:var(–gold);letter-spacing:.15em;margin-bottom:.4rem}
+.phase-title{font-weight:700;color:var(–white);margin-bottom:.25rem}
+.phase-date{font-size:.72rem;color:var(–silver);margin-bottom:.9rem}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.phase-items li{font-size:.76rem;color:#b0b8cc;padding-right:.85rem;position:relative}
+.phase-items li::before{content:‘◆’;position:absolute;right:0;color:var(–gold);font-size:.42rem;top:.28rem}
 
-.chat-box{{border:1px solid var(–bd);border-radius:var(–r2);display:flex;flex-direction:column;overflow:hidden;background:rgba(2,10,16,.6);backdrop-filter:blur(16px)}}
-.ch{{padding:.78rem 1.1rem;border-bottom:1px solid var(–bd);display:flex;align-items:center;gap:.65rem;font-size:.78rem;font-weight:700;background:rgba(184,146,42,.03)}}
-.cb{{flex:1;overflow-y:auto;padding:.88rem;display:flex;flex-direction:column;gap:.62rem;min-height:160px}}
-.mu{{align-self:flex-end;max-width:85%;background:rgba(184,146,42,.1);border:1px solid rgba(184,146,42,.2);color:var(–w);padding:.62rem .92rem;border-radius:var(–r2);font-size:.79rem;line-height:1.75}}
-.ma{{align-self:flex-start;max-width:88%;background:rgba(2,10,16,.7);border:1px solid var(–bd);color:#b8c8dc;padding:.62rem .92rem;border-radius:var(–r2);font-size:.79rem;line-height:1.75;backdrop-filter:blur(8px)}}
-.spk{{background:rgba(184,146,42,.06);border:1px solid var(–bd);color:var(–g2);width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:.6rem;display:flex;align-items:center;justify-content:center;transition:all .18s}}
-.spk:hover{{background:rgba(184,146,42,.18)}}
-.cf{{padding:.68rem;border-top:1px solid var(–bd);display:flex;gap:.42rem;background:rgba(184,146,42,.015)}}
-.ci{{flex:1;background:rgba(2,10,16,.65);border:1px solid var(–bd);color:var(–w);padding:.5rem .85rem;border-radius:var(–r);font-size:.79rem;font-family:inherit;outline:none;transition:border-color .18s}}
-.ci:focus{{border-color:var(–g1)}}
-.ci::placeholder{{color:var(–dim)}}
-.cs{{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);border:none;padding:.5rem .92rem;border-radius:var(–r);font-weight:700;font-size:.75rem;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap}}
-.cs:hover{{box-shadow:0 4px 16px rgba(184,146,42,.38)}}
-.mb{{background:rgba(184,146,42,.05);border:1px solid rgba(184,146,42,.2);color:var(–g2);width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.88rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}}
-.mb.rc{{background:rgba(208,48,64,.25);border-color:rgba(208,48,64,.5);animation:rp 1s infinite}}
-@keyframes rp{{0%,100%{{box-shadow:0 0 0 0 rgba(208,48,64,.4)}}50%{{box-shadow:0 0 0 7px rgba(208,48,64,0))}}}}
-.fg{{margin-bottom:.95rem}}
-.fl{{display:block;font-size:.72rem;color:#8898b8;margin-bottom:.3rem}}
-.fi{{width:100%;background:rgba(2,10,16,.6);border:1px solid var(–bd);color:var(–w);padding:.62rem .88rem;border-radius:var(–r);font-size:.79rem;font-family:inherit;outline:none;transition:border-color .18s}}
-.fi:focus{{border-color:var(–g1)}}
-.fi::placeholder{{color:var(–dim)}}
-.fi option{{background:#020b12}}
-.tbl{{width:100%;border-collapse:collapse;font-size:.79rem}}
-.tbl th{{padding:.62rem .95rem;text-align:right;font-weight:700;font-family:‘Space Mono’,monospace;font-size:.66rem;letter-spacing:.05em;color:var(–g2);border-bottom:1px solid var(–bd);background:rgba(184,146,42,.04)}}
-.tbl td{{padding:.58rem .95rem;border-bottom:1px solid rgba(255,255,255,.04);color:#a8b8cc;vertical-align:middle}}
-.tbl tr:hover td{{background:rgba(184,146,42,.03)}}
+/* ═══ BETTER CONTRAST FOR DARK THEME ═══ */
+.sec-sub{font-size:.95rem;color:#c8d4e8;line-height:1.9;max-width:620px}
+.step-desc{font-size:.82rem;color:#c0cce0;line-height:1.8}
+.step-title{font-weight:700;color:#f0f4ff;margin-bottom:.4rem;font-size:.96rem}
+.phase-items li{font-size:.8rem;color:#bcc8dc;padding-right:.85rem;position:relative}
+.phase-date{font-size:.76rem;color:#8898b8;margin-bottom:.9rem}
+.legend-name{flex:1;color:#e0e8f8;font-size:.85rem}
+.footer-sub{font-size:.82rem;color:#a0b0c4;line-height:1.8;margin-bottom:1rem}
+.footer-links a{font-size:.82rem;color:#a0afc0}
+.footer-links a:hover{color:var(–gold2)}
+.footer-bottom{max-width:1280px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid var(–border2);display:flex;justify-content:space-between;font-size:.74rem;color:#7888aa}
+.hero-stat-lbl{font-size:.74rem;color:#9aabbb;margin-top:.2rem}
+.hero-tag{font-family:‘Space Mono’,monospace;font-size:.72rem;color:#8899bb;letter-spacing:.2em;margin-bottom:2.5rem;animation:fadeInUp .8s ease .5s both}
+.ticker-item{display:inline-block;padding:0 2rem;font-family:‘Space Mono’,monospace;font-size:.78rem;color:#c8d4e8;letter-spacing:.05em}
+.pcard-desc{font-size:.8rem;color:#b8c4d8;line-height:1.9;margin-bottom:1.4rem}
+.phase-title{font-weight:700;color:#f0f4ff;margin-bottom:.25rem;font-size:.94rem}
+.card{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r2);padding:1.5rem;transition:all .3s}
+.card:hover{border-color:rgba(184,146,42,.4);box-shadow:0 8px 32px rgba(184,146,42,.07)}
+.badge{display:inline-block;padding:.18rem .65rem;border-radius:20px;font-size:.65rem;font-weight:700;font-family:‘Space Mono’,monospace}
+.badge-gold{background:rgba(184,146,42,.12);color:var(–gold2);border:1px solid rgba(184,146,42,.25)}
+.badge-green{background:rgba(184,146,42,.12);color:var(–gold2);border:1px solid rgba(184,146,42,.25)}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(–gold2);animation:pulse 2s infinite;display:inline-block}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,146,42,.4)}50%{box-shadow:0 0 0 5px rgba(184,146,42,0)}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(–border),transparent);margin:2rem 0}
+.glow-line{height:2px;background:linear-gradient(90deg,transparent,var(–gold),var(–gold2),var(–gold),transparent)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-.eng-g{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.8rem}
-.ec{border:1px solid var(–bd);border-radius:var(–r2);padding:1.2rem;cursor:pointer;transition:all .28s;background:rgba(3,16,24,.55);backdrop-filter:blur(14px)}
-.ec:hover,.ec.on{border-color:rgba(184,146,42,.45);box-shadow:0 8px 30px rgba(184,146,42,.09);transform:translateY(-3px)}
-.ec.on{background:rgba(184,146,42,.06)}
-.ecode{font-family:‘Space Mono’,monospace;font-size:.63rem;color:var(–g2);letter-spacing:.13em;margin-bottom:.25rem}
-.ename{font-size:.84rem;font-weight:700;color:var(–w);margin-bottom:.45rem}
-.eacc{height:4px;background:rgba(255,255,255,.06);border-radius:2px;overflow:hidden;margin-bottom:.4rem}
-.eaf{height:100%;background:linear-gradient(90deg,var(–g1),var(–g2));border-radius:2px}
-.edesc{font-size:.7rem;color:#9aaabb;line-height:1.6}
-.aewrap{border:1px solid rgba(184,146,42,.2);border-radius:var(–r2);overflow:hidden;margin-top:1.6rem}
-.aehd{padding:.85rem 1.3rem;border-bottom:1px solid var(–bd);display:flex;align-items:center;gap:.75rem;background:rgba(184,146,42,.04)}
-.agg{display:grid;grid-template-columns:1fr 1fr;gap:1.3rem}
-@media(max-width:1100px){.eng-g{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.eng-g{grid-template-columns:1fr}.agg{grid-template-columns:1fr}}
-</style></head>
+/* ═══ MODAL ═══ */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r2);padding:2rem;width:100%;max-width:500px;position:relative;box-shadow:var(–shadow);animation:mIn .3s ease}
+@keyframes mIn{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:1rem;left:1rem;background:transparent;border:none;color:var(–silver);font-size:1.1rem;cursor:pointer;transition:color .2s}
+.modal-close:hover{color:var(–red)}
+.modal-title{font-family:‘Cinzel’,serif;font-size:1.1rem;font-weight:700;color:var(–gold3);margin-bottom:1.4rem;padding-left:1.5rem}
+.form-group{margin-bottom:1.1rem}
+.form-label{display:block;font-size:.75rem;color:var(–silver);margin-bottom:.35rem}
+.form-input{width:100%;background:var(–bg4);border:1px solid var(–border);color:var(–white);padding:.65rem .9rem;border-radius:var(–r);font-size:.82rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(–gold)}
+.loader{width:18px;height:18px;border-radius:50%;border:2px solid var(–border);border-top-color:var(–gold);animation:spin .8s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-<body><canvas id="sc"></canvas><div id="cr"></div><div id="rg"></div><nav class="nav"><a href="index.html" class="nav-logo"><div class="nav-hex">SX</div><div><div class="nav-brand">SENYX</div><span class="nav-sub" data-ar="مدينة الابتكار العالمية الذكية" data-en="Sovereign Innovation City">مدينة الابتكار العالمية الذكية</span></div></a><ul class="nav-links"><li><a href="index.html"  data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="ipccore.html"  data-ar="نواة IP" data-en="IP Core">نواة IP</a></li><li><a href="market.html"  data-ar="السوق" data-en="Market">السوق</a></li><li><a href="ai-platform.html" class='on' data-ar="منصة AI" data-en="AI Platform">منصة AI</a></li><li><a href="dashboards.html"  data-ar="لوحات التحكم" data-en="Dashboards">لوحات التحكم</a></li><li><a href="governance.html"  data-ar="الحوكمة" data-en="Governance">الحوكمة</a></li><li><a href="community.html"  data-ar="المجتمع" data-en="Community">المجتمع</a></li><li><a href="investor.html"  data-ar="المستثمرون" data-en="Investors">المستثمرون</a></li><li><a href="news.html"  data-ar="الأخبار" data-en="News">الأخبار</a></li></ul><div class="nav-acts"><button class="nb nb-icon" id="tBtn" onclick="toggleTD(event)">🌙</button><div class="td" id="tDrop"><div class="td-hd">THEME</div><div class="to on" data-t="dark" onclick="setTheme('dark')"><span class="ts" style="background:#010608;border:2px solid #b8922a"></span><span>🌙 داكن</span></div><div class="to" data-t="lt" onclick="setTheme('lt')"><span class="ts" style="background:#f8f3e8;border:2px solid #8a6010"></span><span>☀️ فاتح</span></div><div class="to" data-t="gd" onclick="setTheme('gd')"><span class="ts" style="background:#050300;border:2px solid #dca830"></span><span>👑 ذهبي</span></div></div><button class="nb" id="vNb" onclick="openM('voice')">🔊</button><button class="nb" id="aNb" onclick="openM('api')">🔑</button><button class="nb" id="lBtn" onclick="toggleL()">EN</button><button class="nb nb-login" onclick="openM('login')"><span data-ar="دخول" data-en="Login">دخول</span></button></div></nav><div class="pw">
-<section class="sec" style="padding-top:5.5rem">
-  <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin-bottom:3rem">
-    <div style="flex:1;min-width:280px">
-      <div class="stag">◈ AI SOVEREIGN PLATFORM</div>
-      <h1 style="font-family:'Cinzel',serif;font-size:clamp(1.8rem,5vw,3.5rem);font-weight:900;background:linear-gradient(135deg,#fff3b0,#fde068,#d4a843);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:.6rem">منصة الذكاء<br>الاصطناعي السيادي</h1>
-      <p class="sub" style="margin-bottom:1.8rem" data-ar="8 محركات AI متخصصة + 4 وكلاء سياديون — كل محرك وكيل مستقل شفاف، AI يُمكّن والإنسان يقرر." data-en="8 specialized AI engines + 4 sovereign agents — each engine a transparent independent agent, AI enables Humans decide.">8 محركات AI متخصصة + 4 وكلاء سياديون — كل محرك وكيل مستقل شفاف، AI يُمكّن والإنسان يقرر.</p>
+/* ═══ FOOTER ═══ */
+.snyx-footer{background:var(–bg2);border-top:1px solid var(–border);padding:3rem 2rem 1.5rem;position:relative;z-index:1}
+.footer-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand{font-family:‘Cinzel’,serif;font-size:1.3rem;font-weight:900;color:var(–gold3);letter-spacing:.15em;margin-bottom:.5rem}
+.footer-sub{font-size:.78rem;color:#9aa8be;line-height:1.8;margin-bottom:1rem}
+.footer-col-title{font-family:‘Space Mono’,monospace;font-size:.68rem;color:var(–gold);letter-spacing:.1em;margin-bottom:.9rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.footer-links a{font-size:.78rem;color:var(–silver)}
+.footer-links a:hover{color:var(–gold2)}
+.footer-bottom{max-width:1280px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid var(–border2);display:flex;justify-content:space-between;font-size:.7rem;color:var(–silver)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+.platforms-grid{grid-template-columns:1fr}
+.how-grid{grid-template-columns:repeat(2,1fr)}.how-grid::before{display:none}
+.token-grid{grid-template-columns:1fr}
+.roadmap-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr}
+.nav-links{display:none}
+}
+@media(max-width:600px){
+.roadmap-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:.4rem;text-align:center}
+.section{padding:3rem 1rem}
+}
+
+/* ═══ TEXT CLARITY — Dark Mode ═══ */
+.pcard-desc{color:#bcc8dc}
+.sec-sub{color:#bcc8dc}
+.step-desc{color:#b8c4d8}
+.step-title{color:#e8ecf5;font-weight:700}
+.phase-items li{color:#b0bcd0}
+.phase-date{color:#8899bb}
+.legend-name{color:#d8e0f0}
+.footer-sub{color:#9aa8be}
+.footer-links a{color:#9aa8be}
+.footer-bottom{color:#6677aa}
+.hero-stat-lbl{color:#9aa8be}
+.ticker-item{color:#c8d4e8;font-weight:500;font-size:.74rem}
+
+/* ═══ STARS ALWAYS VISIBLE ═══ */
+#starsCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1!important}
+.page-wrap{position:relative;z-index:1;padding-top:62px}
+/* Ultra-transparent cards — stars visible through */
+.card,.pcard,.phase,.pipe-stage,.chat-box,.result-card,.cert-box,.office-card,.snyx-table,.modal-box,.sidebar-widget,.news-card,.vip-card,.cafe-room,.pathway,.engine-card,.auction-card,.order-book,.kpi-card{
+background:rgba(2,8,15,.45)!important;
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+}
+.snyx-nav{background:rgba(2,8,15,.72)!important;backdrop-filter:blur(24px)!important}
+.snyx-footer{background:rgba(2,8,15,.65)!important;backdrop-filter:blur(16px)!important}
+.sec-full{background:rgba(4,13,23,.35)!important;backdrop-filter:blur(8px)!important}
+.modal-overlay{background:rgba(0,0,0,.75)!important;backdrop-filter:blur(12px)!important}
+.modal-box{background:rgba(6,15,30,.85)!important}
+/* Theme light — translucent warm */
+body.theme-light .card,
+body.theme-light .pcard,
+body.theme-light .phase{background:rgba(250,246,238,.55)!important;backdrop-filter:blur(12px)!important}
+body.theme-light .snyx-nav{background:rgba(240,232,213,.82)!important}
+body.theme-light .snyx-footer{background:rgba(240,232,213,.65)!important}
+body.theme-light .sec-full{background:rgba(235,224,200,.35)!important}
+body.theme-light #starsCanvas{opacity:.25!important}
+/* Theme gold — translucent deep */
+body.theme-gold .card,
+body.theme-gold .pcard,
+body.theme-gold .phase{background:rgba(8,6,0,.45)!important;backdrop-filter:blur(12px)!important}
+body.theme-gold .snyx-nav{background:rgba(5,3,0,.78)!important}
+body.theme-gold #starsCanvas{opacity:1.2!important}
+
+.chat-box{border:1px solid var(–border);border-radius:var(–r2);display:flex;flex-direction:column;overflow:hidden}
+.chat-head{padding:.85rem 1.2rem;border-bottom:1px solid var(–border);display:flex;align-items:center;gap:.7rem;font-size:.82rem;font-weight:700;background:rgba(184,146,42,.04)}
+.chat-body{flex:1;overflow-y:auto;padding:1rem;display:flex;flex-direction:column;gap:.7rem;min-height:180px}
+.msg{padding:.7rem 1rem;border-radius:var(–r2);font-size:.82rem;line-height:1.75}
+.msg-user{align-self:flex-end;max-width:85%;background:rgba(184,146,42,.1);border:1px solid rgba(184,146,42,.2);color:var(–white)}
+.msg-ai{align-self:flex-start;max-width:88%;background:rgba(6,15,30,.6);border:1px solid var(–border);color:#c8d4e8;backdrop-filter:blur(8px)}
+.btn-speak-msg{background:rgba(184,146,42,.07);border:1px solid rgba(184,146,42,.15);color:var(–gold2);width:24px;height:24px;border-radius:50%;cursor:pointer;font-size:.65rem;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.btn-speak-msg:hover{background:rgba(184,146,42,.18)}
+.chat-foot{padding:.75rem;border-top:1px solid var(–border);display:flex;gap:.5rem;background:rgba(184,146,42,.02)}
+.chat-input{flex:1;background:rgba(6,15,30,.5);border:1px solid var(–border);color:var(–white);padding:.55rem .9rem;border-radius:var(–r);font-size:.82rem;font-family:inherit;outline:none;transition:border-color .2s;backdrop-filter:blur(4px)}
+.chat-input:focus{border-color:var(–gold)}
+.chat-input::placeholder{color:#5a6880}
+.chat-send{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);border:none;padding:.55rem 1rem;border-radius:var(–r);font-weight:700;font-size:.78rem;cursor:pointer;font-family:inherit;transition:all .2s;white-space:nowrap}
+.chat-send:hover{box-shadow:0 4px 16px rgba(184,146,42,.4)}
+.mic-btn{background:rgba(184,146,42,.06);border:1px solid rgba(184,146,42,.22);color:var(–gold2);width:34px;height:34px;border-radius:50%;cursor:pointer;font-size:.9rem;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.mic-btn.rec{background:rgba(224,48,64,.3);border-color:rgba(224,48,64,.6);animation:recPulse 1s infinite}
+@keyframes recPulse{0%,100%{box-shadow:0 0 0 0 rgba(224,48,64,.4)}50%{box-shadow:0 0 0 8px rgba(224,48,64,0)}}
+.prog-bar{height:7px;background:rgba(255,255,255,.06);border-radius:4px;overflow:hidden;margin:.3rem 0}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(–gold),var(–gold2));border-radius:4px;transition:width 1.2s ease}
+.form-group{margin-bottom:1.1rem}
+.form-label{display:block;font-size:.75rem;color:#9aaabb;margin-bottom:.35rem}
+.form-input{width:100%;background:rgba(6,15,30,.55);border:1px solid var(–border);color:var(–white);padding:.65rem .9rem;border-radius:var(–r);font-size:.82rem;font-family:inherit;outline:none;transition:border-color .2s;backdrop-filter:blur(4px)}
+.form-input:focus{border-color:var(–gold)}
+.form-input::placeholder{color:#4a5870}
+.form-input option{background:#060f1e}
+
+.ai-hero{padding:7rem 2rem 4rem;position:relative}
+.ai-hero::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 0%,rgba(184,146,42,.07),transparent);pointer-events:none}
+.engines-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2rem}
+.engine-card{border:1px solid var(–border);border-radius:var(–r2);padding:1.3rem;cursor:pointer;transition:all .3s}
+.engine-card:hover,.engine-card.active{border-color:rgba(184,146,42,.5);box-shadow:0 8px 32px rgba(184,146,42,.1);transform:translateY(-3px)}
+.engine-card.active{background:rgba(184,146,42,.06)}
+.engine-code{font-family:‘Space Mono’,monospace;font-size:.68rem;color:var(–gold2);letter-spacing:.15em;margin-bottom:.3rem}
+.engine-name{font-size:.88rem;font-weight:700;color:var(–white);margin-bottom:.5rem}
+.engine-acc{height:5px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin-bottom:.5rem}
+.engine-acc-fill{height:100%;background:linear-gradient(90deg,var(–gold),var(–gold2));border-radius:3px}
+.engine-desc{font-size:.74rem;color:#9aaabb;line-height:1.65}
+.agents-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.active-engine{border:1px solid rgba(184,146,42,.25);border-radius:var(–r2);overflow:hidden;margin-top:2rem}
+.ae-head{padding:.9rem 1.5rem;border-bottom:1px solid var(–border);display:flex;align-items:center;gap:.8rem;background:rgba(184,146,42,.04)}
+@media(max-width:1100px){.engines-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.engines-grid{grid-template-columns:1fr}.agents-grid{grid-template-columns:1fr}}
+
+</style>
+</head>
+<body>
+<canvas id="starsCanvas"></canvas><div id="cur"></div><div id="ring"></div>
+<nav class="snyx-nav">
+  <a href="index.html" class="nav-logo"><div class="nav-logo-mark">SX</div><div><div class="nav-logo-text">SENYX</div><span class="nav-logo-sub" data-ar="مدينة الابتكار العالمية الذكية" data-en="Sovereign Innovation City">مدينة الابتكار العالمية الذكية</span></div></a>
+  <ul class="nav-links"><li><a href="index.html"  data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="ipccore.html"  data-ar="نواة IP" data-en="IP Core">نواة IP</a></li><li><a href="market.html"  data-ar="السوق" data-en="Market">السوق</a></li><li><a href="ai-platform.html" class='active' data-ar="منصة AI" data-en="AI Platform">منصة AI</a></li><li><a href="dashboards.html"  data-ar="لوحات التحكم" data-en="Dashboards">لوحات التحكم</a></li><li><a href="governance.html"  data-ar="الحوكمة" data-en="Governance">الحوكمة</a></li><li><a href="community.html"  data-ar="المجتمع" data-en="Community">المجتمع</a></li><li><a href="investor.html"  data-ar="المستثمرون" data-en="Investors">المستثمرون</a></li><li><a href="news.html"  data-ar="الأخبار" data-en="News">الأخبار</a></li></ul>
+  <div class="nav-actions">
+    <button class="nbtn nbtn-icon" id="themeBtn" onclick="toggleThemeDrop(event)">🌙</button>
+    <div class="theme-drop" id="themeDrop"><div class="tdrop-title">THEME</div>
+      <div class="theme-opt active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch" style="background:#02080f;border:2px solid #b8922a"></span><span>🌙 داكن</span></div>
+      <div class="theme-opt" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch" style="background:#faf6ee;border:2px solid #9a7220"></span><span>☀️ فاتح</span></div>
+      <div class="theme-opt" data-theme="gold" onclick="setTheme('gold')"><span class="theme-swatch" style="background:#080600;border:2px solid #e8c060"></span><span>👑 ذهبي</span></div>
     </div>
-    <div class="icon" style="width:120px;height:120px;flex-shrink:0"><svg viewBox="0 0 72 72" fill="none"><defs><linearGradient id="ga" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde068"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs><line x1="13" y1="19" x2="36" y2="11" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="19" x2="36" y2="36" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="36" x2="36" y2="11" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="36" x2="36" y2="36" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="53" x2="36" y2="36" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="53" x2="36" y2="61" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="36" y1="11" x2="59" y2="23" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><line x1="36" y1="36" x2="59" y2="23" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><line x1="36" y1="36" x2="59" y2="49" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><line x1="36" y1="61" x2="59" y2="49" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><circle cx="13" cy="19" r="4.5" fill="#b8922a" stroke="#fde068" stroke-width="1.4"/><circle cx="13" cy="36" r="4.5" fill="#b8922a" stroke="#fde068" stroke-width="1.4"/><circle cx="13" cy="53" r="4.5" fill="#b8922a" stroke="#fde068" stroke-width="1.4"/><circle cx="36" cy="11" r="5.5" fill="#d4a843" stroke="#fde068" stroke-width="1.4"><animate attributeName="r" values="5.5;7.5;5.5" dur="2s" repeatCount="indefinite"/></circle><circle cx="36" cy="36" r="6.5" fill="#d4a843" stroke="#fde068" stroke-width="1.4"><animate attributeName="r" values="6.5;8.5;6.5" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="36" cy="61" r="5.5" fill="#d4a843" stroke="#fde068" stroke-width="1.4"><animate attributeName="r" values="5.5;7.5;5.5" dur="3s" repeatCount="indefinite"/></circle><circle cx="59" cy="23" r="5.5" fill="#fde068" stroke="#fff3b0" stroke-width="1.4"/><circle cx="59" cy="49" r="5.5" fill="#fde068" stroke="#fff3b0" stroke-width="1.4"><animate attributeName="opacity" values="1;.4;1" dur="1.8s" repeatCount="indefinite"/></circle></svg></div>
+    <button class="nbtn" id="navVoiceBtn" onclick="openModal('voice')">🔊</button>
+    <button class="nbtn" id="apiBtnNav" onclick="openModal('api')">🔑</button>
+    <button class="nbtn nbtn-lang" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="nbtn nbtn-login" onclick="openModal('login')"><span data-ar="دخول" data-en="Login">دخول</span></button>
   </div>
-  <div class="stag" data-ar="المحركات المتخصصة" data-en="Specialized Engines">المحركات المتخصصة</div>
-  <h2 class="sh1">8 Specialized AI Engines</h2>
-  <div class="eng-g" id="engG"></div>
-  <div class="aewrap">
-    <div class="aehd"><span id="aeIco" style="font-size:.95rem">◆</span><div><div style="font-weight:700;color:var(--w);font-size:.84rem" id="aeNm">اختر محركاً للتفاعل معه</div><div style="font-size:.68rem;color:#9aaabb" id="aeDs">انقر على أي محرك أعلاه</div></div><span class="badge bg" style="margin-right:auto;font-size:.57rem" id="aeAcc">—</span></div>
-    <div class="chat-box" style="border:none;border-radius:0;height:280px">
-      <div class="cb" id="aiB"><div class="ma">اختر محركاً من القائمة أعلاه للتحدث معه مباشرةً.</div></div>
-      <div class="cf"><button class="mb" id="aiMic" onclick="mic('aiI','aiMic')">🎤</button><input class="ci" id="aiI" placeholder="اختر محركاً أولاً..."><button class="cs" id="aiBtn" onclick="sendEng()">إرسال</button></div>
+</nav>
+<div class="page-wrap">
+
+<section class="ai-hero">
+  <div class="section" style="padding-top:0;padding-bottom:0">
+    <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap">
+      <div style="flex:1;min-width:280px">
+        <div class="sec-tag">🧠 AI SOVEREIGN PLATFORM</div>
+        <h1 class="sec-title" style="font-size:clamp(2rem,5vw,3.8rem)">منصة الذكاء<br>الاصطناعي السيادي</h1>
+        <p class="sec-sub" style="margin-bottom:2rem">8 محركات AI متخصصة + 4 وكلاء سياديون. كل محرك وكيل مستقل شفاف — AI يُمكّن، الإنسان يقرر.</p>
+      </div>
+      <div class="snyx-icon" style="width:130px;height:130px;flex-shrink:0"><svg viewBox="0 0 72 72" fill="none"><defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde068"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs><line x1="14" y1="20" x2="36" y2="12" stroke="url(#g3)" stroke-width="1" opacity="0.4"/><line x1="14" y1="20" x2="36" y2="36" stroke="url(#g3)" stroke-width="1" opacity="0.4"/><line x1="14" y1="36" x2="36" y2="12" stroke="url(#g3)" stroke-width="1" opacity="0.4"/><line x1="14" y1="36" x2="36" y2="36" stroke="url(#g3)" stroke-width="1" opacity="0.4"/><line x1="14" y1="52" x2="36" y2="36" stroke="url(#g3)" stroke-width="1" opacity="0.4"/><line x1="14" y1="52" x2="36" y2="60" stroke="url(#g3)" stroke-width="1" opacity="0.4"/><line x1="36" y1="12" x2="58" y2="24" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/><line x1="36" y1="36" x2="58" y2="24" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/><line x1="36" y1="36" x2="58" y2="48" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/><line x1="36" y1="60" x2="58" y2="48" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/><circle cx="14" cy="20" r="5" fill="#b8922a" stroke="#fde068" stroke-width="1.5"/><circle cx="14" cy="36" r="5" fill="#b8922a" stroke="#fde068" stroke-width="1.5"/><circle cx="14" cy="52" r="5" fill="#b8922a" stroke="#fde068" stroke-width="1.5"/><circle cx="36" cy="12" r="6" fill="#d4a843" stroke="#fde068" stroke-width="1.5"><animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/></circle><circle cx="36" cy="36" r="7" fill="#d4a843" stroke="#fde068" stroke-width="1.5"><animate attributeName="r" values="7;9;7" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="36" cy="60" r="6" fill="#d4a843" stroke="#fde068" stroke-width="1.5"><animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite"/></circle><circle cx="58" cy="24" r="6" fill="#fde068" stroke="#fff3b0" stroke-width="1.5"/><circle cx="58" cy="48" r="6" fill="#fde068" stroke="#fff3b0" stroke-width="1.5"><animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite"/></circle></svg></div>
     </div>
   </div>
 </section>
-<div class="sf">
-<div class="si">
-  <div class="stag" data-ar="الوكلاء المتخصصون" data-en="Specialized Agents">الوكلاء المتخصصون</div>
-  <h2 class="sh1">4 Specialized AI Agents</h2>
-  <div class="agg" style="margin-top:1.8rem">
-    <div class="chat-box" style="height:290px"><div class="ch"><span>⬡</span><span data-ar="وكيل IP Core المتقدم" data-en="Advanced IP Core Agent">وكيل IP Core المتقدم</span><span class="badge bg" style="margin-right:auto;font-size:.57rem">براءات</span></div><div class="cb" id="agIP"><div class="ma">أنا وكيل براءات الاختراع المتخصص. أساعدك في استراتيجية الملكية الفكرية والتسجيل الدولي.</div></div><div class="cf"><button class="mb" id="mic-IP" onclick="mic('inp-IP','mic-IP')">🎤</button><input class="ci" id="inp-IP" placeholder="استراتيجية براءة..."><button class="cs" id="btn-IP" onclick="sendAg('IP')">إرسال</button></div></div>
-    <div class="chat-box" style="height:290px"><div class="ch"><span>◆</span><span data-ar="وكيل التقييم المالي" data-en="Financial Valuation Agent">وكيل التقييم المالي</span><span class="badge bg" style="margin-right:auto;font-size:.57rem">تقييم</span></div><div class="cb" id="agFIN"><div class="ma">أنا وكيل التقييم المالي. أحلل قيمة الملكية الفكرية لتحقيق أفضل عائد.</div></div><div class="cf"><button class="mb" id="mic-FIN" onclick="mic('inp-FIN','mic-FIN')">🎤</button><input class="ci" id="inp-FIN" placeholder="قيّم ابتكاري..."><button class="cs" id="btn-FIN" onclick="sendAg('FIN')">إرسال</button></div></div>
-    <div class="chat-box" style="height:290px"><div class="ch"><span>⬟</span><span data-ar="المستشار القانوني" data-en="Legal Advisor">المستشار القانوني</span><span class="badge bg" style="margin-right:auto;font-size:.57rem">قانون</span></div><div class="cb" id="agLAW"><div class="ma">أنا المستشار القانوني السيادي. أساعدك في الأطر القانونية وحقوق الملكية الفكرية الدولية.</div></div><div class="cf"><button class="mb" id="mic-LAW" onclick="mic('inp-LAW','mic-LAW')">🎤</button><input class="ci" id="inp-LAW" placeholder="استشارة قانونية..."><button class="cs" id="btn-LAW" onclick="sendAg('LAW')">إرسال</button></div></div>
-    <div class="chat-box" style="height:290px"><div class="ch"><span>✦</span><span data-ar="الوكيل المنسق الرئيسي" data-en="Chief Coordinator Agent">الوكيل المنسق الرئيسي</span><span class="badge bg" style="margin-right:auto;font-size:.57rem">SENYX Brain</span></div><div class="cb" id="agMAIN"><div class="ma">أنا الوكيل المنسق الرئيسي لـ SENYX. أنسق بين جميع الوكلاء وأقدم رؤية شاملة للمنظومة.</div></div><div class="cf"><button class="mb" id="mic-MAIN" onclick="mic('inp-MAIN','mic-MAIN')">🎤</button><input class="ci" id="inp-MAIN" placeholder="اسألني عن أي شيء..."><button class="cs" id="btn-MAIN" onclick="sendAg('MAIN')">إرسال</button></div></div>
+<section class="section">
+  <div class="sec-tag">المحركات المتخصصة</div>
+  <h2 class="sec-title">8 Specialized AI Engines</h2>
+  <div class="engines-grid" id="enginesGrid"></div>
+  <div class="active-engine">
+    <div class="ae-head">
+      <span style="font-size:1.1rem" id="aeIcon">◆</span>
+      <div><div style="font-weight:700;color:var(--white)" id="aeName">اختر محركاً للتفاعل معه</div><div style="font-size:.72rem;color:#9aaabb" id="aeDesc">انقر على أي محرك أعلاه</div></div>
+      <span class="badge badge-gold" style="margin-right:auto;font-size:.6rem" id="aeAcc">—</span>
+    </div>
+    <div class="chat-box" style="border:none;border-radius:0;height:300px">
+      <div class="chat-body" id="aiBody"><div class="msg msg-ai">اختر محركاً من القائمة أعلاه للتحدث معه مباشرةً.</div></div>
+      <div class="chat-foot">
+        <button class="mic-btn" id="aiMic" onclick="startMic('aiInput','aiMic')">🎤</button>
+        <input class="chat-input" id="aiInput" placeholder="اختر محركاً أولاً...">
+        <button class="chat-send" id="aiSend" onclick="sendEngine()">إرسال</button>
+      </div>
+    </div>
+  </div>
+</section>
+<div class="sec-full">
+<div class="sec-inner">
+  <div class="sec-tag">الوكلاء المتخصصون</div>
+  <h2 class="sec-title">4 Specialized AI Agents</h2>
+  <div class="agents-grid" style="margin-top:2rem">
+    <div class="chat-box" style="height:320px">
+      <div class="chat-head" style="color:var(--gold2)"><span>⬡</span><span>وكيل IP Core المتقدم</span><span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">براءات</span></div>
+      <div class="chat-body" id="agIP"><div class="msg msg-ai">أنا وكيل براءات الاختراع المتخصص. أساعدك في استراتيجية الملكية الفكرية والتسجيل الدولي.</div></div>
+      <div class="chat-foot"><button class="mic-btn" id="micIP" onclick="startMic('inpIP','micIP')">🎤</button><input class="chat-input" id="inpIP" placeholder="استراتيجية براءة..."><button class="chat-send" id="btnIP" onclick="sendAgent('IP')">إرسال</button></div>
+    </div>
+    <div class="chat-box" style="height:320px">
+      <div class="chat-head" style="color:var(--gold2)"><span>◆</span><span>وكيل التقييم المالي</span><span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">تقييم</span></div>
+      <div class="chat-body" id="agFIN"><div class="msg msg-ai">أنا وكيل التقييم المالي. أحلل قيمة الملكية الفكرية وأنماط السوق لتحقيق أفضل عائد.</div></div>
+      <div class="chat-foot"><button class="mic-btn" id="micFIN" onclick="startMic('inpFIN','micFIN')">🎤</button><input class="chat-input" id="inpFIN" placeholder="قيّم ابتكاري..."><button class="chat-send" id="btnFIN" onclick="sendAgent('FIN')">إرسال</button></div>
+    </div>
+    <div class="chat-box" style="height:320px">
+      <div class="chat-head" style="color:var(--gold2)"><span>⬟</span><span>المستشار القانوني</span><span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">قانون</span></div>
+      <div class="chat-body" id="agLAW"><div class="msg msg-ai">أنا المستشار القانوني السيادي. أساعدك في الأطر القانونية وحقوق الملكية الفكرية الدولية.</div></div>
+      <div class="chat-foot"><button class="mic-btn" id="micLAW" onclick="startMic('inpLAW','micLAW')">🎤</button><input class="chat-input" id="inpLAW" placeholder="استشارة قانونية..."><button class="chat-send" id="btnLAW" onclick="sendAgent('LAW')">إرسال</button></div>
+    </div>
+    <div class="chat-box" style="height:320px">
+      <div class="chat-head" style="color:var(--gold2)"><span>✦</span><span>الوكيل المنسق الرئيسي</span><span class="badge badge-gold" style="margin-right:auto;font-size:.6rem">SENYX Brain</span></div>
+      <div class="chat-body" id="agMAIN"><div class="msg msg-ai">أنا الوكيل المنسق الرئيسي لـ SENYX. أنسق بين جميع الوكلاء وأقدم رؤية شاملة للمنظومة.</div></div>
+      <div class="chat-foot"><button class="mic-btn" id="micMAIN" onclick="startMic('inpMAIN','micMAIN')">🎤</button><input class="chat-input" id="inpMAIN" placeholder="اسألني عن أي شيء..."><button class="chat-send" id="btnMAIN" onclick="sendAgent('MAIN')">إرسال</button></div>
+    </div>
   </div>
 </div>
 </div>
-<footer class="ft"><div class="ftg"><div><div class="fb">SENYX</div><p style="font-size:.76rem;color:#8898b8;line-height:1.8;margin-bottom:.9rem">مدينة الابتكار العالمية الذكية — المدينة المنورة، KSA</p><div style="display:flex;gap:.35rem;flex-wrap:wrap"><span class="badge bg">VISION 2030</span><span class="badge bg">AI SOVEREIGN</span><span class="badge bg">ZKP CERTIFIED</span></div></div><div><div class="fct">المنصات</div><ul class="fl2"><li><a href="ipccore.html">نواة IP</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="governance.html">الحوكمة</a></li></ul></div><div><div class="fct">المجتمع</div><ul class="fl2"><li><a href="community.html">نادي VIP</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="news.html">الأخبار</a></li><li><a href="investor.html">المستثمرون</a></li></ul></div><div><div class="fct">تواصل</div><ul class="fl2"><li><a href="mailto:info@senyx.com">info@senyx.com</a></li><li><span style="color:#8898b8">+966540040405</span></li><li><a href="https://senyx.com">www.senyx.com</a></li></ul></div></div><div class="fbot"><span>© 2026 SENYX — جميع الحقوق محفوظة</span><span>المدينة المنورة | KSA | VISION 2030</span></div></footer><div class="mo" id="m-api"><div class="mb2"><button class="mc" onclick="closeM('api')">✕</button><div class="mt">🔑 Anthropic API Key</div><div id="aSt" style="font-size:.76rem;margin-bottom:.9rem;padding:.65rem;background:rgba(255,255,255,.03);border-radius:7px;border:1px solid var(--bd)">—</div><div class="fg"><label class="fl">sk-ant-...</label><input class="fi" id="aIn" type="password" placeholder="sk-ant-api03-..."></div><div style="display:flex;gap:.6rem"><button class="bp" style="flex:1" onclick="saveAK()">✅ حفظ وتفعيل</button><button class="bo" onclick="clearAK()">🗑</button></div></div></div><div class="mo" id="m-voice"><div class="mb2"><button class="mc" onclick="closeM('voice')">✕</button><div class="mt">🔊 ElevenLabs — أصوات بشرية</div><div id="vSt" style="font-size:.76rem;margin-bottom:.9rem;padding:.65rem;background:rgba(255,255,255,.03);border-radius:7px;border:1px solid var(--bd)">—</div><p style="font-size:.76rem;color:#b0bcd0;margin-bottom:.9rem;line-height:1.8">أصوات بشرية عبر Cloudflare Worker. احصل على المفتاح مجاناً: <a href="https://elevenlabs.io" target="_blank" style="color:var(--g4)">elevenlabs.io</a></p><div class="fg"><label class="fl">sk_...</label><input class="fi" id="vIn" type="password" placeholder="sk_..."></div><div style="display:flex;gap:.6rem"><button class="bp" style="flex:1" onclick="saveVK()">✅ تفعيل الأصوات</button><button class="bo" onclick="clearVK()">🗑</button></div></div></div><div class="mo" id="m-login"><div class="mb2" style="max-width:430px"><button class="mc" onclick="closeM('login')">✕</button><div class="mt" data-ar="دخول إلى SENYX" data-en="Login to SENYX">دخول إلى SENYX</div><div style="display:flex;gap:0;margin-bottom:1.1rem;border:1px solid var(--bd);border-radius:7px;overflow:hidden"><button id="tL" onclick="authTab('l')" style="flex:1;padding:.42rem;background:rgba(184,146,42,.14);color:var(--g2);border:none;font-family:inherit;font-size:.76rem;font-weight:700;cursor:pointer">دخول</button><button id="tR" onclick="authTab('r')" style="flex:1;padding:.42rem;background:transparent;color:var(--sv);border:none;font-family:inherit;font-size:.76rem;cursor:pointer">حساب جديد</button></div><div id="fL"><div class="fg"><label class="fl">البريد</label><input class="fi" type="email" placeholder="innovator@senyx.com"></div><div class="fg"><label class="fl">كلمة المرور</label><input class="fi" type="password" placeholder="••••••••"></div><div style="text-align:left;margin-bottom:.8rem"><a href="#" style="font-size:.7rem;color:var(--g2)">نسيت كلمة المرور؟</a></div><button class="bp" style="width:100%;padding:.68rem" onclick="alert('قيد التطوير')">دخول</button></div><div id="fR" style="display:none"><div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem"><div class="fg"><label class="fl">الاسم</label><input class="fi" type="text" placeholder="ياسر"></div><div class="fg"><label class="fl">العائلة</label><input class="fi" type="text" placeholder="المجثوي"></div></div><div class="fg"><label class="fl">البريد</label><input class="fi" type="email" placeholder="innovator@senyx.com"></div><div class="fg"><label class="fl">كلمة المرور</label><input class="fi" type="password" placeholder="••••••••"></div><div class="fg"><label class="fl">نوع الحساب</label><select class="fi" style="cursor:pointer"><option>مبتكر</option><option>مستثمر</option><option>محامي</option><option>مطور</option></select></div><button class="bp" style="width:100%;padding:.68rem" onclick="alert('قيد التطوير')">إنشاء حساب</button></div></div></div></div>
-<script>
-const SNYX={_k:localStorage.getItem('snyx_k')||'',get key(){return this._k},set key(v){this._k=v.trim();v?localStorage.setItem('snyx_k',v):localStorage.removeItem('snyx_k');this._ui();},_ui(){const s=document.getElementById('aSt'),b=document.getElementById('aNb');if(s)s.innerHTML=this._k?`<span style="color:#22a866">✅ نشط ...${this._k.slice(-5)}</span>`:`<span style="color:var(--g2)">⚠️ أدخل مفتاح API</span>`;if(b)b.style.borderColor=this._k?'rgba(34,168,102,.4)':'';},async ask(msgs,sys,max=1000){if(!this._k){openM('api');return'⚠️ أدخل مفتاح API أولاً.'}try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':this._k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:max,messages:msgs,...(sys&&{system:sys})})}));if(!r.ok){const e=await r.json().catch(()=>({}));if(r.status===401){openM('api');return'❌ مفتاح غير صحيح'}return`❌ خطأ ${r.status}`}const d=await r.json();return d.content?.[0]?.text||'لا استجابة.'}catch(e){return'❌ تعذّر الاتصال.'}}}; 
-function saveAK(){const v=document.getElementById('aIn')?.value?.trim();if(!v)return alert('أدخل المفتاح');if(!v.startsWith('sk-ant-'))return alert('⚠️ يبدأ بـ sk-ant-');SNYX.key=v;document.getElementById('aIn').value='';closeM('api');alert('✅ API مُفعَّل!');}
-function clearAK(){if(confirm('حذف؟'))SNYX.key='';}
-const VK={_k:localStorage.getItem('snyx_el')||'',W:'https://senyx-voice.evidyx.workers.dev'};
-function saveVK(){const v=document.getElementById('vIn')?.value?.trim();if(!v)return alert('أدخل المفتاح');VK._k=v;localStorage.setItem('snyx_el',v);document.getElementById('vIn').value='';closeM('voice');alert('✅ الأصوات مُفعَّلة!');}
-function clearVK(){if(confirm('حذف؟')){VK._k='';localStorage.removeItem('snyx_el');}}
-async function speak(text,btn){const t=text.replace(/<[^>]*>/g,'').trim().slice(0,2500);if(!t)return;if(btn){btn.disabled=true;btn.innerHTML='⏳';}if(VK._k){try{const r=await fetch(VK.W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t,api_key:VK._k,voice_id:'pqHfZKP75CvOlQylNhV4'})});if(r.ok){const blob=await r.blob(),audio=new Audio(URL.createObjectURL(blob));if(btn){btn.disabled=false;btn.innerHTML='⏹';const sp=()=>{btn.innerHTML='🔊';btn.onclick=()=>speak(text,btn);};btn.onclick=()=>{audio.pause();sp();};audio.onended=sp;}audio.play();return;}}catch(e){}}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);const arV=speechSynthesis.getVoices().find(v=>v.lang.startsWith('ar'));if(arV)u.voice=arV;u.lang=curL==='ar'?'ar-SA':'en-US';u.rate=.9;if(btn){btn.disabled=false;btn.innerHTML='⏹';btn.onclick=()=>{speechSynthesis.cancel();btn.innerHTML='🔊';btn.onclick=()=>speak(text,btn);};}u.onend=()=>{if(btn){btn.innerHTML='🔊';btn.onclick=()=>speak(text,btn);}};speechSynthesis.speak(u);}
-let _rec=null,_ir=false;
-function mic(ii,bi){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return alert('استخدم Chrome.');if(_ir){if(_rec)_rec.stop();return;}const r=new SR();r.lang=curL==='ar'?'ar-SA':'en-US';r.continuous=false;r.interimResults=true;_rec=r;_ir=true;const btn=document.getElementById(bi),inp=document.getElementById(ii);if(btn){btn.classList.add('rc');btn.textContent='⏹';}r.onresult=e=>{const t=Array.from(e.results).map(r=>r[0].transcript).join('');if(inp)inp.value=t;};r.onend=()=>{_ir=false;_rec=null;if(btn){btn.classList.remove('rc');btn.textContent='🎤';}};r.onerror=e=>{_ir=false;if(btn){btn.classList.remove('rc');btn.textContent='🎤';}if(e.error==='not-allowed')alert('اسمح بالميكروفون.');};r.start();}
-async function sc(o){const inp=document.getElementById(o.i);const txt=inp?.value?.trim();if(!txt)return;inp.value='';addM(o.b,'u',txt);const btn=document.getElementById(o.btn);if(btn){btn.disabled=true;btn.innerHTML='<span class="ldr"></span>';}o.h.push({role:'user',content:txt});const rep=await SNYX.ask(o.h,o.sys||'',o.max||1000);o.h.push({role:'assistant',content:rep});addM(o.b,'a',rep);if(btn){btn.disabled=false;btn.textContent='إرسال';}}
-function bE(id,fn){document.getElementById(id)?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();fn();}});}
-function addM(bId,role,text){const body=document.getElementById(bId);if(!body)return;const d=document.createElement('div');if(role==='a'){d.style.cssText='display:flex;flex-direction:column;align-self:flex-start;max-width:88%;gap:.25rem';const msg=document.createElement('div');msg.className='ma';msg.innerHTML=text.replace(/\n/g,'<br>');const spk=document.createElement('button');spk.className='spk';spk.innerHTML='🔊';spk.onclick=function(){speak(msg.textContent,this);};d.appendChild(msg);d.appendChild(spk);}else{d.className='mu';d.textContent=text;}body.appendChild(d);body.scrollTop=body.scrollHeight;}
-let curT=localStorage.getItem('snyx_t')||'dark';const TI={dark:'🌙',lt:'☀️',gd:'👑'};
-function setTheme(t){document.body.classList.remove('lt','gd');if(t==='lt')document.body.classList.add('lt');if(t==='gd')document.body.classList.add('gd');curT=t;localStorage.setItem('snyx_t',t);document.querySelectorAll('.to').forEach(o=>o.classList.toggle('on',o.dataset.t===t));const btn=document.getElementById('tBtn');if(btn)btn.textContent=TI[t]||'🎨';const td=document.getElementById('tDrop');if(td)td.classList.remove('on');}
-function toggleTD(e){e.stopPropagation();const d=document.getElementById('tDrop');if(!d)return;const rect=document.getElementById('tBtn').getBoundingClientRect();d.style.right=(window.innerWidth-rect.right)+'px';d.classList.toggle('on');if(d.classList.contains('on')){setTimeout(()=>document.addEventListener('click',function cl(ev){if(!d.contains(ev.target)&&ev.target.id!=='tBtn'){d.classList.remove('on');document.removeEventListener('click',cl);}}),50);}}
-let curL=localStorage.getItem('snyx_l')||'ar';
-const NL={'index.html':{ar:'الرئيسية',en:'Home'},'ipccore.html':{ar:'نواة IP',en:'IP Core'},'market.html':{ar:'السوق',en:'Market'},'ai-platform.html':{ar:'منصة AI',en:'AI Platform'},'dashboards.html':{ar:'لوحات التحكم',en:'Dashboards'},'governance.html':{ar:'الحوكمة',en:'Governance'},'community.html':{ar:'المجتمع',en:'Community'},'investor.html':{ar:'المستثمرون',en:'Investors'},'news.html':{ar:'الأخبار',en:'News'}};
-function toggleL(){curL=curL==='ar'?'en':'ar';localStorage.setItem('snyx_l',curL);applyL();}
-function applyL(){const isAR=curL==='ar';document.documentElement.lang=curL;document.body.dir=isAR?'rtl':'ltr';const lb=document.getElementById('lBtn');if(lb)lb.textContent=isAR?'EN':'ع';document.querySelectorAll('[data-ar]').forEach(el=>{if(isAR&&el.dataset.ar)el.textContent=el.dataset.ar;else if(!isAR&&el.dataset.en)el.textContent=el.dataset.en;});document.querySelectorAll('.nav-links a[href]').forEach(a=>{const href=a.getAttribute('href');if(NL[href])a.textContent=NL[href][curL]||a.textContent;});}
-function openM(id){const el=document.getElementById('m-'+id);if(el){el.classList.add('on');el.addEventListener('click',e=>{if(e.target===el)closeM(id);});}}
-function closeM(id){document.getElementById('m-'+id)?.classList.remove('on');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.mo.on').forEach(m=>m.classList.remove('on'));});
 
-function initStars(){
-const c=document.getElementById(‘sc’);
-if(!c)return;
-c.style.cssText=‘position:fixed;inset:0;z-index:2;pointer-events:none’;
-const ctx=c.getContext(‘2d’);
-let W,H,S=[];
-const resize=()=>{W=c.width=innerWidth;H=c.height=innerHeight;};
-const mk=()=>{S=Array.from({length:320},()=>({
-x:Math.random()*W, y:Math.random()*H,
-r:Math.random()*1.6+0.3,
-a:Math.random(), da:(Math.random()-0.5)*0.012,
-vx:(Math.random()-0.5)*0.08, vy:(Math.random()-0.5)*0.04,
-hue:Math.random()<0.85?48:Math.random()*30+30
-}));};
-const draw=()=>{
-ctx.clearRect(0,0,W,H);
-S.forEach(s=>{
-s.a+=s.da; if(s.a>1||s.a<0)s.da=-s.da;
-s.x=(s.x+s.vx+W)%W; s.y=(s.y+s.vy+H)%H;
-const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*2.5);
-g.addColorStop(0,`hsla(${s.hue},90%,85%,${s.a})`);
-g.addColorStop(1,`hsla(${s.hue},80%,70%,0)`);
-ctx.beginPath(); ctx.arc(s.x,s.y,s.r*2.5,0,Math.PI*2);
-ctx.fillStyle=g; ctx.fill();
+<footer class="snyx-footer"><div class="footer-grid">
+  <div><div class="footer-brand">SENYX</div><p class="footer-sub">مدينة الابتكار العالمية الذكية — المدينة المنورة، KSA</p><div style="display:flex;gap:.4rem;flex-wrap:wrap;margin-top:.8rem"><span class="badge badge-gold">VISION 2030</span><span class="badge badge-gold">AI SOVEREIGN</span><span class="badge badge-gold">ZKP CERTIFIED</span></div></div>
+  <div><div class="footer-col-title">المنصات</div><ul class="footer-links"><li><a href="ipccore.html">نواة IP</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="governance.html">الحوكمة</a></li></ul></div>
+  <div><div class="footer-col-title">المجتمع</div><ul class="footer-links"><li><a href="community.html">نادي VIP</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="news.html">الأخبار</a></li><li><a href="investor.html">المستثمرون</a></li></ul></div>
+  <div><div class="footer-col-title">تواصل</div><ul class="footer-links"><li><a href="mailto:info@senyx.com">info@senyx.com</a></li><li><span style="color:#a0b0c4">+966540040405</span></li><li><a href="https://senyx.com">www.senyx.com</a></li><li><span style="color:#a0b0c4">المدينة المنورة، KSA</span></li></ul></div>
+</div><div class="footer-bottom"><span>© 2026 SENYX — جميع الحقوق محفوظة</span><span>المدينة المنورة | KSA | VISION 2030</span></div></footer>
+<div class="modal-overlay" id="modal-api"><div class="modal-box"><button class="modal-close" onclick="closeModal('api')">✕</button><div class="modal-title">🔑 Anthropic API</div><div id="apiStatus" style="font-size:.78rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid var(--border)">—</div><div class="form-group"><label class="form-label">sk-ant-...</label><input class="form-input" id="apiInput" type="password" placeholder="sk-ant-api03-..."></div><div style="display:flex;gap:.7rem"><button class="btn-p" style="flex:1" onclick="saveApiKey()">✅ حفظ</button><button class="btn-o" onclick="clearApiKey()">🗑</button></div></div></div>
+<div class="modal-overlay" id="modal-voice"><div class="modal-box"><button class="modal-close" onclick="closeModal('voice')">✕</button><div class="modal-title">🔊 ElevenLabs</div><div id="voiceStatus" style="font-size:.78rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.04);border-radius:6px;border:1px solid var(--border)">—</div><p style="font-size:.8rem;color:#b8c4d8;margin-bottom:1rem">أصوات بشرية طبيعية — <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold3)">elevenlabs.io</a></p><div class="form-group"><label class="form-label">sk_...</label><input class="form-input" id="voiceInput" type="password" placeholder="sk_..."></div><div style="display:flex;gap:.7rem"><button class="btn-p" style="flex:1" onclick="saveVoiceKey()">✅ تفعيل</button><button class="btn-o" onclick="clearVoiceKey()">🗑</button></div></div></div>
+<div class="modal-overlay" id="modal-login"><div class="modal-box" style="max-width:440px"><button class="modal-close" onclick="closeModal('login')">✕</button><div class="modal-title">دخول إلى SENYX</div><div style="display:flex;gap:0;margin-bottom:1.2rem;border:1px solid var(--border);border-radius:6px;overflow:hidden"><button id="tabLogin" onclick="switchAuthTab('login')" style="flex:1;padding:.45rem;background:rgba(184,146,42,.15);color:var(--gold2);border:none;font-family:inherit;font-size:.78rem;font-weight:700;cursor:pointer">دخول</button><button id="tabRegister" onclick="switchAuthTab('register')" style="flex:1;padding:.45rem;background:transparent;color:var(--silver);border:none;font-family:inherit;font-size:.78rem;cursor:pointer">حساب جديد</button></div><div id="formLogin"><div class="form-group"><label class="form-label">البريد</label><input class="form-input" type="email" placeholder="innovator@senyx.com"></div><div class="form-group"><label class="form-label">كلمة المرور</label><input class="form-input" type="password" placeholder="••••••••"></div><button class="btn-p" style="width:100%;padding:.7rem" onclick="alert('قيد التطوير')">دخول</button></div><div id="formRegister" style="display:none"><div class="form-group"><label class="form-label">البريد</label><input class="form-input" type="email" placeholder="innovator@senyx.com"></div><div class="form-group"><label class="form-label">كلمة المرور</label><input class="form-input" type="password" placeholder="••••••••"></div><div class="form-group"><label class="form-label">نوع الحساب</label><select class="form-input" style="cursor:pointer"><option>مبتكر</option><option>مستثمر</option><option>محامي ملكية فكرية</option><option>مطور</option></select></div><button class="btn-p" style="width:100%;padding:.7rem" onclick="alert('قيد التطوير')">إنشاء حساب</button></div></div></div>
+</div>
+<script>
+// ══════════════════════════════════════════════
+// SENYX CORE — API + Voice + Theme + Lang + Stars
+// ══════════════════════════════════════════════
+
+// ── API KEY ──
+const SNYX = {
+_key: localStorage.getItem(‘snyx_k’) || ‘’,
+get key(){ return this._key },
+set key(v){ this._key=v.trim(); v?localStorage.setItem(‘snyx_k’,v):localStorage.removeItem(‘snyx_k’); this._ui(); },
+_ui(){
+const s=document.getElementById(‘apiStatus’);
+const b=document.getElementById(‘apiBtnNav’);
+if(s) s.innerHTML = this._key
+? `<span style="color:var(--green)">✅ مفتاح نشط ...${this._key.slice(-6)}</span>`
+: `<span style="color:var(--gold2)">⚠️ أدخل مفتاح API</span>`;
+if(b) b.style.borderColor = this._key ? ‘rgba(34,170,102,.5)’ : ‘’;
+},
+async ask(msgs, sys=’’, opts={}){
+if(!this._key){ openModal(‘api’); return ‘⚠️ أدخل مفتاح API أولاً.’; }
+try {
+const r = await fetch(‘https://api.anthropic.com/v1/messages’,{
+method:‘POST’,
+headers:{‘Content-Type’:‘application/json’,‘x-api-key’:this._key,‘anthropic-version’:‘2023-06-01’,‘anthropic-dangerous-direct-browser-access’:‘true’},
+body:JSON.stringify({model:‘claude-haiku-4-5-20251001’,max_tokens:opts.max||1000,messages:msgs,…(sys&&{system:sys})})
 });
-requestAnimationFrame(draw);
+if(!r.ok){const e=await r.json().catch(()=>({}));if(r.status===401){openModal(‘api’);return’❌ مفتاح غير صحيح.’}return`❌ خطأ ${r.status}`;}
+const d=await r.json(); return d.content?.[0]?.text||‘لا توجد استجابة.’;
+} catch(e){ return ‘❌ تعذّر الاتصال.’; }
+}
 };
-resize(); mk(); draw();
+
+function saveApiKey(){
+const v=document.getElementById(‘apiInput’).value.trim();
+if(!v){alert(‘أدخل المفتاح!’);return;}
+if(!v.startsWith(‘sk-ant-’)){alert(‘⚠️ المفتاح يبدأ بـ sk-ant-’);return;}
+SNYX.key=v; document.getElementById(‘apiInput’).value=’’; closeModal(‘api’);
+alert(‘✅ تم تفعيل API!’);
+}
+function clearApiKey(){ if(confirm(‘حذف المفتاح؟’)) SNYX.key=’’; }
+
+// ── VOICE KEY ──
+const VOICE_KEY = { _k: localStorage.getItem(‘snyx_el’)||’’ };
+function saveVoiceKey(){
+const v=document.getElementById(‘voiceInput’).value.trim();
+if(!v){alert(‘أدخل المفتاح!’);return;}
+VOICE_KEY._k=v; localStorage.setItem(‘snyx_el’,v);
+document.getElementById(‘voiceInput’).value=’’;
+const s=document.getElementById(‘voiceStatus’);
+if(s) s.innerHTML=’<span style="color:var(--green)">✅ ElevenLabs نشط — الأصوات البشرية مفعّلة</span>’;
+closeModal(‘voice’); alert(‘✅ تم تفعيل الأصوات البشرية!’);
+}
+function clearVoiceKey(){ if(confirm(‘حذف مفتاح الصوت؟’)){VOICE_KEY._k=’’;localStorage.removeItem(‘snyx_el’);} }
+
+// ── VOICE SYSTEM ──
+let _rec=null, _isRec=false;
+async function speakText(text){
+const clean=text.replace(/<[^>]*>/g,’’).trim().slice(0,2000);
+if(!clean) return;
+if(VOICE_KEY._k){
+try{
+const r=await fetch(‘https://api.elevenlabs.io/v1/text-to-speech/pqHfZKP75CvOlQylNhV4’,{
+method:‘POST’,
+headers:{‘Content-Type’:‘application/json’,‘xi-api-key’:VOICE_KEY._k},
+body:JSON.stringify({text:clean,model_id:‘eleven_multilingual_v2’,voice_settings:{stability:.6,similarity_boost:.85}})
+});
+if(r.ok){const blob=await r.blob();new Audio(URL.createObjectURL(blob)).play();return;}
+}catch(e){}
+}
+// Fallback browser TTS
+speechSynthesis.cancel();
+const u=new SpeechSynthesisUtterance(clean);
+const arV=speechSynthesis.getVoices().find(v=>v.lang.startsWith(‘ar’));
+if(arV) u.voice=arV;
+u.lang=currentLang===‘ar’?‘ar-SA’:‘en-US’; u.rate=0.9;
+speechSynthesis.speak(u);
+}
+
+function startMic(inputId, btnId){
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+if(!SR){alert(‘استخدم Chrome للتعرف الصوتي.’);return;}
+if(_isRec){if(_rec)_rec.stop();return;}
+const rec=new SR();
+rec.lang=currentLang===‘ar’?‘ar-SA’:‘en-US’;
+rec.continuous=false; rec.interimResults=true;
+_rec=rec; _isRec=true;
+const btn=document.getElementById(btnId);
+const inp=document.getElementById(inputId);
+if(btn){btn.style.background=‘var(–red)’;btn.textContent=‘⏹’;}
+rec.onresult=e=>{const t=Array.from(e.results).map(r=>r[0].transcript).join(’’);if(inp)inp.value=t;};
+rec.onend=()=>{_isRec=false;_rec=null;if(btn){btn.style.background=’’;btn.textContent=‘🎤’;}};
+rec.onerror=e=>{_isRec=false;if(btn){btn.style.background=’’;btn.textContent=‘🎤’;}if(e.error===‘not-allowed’)alert(‘اسمح بالميكروفون في المتصفح.’);};
+rec.start();
+}
+
+// ── THEME ──
+let currentTheme = localStorage.getItem(‘snyx_theme’) || ‘dark’;
+const THEME_ICONS = {dark:‘🌙’, light:‘☀️’, gold:‘👑’};
+
+function setTheme(t) {
+document.body.classList.remove(‘theme-light’,‘theme-gold’);
+if(t===‘light’) document.body.classList.add(‘theme-light’);
+if(t===‘gold’)  document.body.classList.add(‘theme-gold’);
+currentTheme=t;
+localStorage.setItem(‘snyx_theme’,t);
+document.querySelectorAll(’.theme-opt’).forEach(o=>o.classList.toggle(‘active’,o.dataset.theme===t));
+const icons={dark:‘🌙’,light:‘☀️’,gold:‘👑’};
+const btn=document.getElementById(‘themeBtn’);
+if(btn) btn.textContent=icons[t]||‘🎨’;
+const drop=document.getElementById(‘themeDrop’);
+if(drop) drop.classList.remove(‘open’);
+}
+
+function toggleThemeDrop(e) {
+e.stopPropagation();
+const d = document.getElementById(‘themeDrop’);
+if(!d) return;
+const rect = document.getElementById(‘themeBtn’).getBoundingClientRect();
+d.style.right = (window.innerWidth - rect.right) + ‘px’;
+d.classList.toggle(‘open’);
+if(d.classList.contains(‘open’)) {
+setTimeout(()=>{
+document.addEventListener(‘click’, function close(ev) {
+if(!d.contains(ev.target) && ev.target.id !== ‘themeBtn’) {
+d.classList.remove(‘open’);
+document.removeEventListener(‘click’, close);
+}
+});
+}, 50);
+}
+}
+
+// ── LANGUAGE ──
+let currentLang=localStorage.getItem(‘snyx_lang’)||‘ar’;
+function toggleLang(){
+currentLang=currentLang===‘ar’?‘en’:‘ar’;
+localStorage.setItem(‘snyx_lang’,currentLang);
+applyLang();
+}
+function applyLang(){
+const isAR=currentLang===‘ar’;
+document.documentElement.lang=currentLang;
+document.body.dir=isAR?‘rtl’:‘ltr’;
+const btn=document.getElementById(‘langBtn’);
+if(btn) btn.textContent=isAR?‘EN’:‘ع’;
+document.querySelectorAll(’[data-ar]’).forEach(el=>{
+if(isAR && el.dataset.ar) el.textContent=el.dataset.ar;
+else if(!isAR && el.dataset.en) el.textContent=el.dataset.en;
+});
+}
+
+// ── MODALS ──
+function openModal(id){
+const el=document.getElementById(‘modal-’+id);
+if(el){el.classList.add(‘open’);el.addEventListener(‘click’,e=>{if(e.target===el)closeModal(id);});}
+}
+function closeModal(id){document.getElementById(‘modal-’+id)?.classList.remove(‘open’);}
+document.addEventListener(‘keydown’,e=>{if(e.key===‘Escape’)document.querySelectorAll(’.modal-overlay.open’).forEach(m=>m.classList.remove(‘open’));});
+
+// ── STARS ──
+function initStars(){
+const c=document.getElementById(‘starsCanvas’);
+if(!c) return;
+const ctx=c.getContext(‘2d’);
+let W,H,stars=[];
+function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+function mk(){stars=Array.from({length:280},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.2,a:Math.random(),da:(Math.random()-.5)*.008,vx:(Math.random()-.5)*.06,vy:(Math.random()-.5)*.03}));}
+function draw(){
+ctx.clearRect(0,0,W,H);
+stars.forEach(s=>{s.a+=s.da;if(s.a>1||s.a<0)s.da=-s.da;s.x=(s.x+s.vx+W)%W;s.y=(s.y+s.vy+H)%H;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(253,224,104,${s.a*.7})`;ctx.fill();});
+requestAnimationFrame(draw);
+}
+resize();mk();draw();
 window.addEventListener(‘resize’,()=>{resize();mk();});
 }
 
-function initCursor(){const cr=document.getElementById(‘cr’),rg=document.getElementById(‘rg’);if(!cr||!rg)return;let mx=0,my=0,rx=0,ry=0;document.addEventListener(‘mousemove’,e=>{mx=e.clientX;my=e.clientY;cr.style.left=mx+‘px’;cr.style.top=my+‘px’;});(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;rg.style.left=rx+‘px’;rg.style.top=ry+‘px’;requestAnimationFrame(a);})();}
-function initReveal(){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add(‘vis’);o.unobserve(e.target);}},{threshold:.08}));document.querySelectorAll(’.reveal’).forEach(el=>o.observe(el));}
-function initCounters(){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,tg=+el.dataset.n,pr=el.dataset.pre||’’,sf=el.dataset.suf||’’;let st=null;(function t(ts){if(!st)st=ts;const p=Math.min((ts-st)/1800,1),ease=1-Math.pow(1-p,3);el.textContent=pr+Math.round(ease*tg).toLocaleString()+sf;if(p<1)requestAnimationFrame(t);})();o.unobserve(el);}},{threshold:.3}));document.querySelectorAll(’[data-n]’).forEach(el=>o.observe(el));}
-function authTab(t){const il=t===‘l’;document.getElementById(‘fL’).style.display=il?‘block’:‘none’;document.getElementById(‘fR’).style.display=il?‘none’:‘block’;const tl=document.getElementById(‘tL’),tr=document.getElementById(‘tR’);if(tl){tl.style.background=il?‘rgba(184,146,42,.15)’:‘transparent’;tl.style.color=il?‘var(–g2)’:‘var(–sv)’;tl.style.fontWeight=il?‘700’:‘400’;}if(tr){tr.style.background=il?‘transparent’:‘rgba(184,146,42,.15)’;tr.style.color=il?‘var(–sv)’:‘var(–g2)’;tr.style.fontWeight=il?‘400’:‘700’;}}
-function buildTicker(items){const inner=document.getElementById(‘tki’);if(!inner)return;const html=items.map(i=>`<span class="ticker-item">${i}</span>`).join(’’);inner.innerHTML=html+html;}
-document.addEventListener(‘DOMContentLoaded’,()=>{initStars();initCursor();initReveal();initCounters();applyL();setTheme(curT||‘dark’);SNYX._ui();const vs=document.getElementById(‘vSt’);if(vs)vs.innerHTML=VK._k?’<span style="color:#22a866">✅ ElevenLabs + Worker نشط</span>’:’<span style="color:var(--g2)">⚠️ أدخل مفتاح ElevenLabs</span>’;if(!SNYX.key)setTimeout(()=>openM(‘api’),1800);speechSynthesis.getVoices();});
+// ── CURSOR ──
+function initCursor(){
+const cur=document.getElementById(‘cur’),ring=document.getElementById(‘ring’);
+if(!cur||!ring) return;
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener(‘mousemove’,e=>{mx=e.clientX;my=e.clientY;cur.style.cssText=`left:${mx}px;top:${my}px;position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen`;});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.cssText=`left:${rx}px;top:${ry}px;position:fixed;width:32px;height:32px;border:1px solid rgba(184,146,42,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)`;requestAnimationFrame(animRing);})();
+}
+
+// ── REVEAL ──
+function initReveal(){
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add(‘visible’);obs.unobserve(e.target);}}),{threshold:.1});
+document.querySelectorAll(’.reveal’).forEach(el=>obs.observe(el));
+}
+
+// ── COUNTERS ──
+function animCount(el,target,dur=1800,pre=’’,suf=’’){
+let st=null;
+(function step(ts){if(!st)st=ts;const p=Math.min((ts-st)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=pre+Math.round(ease*target).toLocaleString()+suf;if(p<1)requestAnimationFrame(step);})();
+}
+function initCounters(){
+const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const el=e.target;animCount(el,+el.dataset.target,1800,el.dataset.prefix||’’,el.dataset.suffix||’’);obs.unobserve(el);}}),{threshold:.3});
+document.querySelectorAll(’[data-target]’).forEach(el=>obs.observe(el));
+}
+
+// ── TICKER ──
+function buildTicker(items){
+const inner=document.getElementById(‘tickerInner’);
+if(!inner) return;
+const html=items.map(i=>`<span class="ticker-item">${i}</span>`).join(’’);
+inner.innerHTML=html+html;
+}
+
+function switchAuthTab(tab) {
+const isLogin = tab === ‘login’;
+document.getElementById(‘formLogin’).style.display = isLogin ? ‘block’ : ‘none’;
+document.getElementById(‘formRegister’).style.display = isLogin ? ‘none’ : ‘block’;
+const tl = document.getElementById(‘tabLogin’);
+const tr = document.getElementById(‘tabRegister’);
+if(tl){ tl.style.background = isLogin ? ‘rgba(184,146,42,.15)’ : ‘transparent’; tl.style.color = isLogin ? ‘var(–gold2)’ : ‘var(–silver)’; tl.style.fontWeight = isLogin ? ‘700’ : ‘400’; }
+if(tr){ tr.style.background = isLogin ? ‘transparent’ : ‘rgba(184,146,42,.15)’; tr.style.color = isLogin ? ‘var(–silver)’ : ‘var(–gold2)’; tr.style.fontWeight = isLogin ? ‘400’ : ‘700’; }
+const title = document.getElementById(‘loginTitle’);
+if(title) title.textContent = isLogin ? (currentLang===‘ar’?‘دخول إلى SENYX’:‘Login to SENYX’) : (currentLang===‘ar’?‘إنشاء حساب جديد’:‘Create New Account’);
+}
+
+// ── INIT ──
+document.addEventListener(‘DOMContentLoaded’,()=>{
+initStars();
+initCursor();
+initReveal();
+initCounters();
+applyLang();
+setTheme(currentTheme || ‘dark’);
+SNYX._ui();
+// Update voice status
+const vs=document.getElementById(‘voiceStatus’);
+if(vs && VOICE_KEY._k) vs.innerHTML=’<span style="color:var(--green)">✅ ElevenLabs نشط</span>’;
+else if(vs) vs.innerHTML=’<span style="color:var(--gold2)">⚠️ أدخل مفتاح ElevenLabs</span>’;
+// Show API modal if no key
+if(!SNYX.key) setTimeout(()=>openModal(‘api’),1800);
+// Load TTS voices
+speechSynthesis.getVoices();
+if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
+// Ticker
+buildTicker([
+‘⬡ IP CORE — فحص 135M+ براءة اختراع’,
+‘◈ $SNYX +12.4% — حجم التداول: 2.4M’,
+‘◆ محرك SNA — دقة 97%’,
+‘⬟ درع الفطرة — 23 ابتكار محمي اليوم’,
+‘◇ مزاد نشط: براءة الطاقة الشمسية’,
+‘✦ محرك FSE — دقة 100% كشف احتيالي’,
+]);
+});
+
+// PWA
+if(‘serviceWorker’ in navigator){
+window.addEventListener(‘load’,()=>navigator.serviceWorker.register(’/sw.js’).catch(()=>{}));
+}
+function switchAuthTab(tab){const isLogin=tab===‘login’;document.getElementById(‘formLogin’).style.display=isLogin?‘block’:‘none’;document.getElementById(‘formRegister’).style.display=isLogin?‘none’:‘block’;const tl=document.getElementById(‘tabLogin’),tr=document.getElementById(‘tabRegister’);if(tl){tl.style.background=isLogin?‘rgba(184,146,42,.15)’:‘transparent’;tl.style.color=isLogin?‘var(–gold2)’:‘var(–silver)’;tl.style.fontWeight=isLogin?‘700’:‘400’;}if(tr){tr.style.background=isLogin?‘transparent’:‘rgba(184,146,42,.15)’;tr.style.color=isLogin?‘var(–silver)’:‘var(–gold2)’;tr.style.fontWeight=isLogin?‘400’:‘700’;}}
+async function sendChat(opts){const inp=document.getElementById(opts.inputId);const text=inp?.value?.trim();if(!text)return;inp.value=’’;appendMsg(opts.bodyId,‘user’,text);const btn=document.getElementById(opts.btnId);if(btn){btn.disabled=true;btn.innerHTML=’<span class="loader"></span>’;}opts.history.push({role:‘user’,content:text});const reply=await SNYX.ask(opts.history,opts.sys||’’);opts.history.push({role:‘assistant’,content:reply});appendMsg(opts.bodyId,‘ai’,reply);if(btn){btn.disabled=false;btn.textContent=‘إرسال’;}}
+function bindEnter(id,fn){document.getElementById(id)?.addEventListener(‘keydown’,e=>{if(e.key===‘Enter’&&!e.shiftKey){e.preventDefault();fn();}});}
+function appendMsg(bodyId,role,text){const body=document.getElementById(bodyId);if(!body)return;const d=document.createElement(‘div’);if(role===‘ai’){d.style.cssText=‘display:flex;flex-direction:column;align-self:flex-start;max-width:88%;gap:.3rem’;const msg=document.createElement(‘div’);msg.className=‘msg msg-ai’;msg.innerHTML=text.replace(/
+/g,’<br>’);const spk=document.createElement(‘button’);spk.className=‘btn-speak-msg’;spk.innerHTML=‘🔊’;spk.onclick=function(){speakText(msg.textContent,this);};d.appendChild(msg);d.appendChild(spk);}else{d.className=‘msg msg-user’;d.textContent=text;}body.appendChild(d);body.scrollTop=body.scrollHeight;}
+
+const ENGINES=[
+{icon:‘◈’,code:‘SNA’,name:‘التحليل الدلالي’,acc:97,desc:‘تحليل النصوص بـ 8 لغات وكشف التشابه المفاهيمي العميق’,sys:‘أنت محرك SNA في SENYX. متخصص في التحليل الدلالي للابتكارات بـ 8 لغات وكشف التشابه المفاهيمي.’},
+{icon:‘⬡’,code:‘ISA’,name:‘تقييم الابتكار’,acc:94,desc:‘حساب درجة الابتكار من 0-100 وتقييم أبعاده المختلفة’,sys:‘أنت محرك ISA في SENYX. تحسب درجة الابتكار وتقيّم: الأصالة، القابلية، الجدوى، الأثر الاجتماعي.’},
+{icon:‘⬟’,code:‘FSE’,name:‘محرك الفطرة’,acc:100,desc:‘الفلتر الأخلاقي الإسلامي والإنساني — دقة 100%’,sys:‘أنت محرك FSE في SENYX. تطبّق الفلتر الأخلاقي الإسلامي والإنساني. مبدأك: لا ضرر ولا ضرار.’},
+{icon:‘◇’,code:‘VE’,name:‘محرك التقييم’,acc:92,desc:‘تقييم القيمة السوقية والاستثمارية للملكية الفكرية’,sys:‘أنت محرك VE في SENYX. تقيّم القيمة السوقية للملكية الفكرية بدقة 92%.’},
+{icon:‘◆’,code:‘MI’,name:‘استخبارات السوق’,acc:95,desc:‘متابعة اتجاهات السوق واحتياجات القطاعات الاقتصادية’,sys:‘أنت محرك MI في SENYX. تتابع اتجاهات السوق وتقدم تحليلات استراتيجية للقطاعات.’},
+{icon:‘✦’,code:‘FD’,name:‘كشف الاحتيال’,acc:99,desc:‘كشف الابتكارات المزيفة والسرقة الفكرية بدقة 99%’,sys:‘أنت محرك FD في SENYX. تكشف الابتكارات المزيفة والسرقة الفكرية بدقة 99%.’},
+{icon:‘❋’,code:‘CE’,name:‘محرك التواصل’,acc:96,desc:‘إدارة المفاوضات الذكية بين أطراف الصفقات’,sys:‘أنت محرك CE في SENYX. تدير المفاوضات الذكية وتضمن تواصلاً فعالاً بين الأطراف.’},
+{icon:‘▲’,code:‘MKI’,name:‘تكامل السوق’,acc:91,desc:‘ربط جميع محركات AI مع السوق السيادي’,sys:‘أنت محرك MKI في SENYX. تنسق بين جميع المحركات وتضمن تكاملها مع السوق السيادي.’},
+];
+let activeEngine=null;
+const aiH={};
+const agentH={IP:[],FIN:[],LAW:[],MAIN:[]};
+const AGENT_SYS={IP:‘أنت وكيل براءات الاختراع في SENYX. متخصص في استراتيجية الملكية الفكرية الدولية.’,FIN:‘أنت وكيل التقييم المالي في SENYX. متخصص في تحليل قيمة الملكية الفكرية والفرص الاستثمارية.’,LAW:‘أنت مستشار قانوني متخصص في SENYX. متخصص في قانون الملكية الفكرية الدولي.’,MAIN:‘أنت الوكيل المنسق الرئيسي لـ SENYX. تنسق بين جميع الوكلاء وتقدم رؤية شاملة للمنظومة.’};
+function renderEngines(){
+document.getElementById(‘enginesGrid’).innerHTML=ENGINES.map((e,i)=>` <div class="engine-card reveal" onclick="selectEngine(${i})"> <div style="font-size:1.5rem;margin-bottom:.5rem">${e.icon}</div> <div class="engine-code">${e.code}</div><div class="engine-name">${e.name}</div> <div class="engine-acc"><div class="engine-acc-fill" style="width:${e.acc}%"></div></div> <div style="font-size:.68rem;color:var(--gold2);font-family:'Space Mono',monospace;margin-bottom:.4rem">${e.acc}%</div> <div class="engine-desc">${e.desc}</div> </div>`).join(’’);
+}
+function selectEngine(i){
+activeEngine=ENGINES[i];aiH[i]=aiH[i]||[];
+document.querySelectorAll(’.engine-card’).forEach((c,j)=>c.classList.toggle(‘active’,j===i));
+document.getElementById(‘aeIcon’).textContent=activeEngine.icon;
+document.getElementById(‘aeName’).textContent=activeEngine.code+’ — ’+activeEngine.name;
+document.getElementById(‘aeDesc’).textContent=activeEngine.desc;
+document.getElementById(‘aeAcc’).textContent=‘دقة: ‘+activeEngine.acc+’%’;
+document.getElementById(‘aiInput’).placeholder=`اسأل محرك ${activeEngine.code}...`;
+appendMsg(‘aiBody’,‘ai’,`تم تفعيل محرك ${activeEngine.code} — دقتي ${activeEngine.acc}%. كيف أساعدك؟`);
+}
+async function sendEngine(){if(!activeEngine){alert(‘اختر محركاً أولاً.’);return;}const idx=ENGINES.indexOf(activeEngine);aiH[idx]=aiH[idx]||[];await sendChat({inputId:‘aiInput’,bodyId:‘aiBody’,btnId:‘aiSend’,history:aiH[idx],sys:activeEngine.sys});}
+bindEnter(‘aiInput’,sendEngine);
+async function sendAgent(k){await sendChat({inputId:‘inp’+k,bodyId:‘ag’+k,btnId:‘btn’+k,history:agentH[k],sys:AGENT_SYS[k]});}
+[‘IP’,‘FIN’,‘LAW’,‘MAIN’].forEach(k=>bindEnter(‘inp’+k,()=>sendAgent(k)));
+renderEngines();
+
+document.addEventListener(‘DOMContentLoaded’,()=>{
+initStars();initCursor();initReveal();initCounters();applyLang();
+setTheme(currentTheme||‘dark’);SNYX._ui();
+const vs=document.getElementById(‘voiceStatus’);
+if(vs)vs.innerHTML=VOICE_KEY._k?’<span style="color:var(--green)">✅ ElevenLabs نشط</span>’:’<span style="color:var(--gold2)">⚠️ أدخل مفتاح ElevenLabs</span>’;
+if(!SNYX.key)setTimeout(()=>openModal(‘api’),1800);
+speechSynthesis.getVoices();
+});
 if(‘serviceWorker’ in navigator)window.addEventListener(‘load’,()=>navigator.serviceWorker.register(’/sw.js’).catch(()=>{}));
 
-const ENGS=[{ico:‘◈’,code:‘SNA’,name:‘التحليل الدلالي’,acc:97,desc:‘تحليل النصوص بـ 8 لغات وكشف التشابه المفاهيمي العميق’,sys:‘أنت محرك SNA في SENYX. متخصص في التحليل الدلالي بـ 8 لغات.’},
-{ico:‘⬡’,code:‘ISA’,name:‘تقييم الابتكار’,acc:94,desc:‘حساب درجة الابتكار 0-100 وتقييم أبعاده’,sys:‘أنت محرك ISA في SENYX. تحسب درجة الابتكار 0-100.’},
-{ico:‘⬟’,code:‘FSE’,name:‘محرك الفطرة’,acc:100,desc:‘الفلتر الأخلاقي الإسلامي والإنساني بدقة 100%’,sys:‘أنت محرك FSE في SENYX. تطبق الفلتر الأخلاقي الإسلامي والإنساني.’},
-{ico:‘◇’,code:‘VE’,name:‘محرك التقييم’,acc:92,desc:‘تقييم القيمة السوقية للملكية الفكرية’,sys:‘أنت محرك VE في SENYX. تقيّم القيمة السوقية للملكية الفكرية.’},
-{ico:‘◆’,code:‘MI’,name:‘استخبارات السوق’,acc:95,desc:‘متابعة اتجاهات السوق والقطاعات الاقتصادية’,sys:‘أنت محرك MI في SENYX. تتابع اتجاهات السوق.’},
-{ico:‘✦’,code:‘FD’,name:‘كشف الاحتيال’,acc:99,desc:‘كشف الابتكارات المزيفة والسرقة الفكرية’,sys:‘أنت محرك FD في SENYX. تكشف الابتكارات المزيفة بدقة 99%.’},
-{ico:‘❋’,code:‘CE’,name:‘محرك التواصل’,acc:96,desc:‘إدارة المفاوضات الذكية بين أطراف الصفقات’,sys:‘أنت محرك CE في SENYX. تدير المفاوضات الذكية.’},
-{ico:‘▲’,code:‘MKI’,name:‘تكامل السوق’,acc:91,desc:‘ربط محركات AI مع السوق السيادي’,sys:‘أنت محرك MKI في SENYX. تنسق بين المحركات والسوق السيادي.’}];
-let activeEng=null;const aiH={};
-const agH={IP:[],FIN:[],LAW:[],MAIN:[]};
-const agSys={IP:‘أنت وكيل براءات الاختراع المتخصص في SENYX.’,FIN:‘أنت وكيل التقييم المالي في SENYX.’,LAW:‘أنت مستشار قانوني متخصص في قانون الملكية الفكرية الدولي.’,MAIN:‘أنت الوكيل المنسق الرئيسي لـ SENYX. تنسق بين جميع الوكلاء.’};
-function renderEngs(){document.getElementById(‘engG’).innerHTML=ENGS.map((e,i)=>`<div class="ec reveal" onclick="selEng(${i})"><div style="font-size:1.35rem;margin-bottom:.42rem">${e.ico}</div><div class="ecode">${e.code}</div><div class="ename">${e.name}</div><div class="eacc"><div class="eaf" style="width:${e.acc}%"></div></div><div style="font-size:.65rem;color:var(--g2);font-family:'Space Mono',monospace;margin-bottom:.38rem">${e.acc}%</div><div class="edesc">${e.desc}</div></div>`).join(’’);}
-function selEng(i){activeEng=ENGS[i];aiH[i]=aiH[i]||[];document.querySelectorAll(’.ec’).forEach((c,j)=>c.classList.toggle(‘on’,j===i));document.getElementById(‘aeIco’).textContent=activeEng.ico;document.getElementById(‘aeNm’).textContent=activeEng.code+’ — ’+activeEng.name;document.getElementById(‘aeDs’).textContent=activeEng.desc;document.getElementById(‘aeAcc’).textContent=‘دقة: ‘+activeEng.acc+’%’;document.getElementById(‘aiI’).placeholder=`اسأل محرك ${activeEng.code}...`;addM(‘aiB’,‘a’,`تم تفعيل محرك ${activeEng.code} — دقتي ${activeEng.acc}%. كيف أساعدك؟`);}
-async function sendEng(){if(!activeEng){alert(‘اختر محركاً أولاً.’);return;}const idx=ENGS.indexOf(activeEng);aiH[idx]=aiH[idx]||[];await sc({i:‘aiI’,b:‘aiB’,btn:‘aiBtn’,h:aiH[idx],sys:activeEng.sys});}
-bE(‘aiI’,sendEng);
-async function sendAg(k){await sc({i:‘inp-’+k,b:‘ag’+k,btn:‘btn-’+k,h:agH[k],sys:agSys[k]});}
-[‘IP’,‘FIN’,‘LAW’,‘MAIN’].forEach(k=>bE(‘inp-’+k,()=>sendAg(k)));
-renderEngs();
 buildTicker([
-‘◆ محرك SNA — تحليل بـ 8 لغات — 97%’,
-‘✦ محرك FSE — درع الفطرة 100%’,
-‘◈ محرك FD — 99% كشف احتيال’
-]);</script></body></html>
+‘◆ محرك SNA — تحليل دلالي بـ 8 لغات’,
+‘✦ محرك FSE — دقة 100% في درع الفطرة’,
+‘◈ محرك FD — 99% كشف احتيالي’
+]);
+</script>
+
+</body>
+</html>

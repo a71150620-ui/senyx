@@ -1,415 +1,1141 @@
 <!DOCTYPE html>
 
 <html lang="ar" dir="rtl">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SENYX — مدينة الابتكار العالمية الذكية | SENYX</title><meta name="theme-color" content="#b8922a">
-<meta name="apple-mobile-web-app-capable" content="yes"><link rel="manifest" href="/manifest.json">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SENYX — مدينة الابتكار العالمية الذكية</title>
+<meta name="theme-color" content="#b8922a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="SENYX">
+<link rel="manifest" href="/manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cairo:wght@300;400;600;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* ═══ RESET ═══ */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
+
+/* ═══ VARIABLES — DARK (DEFAULT) ═══ */
 :root{
-  --bg:#010608;--bg2:#020b12;--bg3:#031018;--bg4:#041520;
-  --g1:#b8922a;--g2:#d4a843;--g3:#f0c84a;--g4:#fde068;--g5:#fff3b0;
-  --w:#e8ecf5;--sv:#7888aa;--dim:#4a5870;
-  --red:#d03040;--green:#22a866;--orange:#d07020;
-  --bd:rgba(184,146,42,.16);--bd2:rgba(184,146,42,.07);
-  --r:7px;--r2:14px;--r3:20px;
-  --sh:0 8px 48px rgba(0,0,0,.7);
-  --sh2:0 0 40px rgba(184,146,42,.12);
+–bg:#02080f;–bg2:#040d17;–bg3:#060f1e;–bg4:#0a1628;
+–gold:#b8922a;–gold2:#d4a843;–gold3:#fde068;–gold4:#fff3b0;
+–silver:#8899bb;–white:#e8ecf5;
+–green:#22aa66;–red:#e03040;–orange:#e07020;
+–border:rgba(184,146,42,.18);–border2:rgba(184,146,42,.08);
+–r:6px;–r2:12px;
+–shadow:0 8px 40px rgba(0,0,0,.6);
 }
-body{background:var(--bg);color:var(--w);font-family:'Cairo',sans-serif;min-height:100vh;overflow-x:hidden;cursor:none}
-a{color:var(--g2);text-decoration:none;transition:color .2s}
-a:hover{color:var(--g3)}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:var(--bg2)}
-::-webkit-scrollbar-thumb{background:var(--g1);border-radius:2px}
-::selection{background:rgba(184,146,42,.25);color:var(--g4)}
 
-/* ══ CURSOR ══ */
-#cr{position:fixed;width:8px;height:8px;background:var(–g3);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:transform .1s}
-#rg{position:fixed;width:28px;height:28px;border:1px solid rgba(184,146,42,.4);border-radius:50%;pointer-events:none;z-index:9997;transform:translate(-50%,-50%)}
+/* ═══════════════════════════════════════
+THEME: LIGHT — فاتح حليبي ذهبي
+═══════════════════════════════════════ */
+body.theme-light {
+background: #f8f2e4 !important;
+color: #1a1008 !important;
+}
+body.theme-light * { transition: background-color .3s, color .3s, border-color .3s; }
+body.theme-light { –bg:#f8f2e4;–bg2:#ede5d0;–bg3:#e2d8c0;–bg4:#d5ccb0;–gold:#6a4808;–gold2:#885e10;–gold3:#a87620;–gold4:#4a3006;–silver:#4a3818;–white:#1a1008;–border:rgba(70,48,8,.22);–border2:rgba(70,48,8,.1); }
+body.theme-light .snyx-nav { background: rgba(235,224,200,.98) !important; border-bottom: 1px solid rgba(70,48,8,.18) !important; box-shadow: 0 2px 20px rgba(70,48,8,.12) !important; }
+body.theme-light .nav-links a { color: #5a4020 !important; }
+body.theme-light .nav-links a:hover, body.theme-light .nav-links a.active { color: #6a4808 !important; background: rgba(70,48,8,.08) !important; }
+body.theme-light .nav-logo-text { color: #6a4808 !important; }
+body.theme-light .nav-logo-sub { color: #8a6030 !important; }
+body.theme-light .hero-title { filter: drop-shadow(0 0 20px rgba(70,48,8,.3)) !important; }
+body.theme-light .hero-sub { color: #2a1808 !important; }
+body.theme-light .hero-tag { color: #7a5828 !important; }
+body.theme-light .hero-stat-num { color: #6a4808 !important; }
+body.theme-light .hero-stat-lbl { color: #7a5828 !important; }
+body.theme-light .hero-eyebrow { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .pulse-dot { background: #6a4808 !important; }
+body.theme-light .ticker-wrap { background: rgba(70,48,8,.06) !important; border-color: rgba(70,48,8,.12) !important; }
+body.theme-light .ticker-item { color: #6a5030 !important; }
+body.theme-light .sec-tag { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.18) !important; color: #6a4808 !important; }
+body.theme-light .sec-sub { color: #5a4020 !important; }
+body.theme-light .pcard { border-color: rgba(70,48,8,.15) !important; }
+body.theme-light .pcard-ipc { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-mkt { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-ai  { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-gov { background: linear-gradient(135deg,rgba(70,48,8,.07),rgba(70,48,8,.02)) !important; }
+body.theme-light .pcard-name-ar { color: #1a1008 !important; }
+body.theme-light .pcard-desc { color: #5a4020 !important; }
+body.theme-light .step-num { background: linear-gradient(135deg,#885e10,#a87620) !important; }
+body.theme-light .step-title { color: #1a1008 !important; }
+body.theme-light .step-desc { color: #5a4020 !important; }
+body.theme-light .how-grid::before { background: linear-gradient(90deg,transparent,#885e10,#a87620,#885e10,transparent) !important; }
+body.theme-light .legend-name { color: #2a1808 !important; }
+body.theme-light .phase { background: #e2d8c0 !important; border-color: rgba(70,48,8,.18) !important; }
+body.theme-light .phase.active { border-color: #885e10 !important; box-shadow: 0 0 24px rgba(70,48,8,.15) !important; }
+body.theme-light .phase-title { color: #1a1008 !important; }
+body.theme-light .phase-date { color: #7a5828 !important; }
+body.theme-light .phase-items li { color: #5a4020 !important; }
+body.theme-light .phase-items li::before { color: #885e10 !important; }
+body.theme-light .sec-full { background: linear-gradient(180deg,#ede5d0,#e2d8c0) !important; }
+body.theme-light .glow-line { background: linear-gradient(90deg,transparent,#885e10,#a87620,#885e10,transparent) !important; }
+body.theme-light .snyx-footer { background: #ede5d0 !important; border-top-color: rgba(70,48,8,.15) !important; }
+body.theme-light .footer-brand { color: #6a4808 !important; }
+body.theme-light .footer-col-title { color: #885e10 !important; }
+body.theme-light .footer-sub { color: #7a5828 !important; }
+body.theme-light .footer-links a { color: #7a5828 !important; }
+body.theme-light .footer-bottom { color: #8a6838 !important; border-top-color: rgba(70,48,8,.1) !important; }
+body.theme-light .btn-lang { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .btn-api { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .btn-voice { background: rgba(70,48,8,.07) !important; border-color: rgba(70,48,8,.2) !important; color: #6a4808 !important; }
+body.theme-light .btn-theme { background: #e2d8c0 !important; border-color: rgba(70,48,8,.2) !important; }
+body.theme-light .theme-drop { background: #ede5d0 !important; border-color: rgba(70,48,8,.2) !important; }
+body.theme-light .theme-opt { color: #5a4020 !important; }
+body.theme-light .modal-overlay { background: rgba(50,30,0,.75) !important; }
+body.theme-light .modal-box { background: #ede5d0 !important; border-color: rgba(70,48,8,.2) !important; }
+body.theme-light .form-input { background: #e2d8c0 !important; border-color: rgba(70,48,8,.2) !important; color: #1a1008 !important; }
+body.theme-light #starsCanvas { opacity: .03 !important; }
 
-/* ══ STAR CANVAS — always above content ══ */
-#sc{position:fixed;inset:0;z-index:2;pointer-events:none}
+/* ═══════════════════════════════════════
+THEME: GOLD — ذهبي ملكي عميق
+═══════════════════════════════════════ */
+body.theme-gold {
+background: #050300 !important;
+color: #fff4c8 !important;
+}
+body.theme-gold { –bg:#050300;–bg2:#0c0900;–bg3:#141000;–bg4:#1c1600;–gold:#c89820;–gold2:#dca830;–gold3:#f0c040;–gold4:#ffd860;–silver:#b08820;–white:#fff4c8;–border:rgba(200,152,32,.3);–border2:rgba(200,152,32,.12); }
+body.theme-gold .snyx-nav { background: rgba(5,3,0,.96) !important; border-bottom: 1px solid rgba(200,152,32,.25) !important; }
+body.theme-gold .nav-logo-text { color: #f0c040 !important; }
+body.theme-gold .nav-logo-sub { color: #b08820 !important; }
+body.theme-gold .nav-links a { color: #b08820 !important; }
+body.theme-gold .nav-links a:hover, body.theme-gold .nav-links a.active { color: #dca830 !important; background: rgba(200,152,32,.1) !important; }
+body.theme-gold .hero-tag { color: #b08820 !important; }
+body.theme-gold .ticker-wrap { background: rgba(200,152,32,.06) !important; border-color: rgba(200,152,32,.15) !important; }
+body.theme-gold .ticker-item { color: #c89820 !important; }
+body.theme-gold .sec-full { background: linear-gradient(180deg,#0c0900,#141000) !important; }
+body.theme-gold .pcard-ipc,body.theme-gold .pcard-mkt,body.theme-gold .pcard-ai,body.theme-gold .pcard-gov { border-color: rgba(200,152,32,.2) !important; background: rgba(200,152,32,.05) !important; }
+body.theme-gold .pcard-desc { color: #c0a060 !important; }
+body.theme-gold .sec-sub { color: #b08820 !important; }
+body.theme-gold .step-num { background: linear-gradient(135deg,#c89820,#dca830) !important; color: #050300 !important; }
+body.theme-gold .step-desc { color: #b08820 !important; }
+body.theme-gold .phase { background: #141000 !important; border-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .phase.active { border-color: #dca830 !important; box-shadow: 0 0 30px rgba(200,152,32,.15) !important; }
+body.theme-gold .phase-items li { color: #b08820 !important; }
+body.theme-gold .snyx-footer { background: #0c0900 !important; border-top-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .footer-col-title { color: #dca830 !important; }
+body.theme-gold .footer-sub,body.theme-gold .footer-links a { color: #b08820 !important; }
+body.theme-gold .btn-lang,body.theme-gold .btn-api,body.theme-gold .btn-voice { border-color: rgba(200,152,32,.25) !important; color: #dca830 !important; }
+body.theme-gold .btn-theme { background: #141000 !important; border-color: rgba(200,152,32,.25) !important; }
+body.theme-gold .theme-drop { background: #0c0900 !important; border-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .modal-box { background: #141000 !important; border-color: rgba(200,152,32,.2) !important; }
+body.theme-gold .form-input { background: #1c1600 !important; border-color: rgba(200,152,32,.2) !important; }
 
-/* ══ NAV ══ */
-.nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:60px;
-display:flex;align-items:center;padding:0 1.2rem;gap:.8rem;
-background:rgba(1,6,8,.88);backdrop-filter:blur(28px);
-border-bottom:1px solid var(–bd)}
-.nav-logo{display:flex;align-items:center;gap:.55rem;text-decoration:none;flex-shrink:0}
-.nav-hex{width:34px;height:34px;background:linear-gradient(135deg,var(–g1),var(–g2));
+/* ═══ BASE ═══ */
+body{
+background:var(–bg);color:var(–white);
+font-family:‘Cairo’,sans-serif;
+min-height:100vh;overflow-x:hidden;
+cursor:none;
+transition:background .4s,color .3s;
+}
+a{color:var(–gold2);text-decoration:none;transition:color .2s}
+a:hover{color:var(–gold3)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(–bg2)}
+::-webkit-scrollbar-thumb{background:var(–gold);border-radius:2px}
+::selection{background:rgba(184,146,42,.3);color:var(–gold3)}
+
+/* ═══ CURSOR ═══ */
+#cur{position:fixed;width:10px;height:10px;background:var(–gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen}
+#ring{position:fixed;width:32px;height:32px;border:1px solid rgba(184,146,42,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .15s}
+
+/* ═══ STARS ═══ */
+#starsCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+/* ═══ NAV ═══ */
+.snyx-nav{
+position:fixed;top:0;left:0;right:0;z-index:1000;height:62px;
+display:flex;align-items:center;padding:0 1.5rem;gap:1rem;
+background:rgba(2,8,15,.92);backdrop-filter:blur(20px);
+border-bottom:1px solid var(–border);
+}
+.nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex-shrink:0}
+.nav-logo-mark{
+width:36px;height:36px;
+background:linear-gradient(135deg,var(–gold),var(–gold2));
 clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0% 75%,0% 25%);
 display:flex;align-items:center;justify-content:center;
-font-family:‘Cinzel’,serif;font-weight:900;font-size:.82rem;color:var(–bg)}
-.nav-brand{font-family:‘Cinzel’,serif;font-size:.95rem;font-weight:700;color:var(–g4);letter-spacing:.14em}
-.nav-sub{font-size:.5rem;color:var(–sv);display:block;line-height:1.2}
-.nav-links{display:flex;align-items:center;gap:0;flex:1;justify-content:center;list-style:none}
-.nav-links a{padding:.3rem .5rem;border-radius:var(–r);font-size:.63rem;color:var(–sv);transition:all .18s;white-space:nowrap}
-.nav-links a:hover,.nav-links a.on{color:var(–g2);background:rgba(184,146,42,.08)}
-.nav-links a.on{border-bottom:2px solid var(–g1)}
-.nav-acts{display:flex;align-items:center;gap:.25rem;flex-shrink:0;position:relative}
-.nb{height:28px;padding:0 .55rem;border-radius:14px;border:1px solid var(–bd);
-background:rgba(184,146,42,.05);color:var(–g2);font-size:.62rem;cursor:pointer;
-font-family:‘Space Mono’,monospace;transition:all .18s;white-space:nowrap;
-display:flex;align-items:center;gap:.2rem}
-.nb:hover{background:rgba(184,146,42,.13);border-color:rgba(184,146,42,.35)}
-.nb-icon{width:28px;padding:0;justify-content:center;font-size:.82rem;border-radius:50%}
-.nb-login{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);
-border-color:transparent;font-family:‘Cairo’,sans-serif;font-weight:700;font-size:.66rem;padding:0 .7rem}
-.nb-login:hover{box-shadow:0 4px 18px rgba(184,146,42,.4);transform:translateY(-1px)}
-.td{position:fixed;top:66px;background:rgba(3,16,24,.96);border:1px solid var(–bd);
-border-radius:var(–r2);padding:.55rem;display:none;flex-direction:column;gap:.25rem;
-min-width:138px;z-index:3000;box-shadow:var(–sh);backdrop-filter:blur(20px)}
-.td.on{display:flex}
-.td-hd{font-family:‘Space Mono’,monospace;font-size:.55rem;color:var(–g1);
-letter-spacing:.12em;padding:.1rem .35rem;opacity:.8}
-.to{display:flex;align-items:center;gap:.55rem;padding:.38rem .6rem;border-radius:var(–r);
-cursor:pointer;font-size:.76rem;color:var(–sv);transition:all .18s;
-border:1px solid transparent;font-family:‘Cairo’,sans-serif}
-.to:hover,.to.on{background:rgba(184,146,42,.09);color:var(–g2);border-color:var(–bd)}
-.to.on{font-weight:700}
-.ts{width:15px;height:15px;border-radius:50%;flex-shrink:0}
+font-family:‘Cinzel’,serif;font-weight:900;font-size:.85rem;color:var(–bg);
+}
+.nav-logo-text{font-family:‘Cinzel’,serif;font-size:1rem;font-weight:700;color:var(–gold3);letter-spacing:.15em}
+.nav-logo-sub{font-size:.55rem;color:var(–silver);display:block;line-height:1.2}
+.nav-links{display:flex;align-items:center;gap:.1rem;flex:1;justify-content:center;list-style:none}
+.nav-links a{padding:.35rem .55rem;border-radius:var(–r);font-size:.68rem;color:var(–silver);transition:all .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(–gold2);background:rgba(184,146,42,.1)}
+.nav-links a.active{border-bottom:2px solid var(–gold)}
 
-/* ══ THEMES ══ */
-body.lt{–bg:#f8f3e8;–bg2:#f0e8d4;–bg3:#e6dbc4;–bg4:#d8ceб8;
-–g1:#6a4a08;–g2:#8a6010;–g3:#aa7820;–g4:#6a4808;
-–w:#1a1008;–sv:#5a4828;–dim:#8a7050;
-–bd:rgba(80,52,8,.22);–bd2:rgba(80,52,8,.1)}
-body.lt{background:#f8f3e8}
-body.lt .nav{background:rgba(240,230,210,.92)}
-body.lt #sc{opacity:.18}
-body.lt .card,.lt .pcard,.lt .phase,.lt .chat-box,.lt .sidebar-widget{background:rgba(240,230,210,.7)!important}
+.btn-voice:hover{background:rgba(184,146,42,.18)}
 
-body.gd{–bg:#050300;–bg2:#0c0800;–bg3:#141000;–bg4:#1c1600;
-–g1:#c89820;–g2:#dca830;–g3:#f0c040;–g4:#ffd060;
-–w:#fff4c0;–sv:#b09020;
-–bd:rgba(200,152,32,.28);–bd2:rgba(200,152,32,.1)}
-body.gd{background:#050300}
-body.gd .nav{background:rgba(5,3,0,.92)}
+/* Theme toggle */
 
-/* ══ PAGE ══ */
-.pw{position:relative;z-index:3;padding-top:60px}
+/* ═══ NAV BUTTONS NEW SYSTEM ═══ */
+.nav-actions{display:flex;align-items:center;gap:.3rem;flex-shrink:0;position:relative}
+.nbtn{height:30px;padding:0 .6rem;border-radius:16px;border:1px solid var(–border);background:rgba(184,146,42,.06);color:var(–gold2);font-size:.68rem;cursor:pointer;font-family:‘Space Mono’,monospace;transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.25rem}
+.nbtn:hover{background:rgba(184,146,42,.15);border-color:rgba(184,146,42,.4)}
+.nbtn-icon{width:30px;padding:0;justify-content:center;font-size:.9rem;border-radius:50%}
+.nbtn-login{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);border-color:transparent;font-family:inherit;font-weight:700;font-size:.7rem;padding:0 .85rem}
+.nbtn-login:hover{box-shadow:0 4px 16px rgba(184,146,42,.4);transform:translateY(-1px)}
+.nbtn-lang{font-weight:700;font-size:.72rem}
 
-/* ══ SECTIONS ══ */
-.sec{padding:4.5rem 2rem;max-width:1300px;margin:0 auto}
-.sf{padding:4.5rem 0;position:relative;z-index:3;background:rgba(2,11,18,.5);backdrop-filter:blur(6px)}
-.si{max-width:1300px;margin:0 auto;padding:0 2rem}
-.stag{display:inline-block;font-family:‘Space Mono’,monospace;font-size:.58rem;
-color:var(–g1);letter-spacing:.2em;background:rgba(184,146,42,.07);
-border:1px solid rgba(184,146,42,.18);padding:.2rem .65rem;border-radius:20px;margin-bottom:.7rem}
-.sh1{font-family:‘Cinzel’,serif;font-size:clamp(1.7rem,4vw,3rem);font-weight:700;
-background:linear-gradient(135deg,var(–g5),var(–g4),var(–g2));
--webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-margin-bottom:.7rem;line-height:1.2}
-.sub{font-size:.88rem;color:#b0bcd0;line-height:1.95;max-width:640px}
+/* Theme dropdown - positioned relative to nav-actions */
+.theme-drop{
+position:fixed;top:68px;
+background:var(–bg2);
+border:1px solid var(–border);
+border-radius:var(–r2);
+padding:.6rem;
+display:none;
+flex-direction:column;
+gap:.3rem;
+min-width:140px;
+z-index:5000;
+box-shadow:0 8px 40px rgba(0,0,0,.7);
+}
+.theme-drop.open{display:flex}
+.tdrop-title{font-family:‘Space Mono’,monospace;font-size:.58rem;color:var(–gold);letter-spacing:.12em;padding:.1rem .4rem;opacity:.8}
+.theme-opt{display:flex;align-items:center;gap:.6rem;padding:.45rem .7rem;border-radius:var(–r);cursor:pointer;font-size:.78rem;color:var(–silver);transition:all .2s;border:1px solid transparent;font-family:‘Cairo’,sans-serif}
+.theme-opt:hover{background:rgba(184,146,42,.1);color:var(–white);border-color:var(–border)}
+.theme-opt.active{background:rgba(184,146,42,.14);color:var(–gold2);border-color:rgba(184,146,42,.3);font-weight:700}
+.theme-swatch{width:16px;height:16px;border-radius:50%;flex-shrink:0}
 
-/* ══ CARDS — translucent so stars show through ══ */
-.card{background:rgba(3,16,24,.55);border:1px solid var(–bd);border-radius:var(–r2);
-padding:1.4rem;transition:all .3s;backdrop-filter:blur(14px)}
-.card:hover{border-color:rgba(184,146,42,.35);box-shadow:var(–sh2)}
-.pcard{border-radius:var(–r2);padding:2rem;transition:all .35s;text-decoration:none;
-color:inherit;display:block;border:1px solid var(–bd);
-background:rgba(3,16,24,.5);backdrop-filter:blur(14px)}
-.pcard:hover{transform:translateY(-7px);border-color:rgba(184,146,42,.38);box-shadow:var(–sh2)}
+/* ═══ PAGE WRAP ═══ */
+.page-wrap{position:relative;z-index:1;padding-top:62px}
 
-/* ══ BUTTONS ══ */
-.bp{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);
-border:none;padding:.62rem 1.35rem;border-radius:var(–r);font-weight:700;
-font-size:.8rem;cursor:pointer;font-family:inherit;transition:all .22s;
-display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
-.bp:hover{box-shadow:0 6px 28px rgba(184,146,42,.45);transform:translateY(-2px);color:var(–bg)}
-.bo{background:transparent;border:1px solid var(–bd);color:var(–sv);
-padding:.6rem 1.3rem;border-radius:var(–r);font-size:.8rem;cursor:pointer;
-font-family:inherit;transition:all .22s;text-decoration:none;display:inline-flex;align-items:center}
-.bo:hover{border-color:var(–g1);color:var(–g2)}
+/* ═══ SVG ICONS ═══ */
+.snyx-icon{display:inline-flex;align-items:center;justify-content:center;width:72px;height:72px;margin-bottom:1.2rem;filter:drop-shadow(0 0 12px rgba(184,146,42,.5))}
+.snyx-icon:hover{filter:drop-shadow(0 0 28px rgba(212,168,67,.9))}
+.snyx-icon svg{width:100%;height:100%}
+@keyframes iconGlow{0%,100%{filter:drop-shadow(0 0 6px rgba(184,146,42,.4))}50%{filter:drop-shadow(0 0 22px rgba(212,168,67,.9))}}
+@keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.snyx-icon{animation:iconGlow 3s ease-in-out infinite,iconFloat 4s ease-in-out infinite}
 
-/* ══ CHAT ══ */
-.chat-box{border:1px solid var(–bd);border-radius:var(–r2);display:flex;
-flex-direction:column;overflow:hidden;background:rgba(2,10,16,.6);backdrop-filter:blur(16px)}
-.ch{padding:.8rem 1.1rem;border-bottom:1px solid var(–bd);
-display:flex;align-items:center;gap:.65rem;font-size:.8rem;font-weight:700;
-background:rgba(184,146,42,.03)}
-.cb{flex:1;overflow-y:auto;padding:.9rem;display:flex;flex-direction:column;gap:.65rem;min-height:160px}
-.mu{align-self:flex-end;max-width:85%;background:rgba(184,146,42,.1);
-border:1px solid rgba(184,146,42,.22);color:var(–w);padding:.65rem .95rem;
-border-radius:var(–r2);font-size:.8rem;line-height:1.75}
-.ma{align-self:flex-start;max-width:88%;background:rgba(3,16,24,.7);
-border:1px solid var(–bd);color:#c0cce0;padding:.65rem .95rem;
-border-radius:var(–r2);font-size:.8rem;line-height:1.75;backdrop-filter:blur(8px)}
-.spk{background:rgba(184,146,42,.06);border:1px solid var(–bd);color:var(–g2);
-width:22px;height:22px;border-radius:50%;cursor:pointer;font-size:.6rem;
-display:flex;align-items:center;justify-content:center;transition:all .18s}
-.spk:hover{background:rgba(184,146,42,.18)}
-.cf{padding:.7rem;border-top:1px solid var(–bd);display:flex;gap:.45rem;
-background:rgba(184,146,42,.015)}
-.ci{flex:1;background:rgba(2,10,16,.65);border:1px solid var(–bd);color:var(–w);
-padding:.5rem .85rem;border-radius:var(–r);font-size:.8rem;font-family:inherit;
-outline:none;transition:border-color .18s;backdrop-filter:blur(4px)}
-.ci:focus{border-color:var(–g1)}
-.ci::placeholder{color:var(–dim)}
-.cs{background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);
-border:none;padding:.5rem .95rem;border-radius:var(–r);font-weight:700;
-font-size:.76rem;cursor:pointer;font-family:inherit;transition:all .18s;white-space:nowrap}
-.cs:hover{box-shadow:0 4px 16px rgba(184,146,42,.4)}
-.mb{background:rgba(184,146,42,.05);border:1px solid rgba(184,146,42,.2);color:var(–g2);
-width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:.88rem;
-display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .18s}
-.mb.rc{background:rgba(208,48,64,.25);border-color:rgba(208,48,64,.5);
-animation:rp 1s infinite}
-@keyframes rp{0%,100%{box-shadow:0 0 0 0 rgba(208,48,64,.4)}50%{box-shadow:0 0 0 7px rgba(208,48,64,0)}}
+/* ═══ HERO ═══ */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative;overflow:hidden}
+.hero::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(184,146,42,.07),transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:.5rem;background:rgba(184,146,42,.07);border:1px solid rgba(184,146,42,.22);padding:.35rem 1rem;border-radius:20px;margin-bottom:1.8rem;font-family:‘Space Mono’,monospace;font-size:.65rem;color:var(–gold);letter-spacing:.15em;animation:fadeInDown .8s ease .2s both}
+@keyframes fadeInDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+.hero-title{font-family:‘Cinzel’,serif;font-size:clamp(4rem,14vw,10rem);font-weight:900;letter-spacing:.08em;line-height:.9;margin-bottom:.5rem;background:linear-gradient(135deg,var(–gold4),var(–gold3),var(–gold2),var(–gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:heroGlow 3s ease-in-out infinite alternate}
+@keyframes heroGlow{from{filter:drop-shadow(0 0 20px rgba(184,146,42,.3))}to{filter:drop-shadow(0 0 60px rgba(184,146,42,.6))}}
+.hero-sub{font-size:clamp(1.1rem,2.5vw,1.8rem);color:var(–white);font-weight:300;margin-bottom:.4rem;letter-spacing:.06em;animation:fadeInUp .8s ease .4s both}
+.hero-tag{font-family:‘Space Mono’,monospace;font-size:.72rem;color:var(–silver);letter-spacing:.2em;margin-bottom:2.5rem;animation:fadeInUp .8s ease .5s both}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.hero-btns{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap;margin-bottom:3rem;animation:fadeInUp .8s ease .6s both}
+.hero-stats{display:flex;gap:2.5rem;justify-content:center;flex-wrap:wrap;animation:fadeInUp .8s ease .7s both}
+.hero-stat-num{font-family:‘Space Mono’,monospace;font-size:1.5rem;font-weight:700;color:var(–gold3)}
+.hero-stat-lbl{font-size:.7rem;color:#9aa8be;margin-top:.2rem}
 
-/* ══ FORMS ══ */
-.fg{margin-bottom:1rem}
-.fl{display:block;font-size:.73rem;color:#8898b8;margin-bottom:.32rem}
-.fi{width:100%;background:rgba(2,10,16,.6);border:1px solid var(–bd);color:var(–w);
-padding:.62rem .88rem;border-radius:var(–r);font-size:.8rem;font-family:inherit;
-outline:none;transition:border-color .18s;backdrop-filter:blur(4px)}
-.fi:focus{border-color:var(–g1)}
-.fi::placeholder{color:var(–dim)}
-.fi option{background:#031018}
+/* ═══ TICKER ═══ */
+.ticker-wrap{overflow:hidden;white-space:nowrap;background:rgba(184,146,42,.04);border-top:1px solid var(–border);border-bottom:1px solid var(–border);padding:.35rem 0;position:absolute;bottom:0;left:0;right:0}
+.ticker-inner{display:inline-block;animation:ticker 40s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.ticker-item{display:inline-block;padding:0 2rem;font-family:‘Space Mono’,monospace;font-size:.73rem;color:#c8d4e8;font-weight:500}
 
-/* ══ TABLE ══ */
-.tbl{width:100%;border-collapse:collapse;font-size:.8rem}
-.tbl th{padding:.65rem 1rem;text-align:right;font-weight:700;font-family:‘Space Mono’,monospace;
-font-size:.67rem;letter-spacing:.05em;color:var(–g2);border-bottom:1px solid var(–bd);
-background:rgba(184,146,42,.04)}
-.tbl td{padding:.6rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);color:#b0bcd0;vertical-align:middle}
-.tbl tr:hover td{background:rgba(184,146,42,.03)}
+/* ═══ SECTIONS ═══ */
+.section{padding:5rem 2rem;max-width:1280px;margin:0 auto}
+.sec-full{padding:5rem 0;position:relative;z-index:1;background:linear-gradient(180deg,var(–bg2),var(–bg3))}
+.sec-inner{max-width:1280px;margin:0 auto;padding:0 2rem}
+.sec-tag{display:inline-block;font-family:‘Space Mono’,monospace;font-size:.6rem;color:var(–gold);letter-spacing:.2em;text-transform:uppercase;background:rgba(184,146,42,.07);border:1px solid rgba(184,146,42,.18);padding:.22rem .7rem;border-radius:20px;margin-bottom:.8rem}
+.sec-title{font-family:‘Cinzel’,serif;font-size:clamp(1.7rem,4vw,3rem);font-weight:700;line-height:1.2;background:linear-gradient(135deg,var(–gold4),var(–gold3),var(–gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:.8rem}
+.sec-sub{font-size:.9rem;color:#c0c8d8;line-height:1.9;max-width:620px}
 
-/* ══ MISC ══ */
-.badge{display:inline-block;padding:.16rem .6rem;border-radius:20px;font-size:.63rem;font-weight:700;font-family:‘Space Mono’,monospace}
-.bg{background:rgba(184,146,42,.1);color:var(–g2);border:1px solid rgba(184,146,42,.22)}
-.br{background:rgba(208,48,64,.1);color:#d05060;border:1px solid rgba(208,48,64,.22)}
-.bl{background:rgba(34,168,102,.1);color:#22a866;border:1px solid rgba(34,168,102,.22)}
-.pd{width:7px;height:7px;border-radius:50%;background:var(–g2);display:inline-block;
-animation:pd 2.2s infinite}
-@keyframes pd{0%,100%{box-shadow:0 0 0 0 rgba(184,146,42,.5)}50%{box-shadow:0 0 0 5px rgba(184,146,42,0)}}
-.gln{height:1px;background:linear-gradient(90deg,transparent,var(–g1),var(–g2),var(–g1),transparent)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.ldr{width:16px;height:16px;border-radius:50%;border:2px solid var(–bd);border-top-color:var(–g1);animation:sp .7s linear infinite;display:inline-block}
-@keyframes sp{to{transform:rotate(360deg)}}
-.pb{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;margin:.3rem 0}
-.pf{height:100%;background:linear-gradient(90deg,var(–g1),var(–g2));border-radius:3px;transition:width 1.2s ease}
-.ticker-wrap{overflow:hidden;white-space:nowrap;background:rgba(184,146,42,.04);
-border-top:1px solid var(–bd);border-bottom:1px solid var(–bd);padding:.32rem 0;
-position:absolute;bottom:0;left:0;right:0;z-index:4}
-.ticker-inner{display:inline-block;animation:tk 50s linear infinite}
-@keyframes tk{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ticker-item{display:inline-block;padding:0 2.5rem;font-family:‘Space Mono’,monospace;
-font-size:.7rem;color:#c0cce0}
+/* ═══ BUTTONS ═══ */
+.btn-p{background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);border:none;padding:.65rem 1.4rem;border-radius:var(–r);font-weight:700;font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .25s;display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
+.btn-p:hover{box-shadow:0 6px 28px rgba(184,146,42,.5);transform:translateY(-2px);color:var(–bg)}
+.btn-o{background:transparent;border:1px solid var(–border);color:var(–silver);padding:.62rem 1.3rem;border-radius:var(–r);font-size:.82rem;cursor:pointer;font-family:inherit;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center}
+.btn-o:hover{border-color:var(–gold);color:var(–gold2)}
 
-/* ══ MODAL ══ */
-.mo{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.82);
-backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:1rem}
-.mo.on{display:flex}
-.mb2{background:rgba(3,16,24,.94);border:1px solid var(–bd);border-radius:var(–r2);
-padding:1.8rem;width:100%;max-width:480px;position:relative;
-box-shadow:var(–sh);animation:mi .28s ease;backdrop-filter:blur(24px)}
-@keyframes mi{from{opacity:0;transform:scale(.96) translateY(16px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.mc{position:absolute;top:.9rem;left:1rem;background:transparent;border:none;
-color:var(–sv);font-size:1rem;cursor:pointer;transition:color .18s}
-.mc:hover{color:var(–red)}
-.mt{font-family:‘Cinzel’,serif;font-size:1rem;font-weight:700;color:var(–g4);
-margin-bottom:1.2rem;padding-left:1.4rem}
+/* ═══ PLATFORM CARDS ═══ */
+.platforms-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.pcard{border-radius:var(–r2);padding:2.2rem;position:relative;overflow:hidden;transition:all .4s;text-decoration:none;color:inherit;display:block;border:1px solid transparent}
+.pcard:hover{transform:translateY(-8px)}
+.pcard-ipc{background:linear-gradient(135deg,rgba(184,146,42,.06),rgba(184,146,42,.02));border-color:rgba(184,146,42,.18)}
+.pcard-ipc:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.08)}
+.pcard-mkt{background:linear-gradient(135deg,rgba(184,146,42,.05),rgba(184,146,42,.02));border-color:rgba(184,146,42,.15)}
+.pcard-mkt:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.08)}
+.pcard-ai{background:linear-gradient(135deg,rgba(184,146,42,.07),rgba(184,146,42,.02));border-color:rgba(184,146,42,.18)}
+.pcard-ai:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.12)}
+.pcard-gov{background:linear-gradient(135deg,rgba(184,146,42,.06),rgba(184,146,42,.02));border-color:rgba(184,146,42,.15)}
+.pcard-gov:hover{border-color:rgba(212,168,67,.4);box-shadow:0 12px 40px rgba(184,146,42,.08)}
+.pcard-name-en{font-family:‘Cinzel’,serif;font-size:1rem;font-weight:700;margin-bottom:.3rem;letter-spacing:.05em}
+.pcard-name-ar{font-size:.95rem;font-weight:700;color:var(–white);margin-bottom:.8rem}
+.pcard-desc{font-size:.84rem;color:#c8d4e4;line-height:2;margin-bottom:1.4rem}
+.pcard-link{font-family:‘Space Mono’,monospace;font-size:.7rem;font-weight:700;display:inline-flex;align-items:center;gap:.3rem;transition:gap .2s}
+.pcard:hover .pcard-link{gap:.7rem}
 
-/* ══ SVG ICONS ══ */
-.icon{display:inline-flex;align-items:center;justify-content:center;
-filter:drop-shadow(0 0 10px rgba(184,146,42,.5))}
-@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-@keyframes glow{0%,100%{filter:drop-shadow(0 0 6px rgba(184,146,42,.4))}50%{filter:drop-shadow(0 0 22px rgba(212,168,67,.9))}}
-.icon{animation:float 4s ease-in-out infinite,glow 3s ease-in-out infinite}
+/* ═══ HOW IT WORKS ═══ */
+.how-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;position:relative}
+.how-grid::before{content:’’;position:absolute;top:40px;right:12.5%;left:12.5%;height:1px;background:linear-gradient(90deg,transparent,var(–gold),var(–gold2),var(–gold),transparent)}
+.step{text-align:center;padding:1.5rem;position:relative;z-index:1}
+.step-num{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,var(–gold),var(–gold2));color:var(–bg);font-family:‘Cinzel’,serif;font-weight:900;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;box-shadow:0 0 24px rgba(184,146,42,.3)}
+.step-title{font-weight:700;color:var(–white);margin-bottom:.4rem}
+.step-desc{font-size:.78rem;color:#b8c0d0;line-height:1.8}
 
-/* ══ FOOTER ══ */
-.ft{background:rgba(1,6,8,.7);border-top:1px solid var(–bd);
-padding:2.8rem 2rem 1.4rem;position:relative;z-index:3;backdrop-filter:blur(16px)}
-.ftg{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem}
-.fb{font-family:‘Cinzel’,serif;font-size:1.2rem;font-weight:900;color:var(–g4);letter-spacing:.14em;margin-bottom:.45rem}
-.fct{font-family:‘Space Mono’,monospace;font-size:.63rem;color:var(–g1);letter-spacing:.1em;margin-bottom:.8rem}
-.fl2{list-style:none;display:flex;flex-direction:column;gap:.38rem}
-.fl2 a{font-size:.76rem;color:var(–sv)}
-.fl2 a:hover{color:var(–g2)}
-.fbot{max-width:1300px;margin:1.8rem auto 0;padding-top:.9rem;
-border-top:1px solid var(–bd2);display:flex;justify-content:space-between;
-font-size:.67rem;color:#5a6880}
+/* ═══ TOKENOMICS ═══ */
+.token-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center}
+.donut-wrap{position:relative;width:220px;height:220px;margin:0 auto}
+.donut-wrap svg{transform:rotate(-90deg)}
+.donut-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.donut-val{font-family:‘Space Mono’,monospace;font-size:1.5rem;font-weight:700;color:var(–gold3)}
+.donut-lbl{font-size:.68rem;color:var(–silver)}
+.legend{list-style:none;display:flex;flex-direction:column;gap:.85rem}
+.legend-item{display:flex;align-items:center;gap:.85rem;font-size:.82rem}
+.legend-dot{width:13px;height:13px;border-radius:50%;flex-shrink:0}
+.legend-name{flex:1;color:#e0e8f5}
+.legend-pct{font-family:‘Space Mono’,monospace;font-size:.78rem;color:var(–gold2);font-weight:700}
 
-/* ══ RESPONSIVE ══ */
-@media(max-width:900px){.nav-links{display:none}.ftg{grid-template-columns:1fr 1fr}}
-@media(max-width:600px){.sec{padding:3rem 1rem}.ftg{grid-template-columns:1fr}}
+/* ═══ ROADMAP ═══ */
+.roadmap-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.phase{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r2);padding:1.4rem;transition:all .3s;position:relative}
+.phase:hover{transform:translateY(-4px)}
+.phase.active{border-color:var(–gold2);box-shadow:0 0 30px rgba(184,146,42,.1)}
+.phase-num{font-family:‘Space Mono’,monospace;font-size:.6rem;color:var(–gold);letter-spacing:.15em;margin-bottom:.4rem}
+.phase-title{font-weight:700;color:var(–white);margin-bottom:.25rem}
+.phase-date{font-size:.72rem;color:var(–silver);margin-bottom:.9rem}
+.phase-items{list-style:none;display:flex;flex-direction:column;gap:.35rem}
+.phase-items li{font-size:.76rem;color:#b0b8cc;padding-right:.85rem;position:relative}
+.phase-items li::before{content:‘◆’;position:absolute;right:0;color:var(–gold);font-size:.42rem;top:.28rem}
 
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:7rem 2rem 5rem;position:relative;overflow:hidden}
-.hero::before{content:’’;position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 30%,rgba(184,146,42,.06),transparent 65%);pointer-events:none}
-.he{display:inline-flex;align-items:center;gap:.5rem;background:rgba(184,146,42,.07);border:1px solid rgba(184,146,42,.2);padding:.3rem .9rem;border-radius:20px;margin-bottom:1.6rem;font-family:‘Space Mono’,monospace;font-size:.62rem;color:var(–g1);letter-spacing:.14em;animation:fid .9s ease .2s both}
-@keyframes fid{from{opacity:0;transform:translateY(-18px)}to{opacity:1;transform:translateY(0)}}
-.ht{font-family:‘Cinzel’,serif;font-size:clamp(4rem,16vw,11rem);font-weight:900;letter-spacing:.07em;line-height:.88;margin-bottom:.4rem;background:linear-gradient(135deg,#fff3b0,#fde068,#f0c84a,#d4a843,#b8922a);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:hgl 3.5s ease-in-out infinite alternate}
-@keyframes hgl{from{filter:drop-shadow(0 0 18px rgba(184,146,42,.25))}to{filter:drop-shadow(0 0 55px rgba(184,146,42,.65))}}
-.hs{font-size:clamp(1.1rem,2.5vw,1.7rem);color:var(–w);font-weight:300;letter-spacing:.06em;margin-bottom:.3rem;animation:fiu .8s ease .4s both}
-.htag{font-family:‘Space Mono’,monospace;font-size:.68rem;color:var(–sv);letter-spacing:.2em;margin-bottom:2.2rem;animation:fiu .8s ease .5s both}
-@keyframes fiu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
-.hbtns{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.8rem;animation:fiu .8s ease .6s both}
-.hst{display:flex;gap:3rem;justify-content:center;flex-wrap:wrap;animation:fiu .8s ease .7s both}
-.hsn{font-family:‘Space Mono’,monospace;font-size:1.4rem;font-weight:700;color:var(–g4)}
-.hsl{font-size:.67rem;color:var(–sv);margin-top:.2rem}
-.pg2{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4rem}
-.hw2{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2rem;position:relative}
-.hw2::before{content:’’;position:absolute;top:38px;right:12%;left:12%;height:1px;background:linear-gradient(90deg,transparent,var(–g1),var(–g2),var(–g1),transparent)}
-.st2{text-align:center;padding:1.4rem;position:relative;z-index:1}
-.stn{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(–g1),var(–g2));color:var(–bg);font-family:‘Cinzel’,serif;font-weight:900;font-size:1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .9rem;box-shadow:0 0 22px rgba(184,146,42,.28)}
-.dnt{position:relative;width:200px;height:200px;margin:0 auto}
-.dnt svg{transform:rotate(-90deg)}
-.dc{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.dv{font-family:‘Space Mono’,monospace;font-size:1.4rem;font-weight:700;color:var(–g4)}
-.rm2{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
-.ph2{border-radius:var(–r2);padding:1.3rem;border:1px solid var(–bd);background:rgba(3,16,24,.5);backdrop-filter:blur(12px);transition:all .28s;position:relative}
-.ph2:hover{transform:translateY(-3px)}
-.ph2.act{border-color:var(–g1);box-shadow:0 0 28px rgba(184,146,42,.09)}
-@media(max-width:900px){.pg2{grid-template-columns:1fr}.hw2{grid-template-columns:repeat(2,1fr)}.hw2::before{display:none}.rm2{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.rm2{grid-template-columns:1fr}}
-</style></head>
+/* ═══ BETTER CONTRAST FOR DARK THEME ═══ */
+.sec-sub{font-size:.95rem;color:#c8d4e8;line-height:1.9;max-width:620px}
+.step-desc{font-size:.82rem;color:#c0cce0;line-height:1.8}
+.step-title{font-weight:700;color:#f0f4ff;margin-bottom:.4rem;font-size:.96rem}
+.phase-items li{font-size:.8rem;color:#bcc8dc;padding-right:.85rem;position:relative}
+.phase-date{font-size:.76rem;color:#8898b8;margin-bottom:.9rem}
+.legend-name{flex:1;color:#e0e8f8;font-size:.85rem}
+.footer-sub{font-size:.82rem;color:#a0b0c4;line-height:1.8;margin-bottom:1rem}
+.footer-links a{font-size:.82rem;color:#a0afc0}
+.footer-links a:hover{color:var(–gold2)}
+.footer-bottom{max-width:1280px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid var(–border2);display:flex;justify-content:space-between;font-size:.74rem;color:#7888aa}
+.hero-stat-lbl{font-size:.74rem;color:#9aabbb;margin-top:.2rem}
+.hero-tag{font-family:‘Space Mono’,monospace;font-size:.72rem;color:#8899bb;letter-spacing:.2em;margin-bottom:2.5rem;animation:fadeInUp .8s ease .5s both}
+.ticker-item{display:inline-block;padding:0 2rem;font-family:‘Space Mono’,monospace;font-size:.78rem;color:#c8d4e8;letter-spacing:.05em}
+.pcard-desc{font-size:.8rem;color:#b8c4d8;line-height:1.9;margin-bottom:1.4rem}
+.phase-title{font-weight:700;color:#f0f4ff;margin-bottom:.25rem;font-size:.94rem}
+.card{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r2);padding:1.5rem;transition:all .3s}
+.card:hover{border-color:rgba(184,146,42,.4);box-shadow:0 8px 32px rgba(184,146,42,.07)}
+.badge{display:inline-block;padding:.18rem .65rem;border-radius:20px;font-size:.65rem;font-weight:700;font-family:‘Space Mono’,monospace}
+.badge-gold{background:rgba(184,146,42,.12);color:var(–gold2);border:1px solid rgba(184,146,42,.25)}
+.badge-green{background:rgba(184,146,42,.12);color:var(–gold2);border:1px solid rgba(184,146,42,.25)}
+.pulse-dot{width:7px;height:7px;border-radius:50%;background:var(–gold2);animation:pulse 2s infinite;display:inline-block}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,146,42,.4)}50%{box-shadow:0 0 0 5px rgba(184,146,42,0)}}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(–border),transparent);margin:2rem 0}
+.glow-line{height:2px;background:linear-gradient(90deg,transparent,var(–gold),var(–gold2),var(–gold),transparent)}
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
 
-<body><canvas id="sc"></canvas><div id="cr"></div><div id="rg"></div><nav class="nav"><a href="index.html" class="nav-logo"><div class="nav-hex">SX</div><div><div class="nav-brand">SENYX</div><span class="nav-sub" data-ar="مدينة الابتكار العالمية الذكية" data-en="Sovereign Innovation City">مدينة الابتكار العالمية الذكية</span></div></a><ul class="nav-links"><li><a href="index.html" class='on' data-ar="الرئيسية" data-en="Home">الرئيسية</a></li><li><a href="ipccore.html"  data-ar="نواة IP" data-en="IP Core">نواة IP</a></li><li><a href="market.html"  data-ar="السوق" data-en="Market">السوق</a></li><li><a href="ai-platform.html"  data-ar="منصة AI" data-en="AI Platform">منصة AI</a></li><li><a href="dashboards.html"  data-ar="لوحات التحكم" data-en="Dashboards">لوحات التحكم</a></li><li><a href="governance.html"  data-ar="الحوكمة" data-en="Governance">الحوكمة</a></li><li><a href="community.html"  data-ar="المجتمع" data-en="Community">المجتمع</a></li><li><a href="investor.html"  data-ar="المستثمرون" data-en="Investors">المستثمرون</a></li><li><a href="news.html"  data-ar="الأخبار" data-en="News">الأخبار</a></li></ul><div class="nav-acts"><button class="nb nb-icon" id="tBtn" onclick="toggleTD(event)">🌙</button><div class="td" id="tDrop"><div class="td-hd">THEME</div><div class="to on" data-t="dark" onclick="setTheme('dark')"><span class="ts" style="background:#010608;border:2px solid #b8922a"></span><span>🌙 داكن</span></div><div class="to" data-t="lt" onclick="setTheme('lt')"><span class="ts" style="background:#f8f3e8;border:2px solid #8a6010"></span><span>☀️ فاتح</span></div><div class="to" data-t="gd" onclick="setTheme('gd')"><span class="ts" style="background:#050300;border:2px solid #dca830"></span><span>👑 ذهبي</span></div></div><button class="nb" id="vNb" onclick="openM('voice')">🔊</button><button class="nb" id="aNb" onclick="openM('api')">🔑</button><button class="nb" id="lBtn" onclick="toggleL()">EN</button><button class="nb nb-login" onclick="openM('login')"><span data-ar="دخول" data-en="Login">دخول</span></button></div></nav><div class="pw">
+/* ═══ MODAL ═══ */
+.modal-overlay{position:fixed;inset:0;z-index:2000;background:rgba(0,0,0,.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal-box{background:var(–bg3);border:1px solid var(–border);border-radius:var(–r2);padding:2rem;width:100%;max-width:500px;position:relative;box-shadow:var(–shadow);animation:mIn .3s ease}
+@keyframes mIn{from{opacity:0;transform:scale(.95) translateY(20px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:1rem;left:1rem;background:transparent;border:none;color:var(–silver);font-size:1.1rem;cursor:pointer;transition:color .2s}
+.modal-close:hover{color:var(–red)}
+.modal-title{font-family:‘Cinzel’,serif;font-size:1.1rem;font-weight:700;color:var(–gold3);margin-bottom:1.4rem;padding-left:1.5rem}
+.form-group{margin-bottom:1.1rem}
+.form-label{display:block;font-size:.75rem;color:var(–silver);margin-bottom:.35rem}
+.form-input{width:100%;background:var(–bg4);border:1px solid var(–border);color:var(–white);padding:.65rem .9rem;border-radius:var(–r);font-size:.82rem;font-family:inherit;outline:none;transition:border-color .2s}
+.form-input:focus{border-color:var(–gold)}
+.loader{width:18px;height:18px;border-radius:50%;border:2px solid var(–border);border-top-color:var(–gold);animation:spin .8s linear infinite;display:inline-block}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ═══ FOOTER ═══ */
+.snyx-footer{background:var(–bg2);border-top:1px solid var(–border);padding:3rem 2rem 1.5rem;position:relative;z-index:1}
+.footer-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem}
+.footer-brand{font-family:‘Cinzel’,serif;font-size:1.3rem;font-weight:900;color:var(–gold3);letter-spacing:.15em;margin-bottom:.5rem}
+.footer-sub{font-size:.78rem;color:#9aa8be;line-height:1.8;margin-bottom:1rem}
+.footer-col-title{font-family:‘Space Mono’,monospace;font-size:.68rem;color:var(–gold);letter-spacing:.1em;margin-bottom:.9rem}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.footer-links a{font-size:.78rem;color:var(–silver)}
+.footer-links a:hover{color:var(–gold2)}
+.footer-bottom{max-width:1280px;margin:2rem auto 0;padding-top:1rem;border-top:1px solid var(–border2);display:flex;justify-content:space-between;font-size:.7rem;color:var(–silver)}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:900px){
+.platforms-grid{grid-template-columns:1fr}
+.how-grid{grid-template-columns:repeat(2,1fr)}.how-grid::before{display:none}
+.token-grid{grid-template-columns:1fr}
+.roadmap-grid{grid-template-columns:repeat(2,1fr)}
+.footer-grid{grid-template-columns:1fr 1fr}
+.nav-links{display:none}
+}
+@media(max-width:600px){
+.roadmap-grid{grid-template-columns:1fr}
+.footer-grid{grid-template-columns:1fr}
+.footer-bottom{flex-direction:column;gap:.4rem;text-align:center}
+.section{padding:3rem 1rem}
+}
+
+/* ═══ TEXT CLARITY — Dark Mode ═══ */
+.pcard-desc{color:#bcc8dc}
+.sec-sub{color:#bcc8dc}
+.step-desc{color:#b8c4d8}
+.step-title{color:#e8ecf5;font-weight:700}
+.phase-items li{color:#b0bcd0}
+.phase-date{color:#8899bb}
+.legend-name{color:#d8e0f0}
+.footer-sub{color:#9aa8be}
+.footer-links a{color:#9aa8be}
+.footer-bottom{color:#6677aa}
+.hero-stat-lbl{color:#9aa8be}
+.ticker-item{color:#c8d4e8;font-weight:500;font-size:.74rem}
+
+/* ═══ STARS ALWAYS VISIBLE ═══ */
+
+#starsCanvas{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1!important}
+.page-wrap{position:relative;z-index:1;padding-top:62px}
+/* Ultra-transparent cards — stars visible through */
+.card,.pcard,.phase,.pipe-stage,.chat-box,.result-card,.cert-box,.office-card,.snyx-table,.modal-box,.sidebar-widget,.news-card,.vip-card,.cafe-room,.pathway,.engine-card,.auction-card,.order-book,.kpi-card{
+background:rgba(2,8,15,.45)!important;
+backdrop-filter:blur(12px);
+-webkit-backdrop-filter:blur(12px);
+}
+.snyx-nav{background:rgba(2,8,15,.72)!important;backdrop-filter:blur(24px)!important}
+.snyx-footer{background:rgba(2,8,15,.65)!important;backdrop-filter:blur(16px)!important}
+.sec-full{background:rgba(4,13,23,.35)!important;backdrop-filter:blur(8px)!important}
+.modal-overlay{background:rgba(0,0,0,.75)!important;backdrop-filter:blur(12px)!important}
+.modal-box{background:rgba(6,15,30,.85)!important}
+/* Theme light — translucent warm */
+body.theme-light .card,
+body.theme-light .pcard,
+body.theme-light .phase{background:rgba(250,246,238,.55)!important;backdrop-filter:blur(12px)!important}
+body.theme-light .snyx-nav{background:rgba(240,232,213,.82)!important}
+body.theme-light .snyx-footer{background:rgba(240,232,213,.65)!important}
+body.theme-light .sec-full{background:rgba(235,224,200,.35)!important}
+body.theme-light #starsCanvas{opacity:.25!important}
+/* Theme gold — translucent deep */
+body.theme-gold .card,
+body.theme-gold .pcard,
+body.theme-gold .phase{background:rgba(8,6,0,.45)!important;backdrop-filter:blur(12px)!important}
+body.theme-gold .snyx-nav{background:rgba(5,3,0,.78)!important}
+body.theme-gold #starsCanvas{opacity:1.2!important}
+
+</style>
+</head>
+<body>
+
+<!-- Stars + Cursor -->
+
+<canvas id="starsCanvas"></canvas>
+
+<div id="cur"></div>
+<div id="ring"></div>
+
+<!-- NAV -->
+
+<nav class="snyx-nav">
+  <a href="index.html" class="nav-logo">
+    <div class="nav-logo-mark">SX</div>
+    <div>
+      <div class="nav-logo-text">SENYX</div>
+      <span class="nav-logo-sub" data-ar="مدينة الابتكار العالمية الذكية" data-en="Sovereign Innovation City">مدينة الابتكار العالمية الذكية</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active" data-ar="الرئيسية" data-en="Home">الرئيسية</a></li>
+    <li><a href="ipccore.html" data-ar="نواة IP" data-en="IP Core">نواة IP</a></li>
+    <li><a href="market.html" data-ar="السوق" data-en="Market">السوق</a></li>
+    <li><a href="ai-platform.html" data-ar="منصة AI" data-en="AI Platform">منصة AI</a></li>
+    <li><a href="dashboards.html" data-ar="لوحات التحكم" data-en="Dashboards">لوحات التحكم</a></li>
+    <li><a href="governance.html" data-ar="الحوكمة" data-en="Governance">الحوكمة</a></li>
+    <li><a href="community.html" data-ar="المجتمع" data-en="Community">المجتمع</a></li>
+    <li><a href="investor.html" data-ar="المستثمرون" data-en="Investors">المستثمرون</a></li>
+    <li><a href="news.html" data-ar="الأخبار" data-en="News">الأخبار</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="nbtn nbtn-icon" id="themeBtn" onclick="toggleThemeDrop(event)" title="السمة">🌙</button>
+    <div class="theme-drop" id="themeDrop">
+      <div class="tdrop-title">THEME</div>
+      <div class="theme-opt active" data-theme="dark" onclick="setTheme('dark')"><span class="theme-swatch" style="background:#02080f;border:2px solid #b8922a"></span><span>🌙 داكن</span></div>
+      <div class="theme-opt" data-theme="light" onclick="setTheme('light')"><span class="theme-swatch" style="background:#faf6ee;border:2px solid #9a7220"></span><span>☀️ فاتح</span></div>
+      <div class="theme-opt" data-theme="gold" onclick="setTheme('gold')"><span class="theme-swatch" style="background:#080600;border:2px solid #e8c060"></span><span>👑 ذهبي</span></div>
+    </div>
+    <button class="nbtn nbtn-voice" id="navVoiceBtn" onclick="openModal('voice')">🔊</button>
+    <button class="nbtn nbtn-api" id="apiBtnNav" onclick="openModal('api')">🔑</button>
+    <button class="nbtn nbtn-lang" id="langBtn" onclick="toggleLang()">EN</button>
+    <button class="nbtn nbtn-login" onclick="openModal('login')"><span data-ar="دخول" data-en="Login">دخول</span></button>
+  </div>
+</nav>
+
+<div class="page-wrap">
+
+<!-- HERO -->
+
 <section class="hero">
-  <div class="he"><span class="pd"></span><span data-ar="المدينة المنورة — المملكة العربية السعودية" data-en="Al-Madinah Al-Munawarah — Saudi Arabia">المدينة المنورة — المملكة العربية السعودية</span></div>
-  <h1 class="ht">SENYX</h1>
-  <p class="hs" data-ar="مدينة الابتكار العالمية الذكية" data-en="Sovereign Innovation City">مدينة الابتكار العالمية الذكية</p>
-  <p class="htag">SOVEREIGN INNOVATION CITY · SINCE 2025 · VISION 2030</p>
-  <div class="hbtns">
-    <a href="ipccore.html" class="bp" style="font-size:.88rem;padding:.82rem 1.9rem" data-ar="ابدأ الابتكار" data-en="Start Innovating">ابدأ الابتكار</a>
-    <a href="ai-platform.html" class="bp" style="font-size:.88rem;padding:.82rem 1.9rem;background:rgba(184,146,42,.1);color:var(--g2);box-shadow:none;border:1px solid var(--bd)" data-ar="منصة AI" data-en="AI Platform">منصة AI</a>
-    <a href="investor.html" class="bo" style="font-size:.88rem;padding:.82rem 1.9rem" data-ar="للمستثمرين" data-en="For Investors">للمستثمرين</a>
+  <div class="hero-eyebrow"><span class="pulse-dot"></span><span data-ar="المدينة المنورة — المملكة العربية السعودية" data-en="Al-Madinah Al-Munawarah — Saudi Arabia">المدينة المنورة — المملكة العربية السعودية</span></div>
+  <h1 class="hero-title">SENYX</h1>
+  <p class="hero-sub" data-ar="مدينة الابتكار العالمية الذكية" data-en="Sovereign Innovation City">مدينة الابتكار العالمية الذكية</p>
+  <p class="hero-tag">SOVEREIGN INNOVATION CITY · SINCE 2025</p>
+  <div class="hero-btns">
+    <a href="ipccore.html" class="btn-p" style="font-size:.92rem;padding:.85rem 2rem" data-ar="ابدأ الابتكار" data-en="Start Innovating">ابدأ الابتكار</a>
+    <a href="investor.html" class="btn-o" style="font-size:.92rem;padding:.85rem 2rem" data-ar="للمستثمرين" data-en="For Investors">للمستثمرين</a>
+    <a href="ai-platform.html" class="btn-p" style="font-size:.92rem;padding:.85rem 2rem;background:linear-gradient(135deg,rgba(184,146,42,.2),rgba(184,146,42,.1));color:var(--gold2);box-shadow:none" data-ar="منصة AI" data-en="AI Platform">منصة AI</a>
   </div>
-  <div class="hst">
-    <div><div class="hsn" data-n="135000000" data-suf="+">0</div><div class="hsl" data-ar="براءة اختراع" data-en="Patents">براءة اختراع</div></div>
-    <div><div class="hsn" data-n="9">0</div><div class="hsl" data-ar="وكلاء AI" data-en="AI Agents">وكلاء AI</div></div>
-    <div><div class="hsn" data-n="8">0</div><div class="hsl" data-ar="لغات" data-en="Languages">لغات</div></div>
-    <div><div class="hsn" data-n="100" data-suf="%">0</div><div class="hsl" data-ar="درع الفطرة" data-en="Fitrah Shield">درع الفطرة</div></div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="hero-stat-num" data-target="135000000" data-suffix="+">0</div><div class="hero-stat-lbl" data-ar="براءة اختراع" data-en="Patents">براءة اختراع</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" data-target="9">0</div><div class="hero-stat-lbl" data-ar="وكلاء AI" data-en="AI Agents">وكلاء AI</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" data-target="8">0</div><div class="hero-stat-lbl" data-ar="لغات" data-en="Languages">لغات</div></div>
+    <div class="hero-stat"><div class="hero-stat-num" data-target="100" data-suffix="%">0</div><div class="hero-stat-lbl" data-ar="درع الفطرة" data-en="Fitrah Shield">درع الفطرة</div></div>
   </div>
-  <div class="ticker-wrap"><div class="ticker-inner" id="tki"></div></div>
+  <div class="ticker-wrap"><div class="ticker-inner" id="tickerInner"></div></div>
 </section>
 
-<section class="sec">
-  <div class="stag" data-ar="المنصات السيادية" data-en="Sovereign Platforms">المنصات السيادية</div>
-  <h2 class="sh1">Four Pillars of Sovereignty</h2>
-  <p class="sub reveal" style="margin-bottom:2.4rem" data-ar="كل منصة نظام بيئي متكامل — مترابط، مدعوم بالذكاء الاصطناعي، محكوم بالفطرة الإنسانية." data-en="Each platform is a complete ecosystem — interconnected, AI-powered, governed by human Fitrah.">كل منصة نظام بيئي متكامل — مترابط، مدعوم بالذكاء الاصطناعي، محكوم بالفطرة الإنسانية.</p>
-  <div class="pg2">
-    <a href="ipccore.html" class="pcard reveal"><div class="icon" style="width:68px;height:68px;margin-bottom:.9rem"><svg viewBox="0 0 72 72" fill="none"><defs><linearGradient id="gi" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff3b0"/><stop offset="50%" stop-color="#d4a843"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs><polygon points="36,4 64,20 64,52 36,68 8,52 8,20" fill="none" stroke="url(#gi)" stroke-width="1" opacity=".28"><animateTransform attributeName="transform" type="rotate" from="0 36 36" to="360 36 36" dur="24s" repeatCount="indefinite"/></polygon><polygon points="36,10 58,23 58,49 36,62 14,49 14,23" fill="none" stroke="url(#gi)" stroke-width="1.4" opacity=".55"><animateTransform attributeName="transform" type="rotate" from="360 36 36" to="0 36 36" dur="16s" repeatCount="indefinite"/></polygon><polygon points="36,17 52,26 52,46 36,55 20,46 20,26" fill="url(#gi)" opacity=".06"/><polygon points="36,17 52,26 52,46 36,55 20,46 20,26" fill="none" stroke="url(#gi)" stroke-width="1.8"/><polygon points="36,24 45,29 45,43 36,48 27,43 27,29" fill="url(#gi)" opacity=".88"/><circle cx="36" cy="4" r="1.8" fill="#fde068"/><circle cx="64" cy="20" r="1.8" fill="#fde068"/><circle cx="64" cy="52" r="1.8" fill="#fde068"/><circle cx="36" cy="68" r="1.8" fill="#fde068"/><circle cx="8" cy="52" r="1.8" fill="#fde068"/><circle cx="8" cy="20" r="1.8" fill="#fde068"/></svg></div><div style="font-family:'Cinzel',serif;font-size:.9rem;font-weight:700;color:var(--g3);margin-bottom:.2rem">IP CORE PLATFORM</div><div style="font-weight:700;color:var(--w);margin-bottom:.65rem;font-size:.88rem" data-ar="نواة الملكية الفكرية السيادية" data-en="Sovereign IP Core">نواة الملكية الفكرية السيادية</div><p style="font-size:.77rem;color:#a8b8cc;line-height:1.9;margin-bottom:1.1rem" data-ar="فحص 135M+ براءة فورياً، تحليل دلالي بـ 8 لغات، شهادات ZKP مشفرة، مسار ISP رباعي." data-en="Search 135M+ patents instantly, 8-language semantic analysis, ZKP certificates, 4-stage ISP.">فحص 135M+ براءة فورياً، تحليل دلالي بـ 8 لغات، شهادات ZKP مشفرة، مسار ISP رباعي.</p><span style="font-family:'Space Mono',monospace;font-size:.67rem;color:var(--g2)" data-ar="استكشف ◄" data-en="Explore ►">استكشف ◄</span></a>
-    <a href="market.html" class="pcard reveal"><div class="icon" style="width:68px;height:68px;margin-bottom:.9rem"><svg viewBox="0 0 72 72" fill="none"><defs><linearGradient id="gm" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#b8922a"/><stop offset="100%" stop-color="#fde068"/></linearGradient></defs><line x1="9" y1="66" x2="63" y2="66" stroke="url(#gm)" stroke-width="2" opacity=".4"/><line x1="9" y1="9" x2="9" y2="66" stroke="url(#gm)" stroke-width="2" opacity=".4"/><line x1="9" y1="52" x2="63" y2="52" stroke="url(#gm)" stroke-width="1" opacity=".12"/><line x1="9" y1="38" x2="63" y2="38" stroke="url(#gm)" stroke-width="1" opacity=".12"/><line x1="9" y1="24" x2="63" y2="24" stroke="url(#gm)" stroke-width="1" opacity=".12"/><polyline points="9,56 22,42 33,48 46,26 56,32 65,12" fill="none" stroke="url(#gm)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="stroke-dasharray" from="0 220" to="220 0" dur="2.2s" fill="freeze"/></polyline><circle cx="46" cy="26" r="5" fill="#fde068"><animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/></circle><circle cx="65" cy="12" r="5.5" fill="#fde068"><animate attributeName="opacity" values="1;.35;1" dur="1.5s" repeatCount="indefinite"/></circle></svg></div><div style="font-family:'Cinzel',serif;font-size:.9rem;font-weight:700;color:var(--g3);margin-bottom:.2rem">SOVEREIGN MARKET</div><div style="font-weight:700;color:var(--w);margin-bottom:.65rem;font-size:.88rem" data-ar="السوق السيادي للملكية الفكرية" data-en="Sovereign IP Market">السوق السيادي للملكية الفكرية</div><p style="font-size:.77rem;color:#a8b8cc;line-height:1.9;margin-bottom:1.1rem" data-ar="أول سوق عالمي للملكية الفكرية — دفتر أوامر حي، 5 أنواع مزادات، مطابقة GNN." data-en="World's first IP market — live order book, 5 auction types, GNN AI matching.">أول سوق عالمي للملكية الفكرية — دفتر أوامر حي، 5 أنواع مزادات، مطابقة GNN.</p><span style="font-family:'Space Mono',monospace;font-size:.67rem;color:var(--g2)" data-ar="ادخل السوق ◄" data-en="Enter Market ►">ادخل السوق ◄</span></a>
-    <a href="ai-platform.html" class="pcard reveal"><div class="icon" style="width:68px;height:68px;margin-bottom:.9rem"><svg viewBox="0 0 72 72" fill="none"><defs><linearGradient id="ga" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde068"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs><line x1="13" y1="19" x2="36" y2="11" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="19" x2="36" y2="36" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="36" x2="36" y2="11" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="36" x2="36" y2="36" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="53" x2="36" y2="36" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="13" y1="53" x2="36" y2="61" stroke="url(#ga)" stroke-width=".9" opacity=".4"/><line x1="36" y1="11" x2="59" y2="23" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><line x1="36" y1="36" x2="59" y2="23" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><line x1="36" y1="36" x2="59" y2="49" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><line x1="36" y1="61" x2="59" y2="49" stroke="url(#ga)" stroke-width="1.4" opacity=".6"/><circle cx="13" cy="19" r="4.5" fill="#b8922a" stroke="#fde068" stroke-width="1.4"/><circle cx="13" cy="36" r="4.5" fill="#b8922a" stroke="#fde068" stroke-width="1.4"/><circle cx="13" cy="53" r="4.5" fill="#b8922a" stroke="#fde068" stroke-width="1.4"/><circle cx="36" cy="11" r="5.5" fill="#d4a843" stroke="#fde068" stroke-width="1.4"><animate attributeName="r" values="5.5;7.5;5.5" dur="2s" repeatCount="indefinite"/></circle><circle cx="36" cy="36" r="6.5" fill="#d4a843" stroke="#fde068" stroke-width="1.4"><animate attributeName="r" values="6.5;8.5;6.5" dur="2.5s" repeatCount="indefinite"/></circle><circle cx="36" cy="61" r="5.5" fill="#d4a843" stroke="#fde068" stroke-width="1.4"><animate attributeName="r" values="5.5;7.5;5.5" dur="3s" repeatCount="indefinite"/></circle><circle cx="59" cy="23" r="5.5" fill="#fde068" stroke="#fff3b0" stroke-width="1.4"/><circle cx="59" cy="49" r="5.5" fill="#fde068" stroke="#fff3b0" stroke-width="1.4"><animate attributeName="opacity" values="1;.4;1" dur="1.8s" repeatCount="indefinite"/></circle></svg></div><div style="font-family:'Cinzel',serif;font-size:.9rem;font-weight:700;color:var(--g3);margin-bottom:.2rem">AI SOVEREIGN PLATFORM</div><div style="font-weight:700;color:var(--w);margin-bottom:.65rem;font-size:.88rem" data-ar="منصة الذكاء الاصطناعي السيادي" data-en="Sovereign AI Platform">منصة الذكاء الاصطناعي السيادي</div><p style="font-size:.77rem;color:#a8b8cc;line-height:1.9;margin-bottom:1.1rem" data-ar="8 محركات AI + 4 وكلاء سياديون — كل محرك وكيل مستقل شفاف، AI يُمكّن والإنسان يقرر." data-en="8 AI engines + 4 sovereign agents — each engine a transparent independent agent, AI enables Humans decide.">8 محركات AI + 4 وكلاء سياديون — كل محرك وكيل مستقل شفاف، AI يُمكّن والإنسان يقرر.</p><span style="font-family:'Space Mono',monospace;font-size:.67rem;color:var(--g2)" data-ar="استكشف المحركات ◄" data-en="Explore Engines ►">استكشف المحركات ◄</span></a>
-    <a href="governance.html" class="pcard reveal"><div class="icon" style="width:68px;height:68px;margin-bottom:.9rem"><svg viewBox="0 0 72 72" fill="none"><defs><linearGradient id="gg" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#fde068"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs><path d="M36 4 L59 16 L59 39 C59 53 49 63 36 68 C23 63 13 53 13 39 L13 16 Z" fill="none" stroke="url(#gg)" stroke-width="1.8"/><path d="M36 12 L53 23 L53 39 C53 50 46 58 36 62 C26 58 19 50 19 39 L19 23 Z" fill="url(#gg)" opacity=".05"/><path d="M36 12 L53 23 L53 39 C53 50 46 58 36 62 C26 58 19 50 19 39 L19 23 Z" fill="none" stroke="url(#gg)" stroke-width="1.3" opacity=".45"/><path d="M25 38 L31 44 L49 27" stroke="#fde068" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="stroke-dasharray" from="0 44" to="44 0" dur="1.5s" fill="freeze"/></path><circle cx="36" cy="4" r="2.2" fill="#fde068"/><circle cx="59" cy="16" r="1.8" fill="#d4a843"/></svg></div><div style="font-family:'Cinzel',serif;font-size:.9rem;font-weight:700;color:var(--g3);margin-bottom:.2rem">FITRAH GOVERNANCE</div><div style="font-weight:700;color:var(--w);margin-bottom:.65rem;font-size:.88rem" data-ar="حوكمة الفطرة السيادية" data-en="Sovereign Fitrah Governance">حوكمة الفطرة السيادية</div><p style="font-size:.77rem;color:#a8b8cc;line-height:1.9;margin-bottom:1.1rem" data-ar="نظام حوكمة ثلاثي المستويات — درع الفطرة الأخلاقي الإسلامي والإنساني بدقة 100%." data-en="Three-layer governance — Islamic and humanitarian Fitrah Shield at 100% accuracy.">نظام حوكمة ثلاثي المستويات — درع الفطرة الأخلاقي الإسلامي والإنساني بدقة 100%.</p><span style="font-family:'Space Mono',monospace;font-size:.67rem;color:var(--g2)" data-ar="اعرف الحوكمة ◄" data-en="Governance ►">اعرف الحوكمة ◄</span></a>
+<!-- PLATFORMS -->
+
+<section class="section">
+  <div class="sec-tag" data-ar="المنصات السيادية" data-en="Sovereign Platforms">المنصات السيادية</div>
+  <h2 class="sec-title">Four Pillars of Sovereignty</h2>
+  <p class="sec-sub reveal" style="margin-bottom:2.5rem" data-ar="كل منصة نظام بيئي متكامل، مترابط مع الأخريات، محكوم بالفطرة الإنسانية." data-en="Each platform is an integrated ecosystem, interconnected, governed by human Fitrah.">كل منصة نظام بيئي متكامل، مترابط مع الأخريات، محكوم بالفطرة الإنسانية.</p>
+  <div class="platforms-grid">
+
+```
+<!-- IP CORE -->
+<a href="ipccore.html" class="pcard pcard-ipc reveal">
+  <div class="snyx-icon">
+    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fff3b0"/><stop offset="50%" stop-color="#d4a843"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs>
+      <polygon points="36,5 63,21 63,53 36,69 9,53 9,21" fill="none" stroke="url(#g1)" stroke-width="1.2" opacity="0.3"><animateTransform attributeName="transform" type="rotate" from="0 36 37" to="360 36 37" dur="22s" repeatCount="indefinite"/></polygon>
+      <polygon points="36,11 57,23 57,49 36,61 15,49 15,23" fill="none" stroke="url(#g1)" stroke-width="1.5" opacity="0.6"><animateTransform attributeName="transform" type="rotate" from="360 36 37" to="0 36 37" dur="14s" repeatCount="indefinite"/></polygon>
+      <polygon points="36,18 51,27 51,47 36,56 21,47 21,27" fill="url(#g1)" opacity="0.1"/>
+      <polygon points="36,18 51,27 51,47 36,56 21,47 21,27" fill="none" stroke="url(#g1)" stroke-width="2"/>
+      <polygon points="36,25 44,30 44,44 36,49 28,44 28,30" fill="url(#g1)" opacity="0.85"/>
+      <circle cx="36" cy="5" r="2" fill="#fde068"/><circle cx="63" cy="21" r="2" fill="#fde068"/>
+      <circle cx="63" cy="53" r="2" fill="#fde068"/><circle cx="36" cy="69" r="2" fill="#fde068"/>
+      <circle cx="9" cy="53" r="2" fill="#fde068"/><circle cx="9" cy="21" r="2" fill="#fde068"/>
+    </svg>
+  </div>
+  <div class="pcard-name-en" style="color:#c8a840">IP CORE PLATFORM</div>
+  <div class="pcard-name-ar" data-ar="نواة الملكية الفكرية" data-en="IP Core Platform">نواة الملكية الفكرية</div>
+  <p class="pcard-desc" data-ar="فحص 135M+ براءة اختراع فورياً، تحليل دلالي بـ 8 لغات، شهادات ZKP مشفرة، مسار ISP رباعي المراحل." data-en="Instantly search 135M+ patents, semantic analysis in 8 languages, encrypted ZKP certificates, 4-stage ISP pipeline.">فحص 135M+ براءة اختراع فورياً، تحليل دلالي بـ 8 لغات، شهادات ZKP مشفرة، مسار ISP رباعي المراحل.</p>
+  <div class="pcard-link" style="color:#c8a840" data-ar="استكشف المنصة ◄" data-en="Explore Platform ►">استكشف المنصة ◄</div>
+</a>
+
+<!-- MARKET -->
+<a href="market.html" class="pcard pcard-mkt reveal">
+  <div class="snyx-icon">
+    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g2" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#b8922a"/><stop offset="100%" stop-color="#fde068"/></linearGradient></defs>
+      <line x1="10" y1="66" x2="62" y2="66" stroke="url(#g2)" stroke-width="2" opacity="0.4"/>
+      <line x1="10" y1="10" x2="10" y2="66" stroke="url(#g2)" stroke-width="2" opacity="0.4"/>
+      <line x1="10" y1="52" x2="62" y2="52" stroke="url(#g2)" stroke-width="1" opacity="0.15"/>
+      <line x1="10" y1="38" x2="62" y2="38" stroke="url(#g2)" stroke-width="1" opacity="0.15"/>
+      <line x1="10" y1="24" x2="62" y2="24" stroke="url(#g2)" stroke-width="1" opacity="0.15"/>
+      <polyline points="10,56 22,44 34,50 46,28 56,34 64,14" fill="none" stroke="url(#g2)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <animate attributeName="stroke-dasharray" from="0 220" to="220 0" dur="2s" fill="freeze"/>
+      </polyline>
+      <circle cx="10" cy="56" r="4" fill="#d4a843"/>
+      <circle cx="22" cy="44" r="4" fill="#d4a843"/>
+      <circle cx="34" cy="50" r="4" fill="#d4a843"/>
+      <circle cx="46" cy="28" r="5" fill="#fde068"><animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="56" cy="34" r="4" fill="#d4a843"/>
+      <circle cx="64" cy="14" r="6" fill="#fde068"><animate attributeName="opacity" values="1;0.4;1" dur="1.5s" repeatCount="indefinite"/></circle>
+    </svg>
+  </div>
+  <div class="pcard-name-en" style="color:#d4a843">SOVEREIGN MARKET</div>
+  <div class="pcard-name-ar" data-ar="السوق السيادي" data-en="Sovereign Market">السوق السيادي</div>
+  <p class="pcard-desc" data-ar="أول سوق عالمي للملكية الفكرية. دفتر أوامر حي، مزادات ذكية بـ 5 أنواع، مطابقة GNN بالذكاء الاصطناعي." data-en="World's first IP market. Live order book, 5 types of smart auctions, GNN AI matching.">أول سوق عالمي للملكية الفكرية. دفتر أوامر حي، مزادات ذكية بـ 5 أنواع، مطابقة GNN بالذكاء الاصطناعي.</p>
+  <div class="pcard-link" style="color:#d4a843" data-ar="ادخل السوق ◄" data-en="Enter Market ►">ادخل السوق ◄</div>
+</a>
+
+<!-- AI -->
+<a href="ai-platform.html" class="pcard pcard-ai reveal">
+  <div class="snyx-icon">
+    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fde068"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs>
+      <line x1="14" y1="20" x2="36" y2="12" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="14" y1="20" x2="36" y2="36" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="14" y1="36" x2="36" y2="12" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="14" y1="36" x2="36" y2="36" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="14" y1="36" x2="36" y2="60" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="14" y1="52" x2="36" y2="36" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="14" y1="52" x2="36" y2="60" stroke="url(#g3)" stroke-width="1" opacity="0.4"/>
+      <line x1="36" y1="12" x2="58" y2="24" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/>
+      <line x1="36" y1="12" x2="58" y2="48" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/>
+      <line x1="36" y1="36" x2="58" y2="24" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/>
+      <line x1="36" y1="36" x2="58" y2="48" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/>
+      <line x1="36" y1="60" x2="58" y2="48" stroke="url(#g3)" stroke-width="1.5" opacity="0.6"/>
+      <circle cx="14" cy="20" r="5" fill="#b8922a" stroke="#fde068" stroke-width="1.5"/>
+      <circle cx="14" cy="36" r="5" fill="#b8922a" stroke="#fde068" stroke-width="1.5"/>
+      <circle cx="14" cy="52" r="5" fill="#b8922a" stroke="#fde068" stroke-width="1.5"/>
+      <circle cx="36" cy="12" r="6" fill="#d4a843" stroke="#fde068" stroke-width="1.5"><animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/></circle>
+      <circle cx="36" cy="36" r="7" fill="#d4a843" stroke="#fde068" stroke-width="1.5"><animate attributeName="r" values="7;9;7" dur="2.5s" repeatCount="indefinite"/></circle>
+      <circle cx="36" cy="60" r="6" fill="#d4a843" stroke="#fde068" stroke-width="1.5"><animate attributeName="r" values="6;8;6" dur="3s" repeatCount="indefinite"/></circle>
+      <circle cx="58" cy="24" r="6" fill="#fde068" stroke="#fff3b0" stroke-width="1.5"/>
+      <circle cx="58" cy="48" r="6" fill="#fde068" stroke="#fff3b0" stroke-width="1.5"><animate attributeName="opacity" values="1;0.4;1" dur="1.8s" repeatCount="indefinite"/></circle>
+    </svg>
+  </div>
+  <div class="pcard-name-en" style="color:var(--gold2)">AI SOVEREIGN PLATFORM</div>
+  <div class="pcard-name-ar" data-ar="منصة الذكاء الاصطناعي السيادي" data-en="AI Sovereign Platform">منصة الذكاء الاصطناعي السيادي</div>
+  <p class="pcard-desc" data-ar="8 محركات AI متخصصة: SNA، ISA، FSE، VE، MI، FD، CE، MKI. كل محرك وكيل مستقل شفاف." data-en="8 specialized AI engines: SNA, ISA, FSE, VE, MI, FD, CE, MKI. Each engine is a transparent independent agent.">8 محركات AI متخصصة: SNA، ISA، FSE، VE، MI، FD، CE، MKI. كل محرك وكيل مستقل شفاف.</p>
+  <div class="pcard-link" style="color:var(--gold2)" data-ar="استكشف المحركات ◄" data-en="Explore Engines ►">استكشف المحركات ◄</div>
+</a>
+
+<!-- GOVERNANCE -->
+<a href="governance.html" class="pcard pcard-gov reveal">
+  <div class="snyx-icon">
+    <svg viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="g4" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#fde068"/><stop offset="100%" stop-color="#b8922a"/></linearGradient></defs>
+      <path d="M36 5 L58 16 L58 38 C58 52 48 62 36 67 C24 62 14 52 14 38 L14 16 Z" fill="none" stroke="url(#g4)" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M36 13 L52 22 L52 38 C52 49 45 57 36 61 C27 57 20 49 20 38 L20 22 Z" fill="url(#g4)" opacity="0.1"/>
+      <path d="M36 13 L52 22 L52 38 C52 49 45 57 36 61 C27 57 20 49 20 38 L20 22 Z" fill="none" stroke="url(#g4)" stroke-width="1.5" opacity="0.5"/>
+      <path d="M26 38 L32 44 L48 28" stroke="#fde068" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+        <animate attributeName="stroke-dasharray" from="0 44" to="44 0" dur="1.5s" fill="freeze"/>
+      </path>
+      <circle cx="36" cy="5" r="2.5" fill="#fde068"/>
+      <circle cx="58" cy="16" r="2" fill="#d4a843"/>
+    </svg>
+  </div>
+  <div class="pcard-name-en" style="color:#b8922a">FITRAH GOVERNANCE</div>
+  <div class="pcard-name-ar" data-ar="حوكمة الفطرة" data-en="Fitrah Governance">حوكمة الفطرة</div>
+  <p class="pcard-desc" data-ar="نظام حوكمة ثلاثي المستويات. درع الفطرة الأخلاقي الإسلامي والإنساني. AI يُمكّن — الإنسان يقرر." data-en="Three-layer governance system. Islamic and humanitarian Fitrah ethical shield. AI enables — Humans decide.">نظام حوكمة ثلاثي المستويات. درع الفطرة الأخلاقي الإسلامي والإنساني. AI يُمكّن — الإنسان يقرر.</p>
+  <div class="pcard-link" style="color:#b8922a" data-ar="اعرف الحوكمة ◄" data-en="Learn Governance ►">اعرف الحوكمة ◄</div>
+</a>
+```
+
   </div>
 </section>
 
-<div class="sf"><div class="si">
-  <div class="stag" data-ar="آلية العمل" data-en="How It Works">آلية العمل</div>
-  <h2 class="sh1">Innovation Sovereignty Pipeline</h2>
-  <div class="hw2" style="margin-top:2.8rem">
-    <div class="st2 reveal"><div class="stn">1</div><div style="font-weight:700;color:var(--w);margin-bottom:.4rem;font-size:.88rem" data-ar="تقديم الابتكار" data-en="Submit">تقديم الابتكار</div><p style="font-size:.76rem;color:#a8b8cc;line-height:1.75" data-ar="أدخل فكرتك — ISP-1 يبحث فورياً في 135M+ براءة دولية." data-en="Enter idea — ISP-1 searches 135M+ patents instantly.">أدخل فكرتك — ISP-1 يبحث فورياً في 135M+ براءة دولية.</p></div>
-    <div class="st2 reveal"><div class="stn">2</div><div style="font-weight:700;color:var(--w);margin-bottom:.4rem;font-size:.88rem" data-ar="التحليل الذكي" data-en="AI Analysis">التحليل الذكي</div><p style="font-size:.76rem;color:#a8b8cc;line-height:1.75" data-ar="SNA وISA يحللان بـ 8 لغات ويحسبان درجة الابتكار." data-en="SNA and ISA analyze in 8 languages and compute innovation score.">SNA وISA يحللان بـ 8 لغات ويحسبان درجة الابتكار.</p></div>
-    <div class="st2 reveal"><div class="stn">3</div><div style="font-weight:700;color:var(--w);margin-bottom:.4rem;font-size:.88rem" data-ar="درع الفطرة" data-en="Fitrah Shield">درع الفطرة</div><p style="font-size:.76rem;color:#a8b8cc;line-height:1.75" data-ar="فلتر أخلاقي إسلامي وإنساني يضمن أن الابتكار لصالح البشرية." data-en="Islamic and humanitarian ethical filter ensures innovation serves humanity.">فلتر أخلاقي إسلامي وإنساني يضمن أن الابتكار لصالح البشرية.</p></div>
-    <div class="st2 reveal"><div class="stn">4</div><div style="font-weight:700;color:var(--w);margin-bottom:.4rem;font-size:.88rem" data-ar="شهادة ZKP" data-en="ZKP Certificate">شهادة ZKP</div><p style="font-size:.76rem;color:#a8b8cc;line-height:1.75" data-ar="شهادة بلوكتشين تحفظ حقوقك وتفتح أبواب السوق السيادي." data-en="Blockchain certificate protects rights and opens the sovereign market.">شهادة بلوكتشين تحفظ حقوقك وتفتح أبواب السوق السيادي.</p></div>
-  </div>
-</div></div>
+<!-- HOW IT WORKS -->
 
-<section class="sec">
-  <div class="stag" data-ar="الرمز السيادي" data-en="Sovereign Token">الرمز السيادي</div>
-  <h2 class="sh1">$SNYX Token Economics</h2>
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:2rem">
-    <div class="reveal dnt"><svg width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="78" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="22"/><circle cx="100" cy="100" r="78" fill="none" stroke="#b8922a" stroke-width="22" stroke-dasharray="147 343" stroke-dashoffset="0"/><circle cx="100" cy="100" r="78" fill="none" stroke="#7a6020" stroke-width="22" stroke-dasharray="122 368" stroke-dashoffset="-147"/><circle cx="100" cy="100" r="78" fill="none" stroke="#5a4810" stroke-width="22" stroke-dasharray="98 392" stroke-dashoffset="-269"/><circle cx="100" cy="100" r="78" fill="none" stroke="#3a3008" stroke-width="22" stroke-dasharray="73 417" stroke-dashoffset="-367"/><circle cx="100" cy="100" r="78" fill="none" stroke="#6a3808" stroke-width="22" stroke-dasharray="49 441" stroke-dashoffset="-440"/></svg><div class="dc"><span class="dv">1B</span><span style="font-size:.65rem;color:var(--sv)">$SNYX</span></div></div>
-    <ul style="list-style:none;display:flex;flex-direction:column;gap:.85rem">
-      <li style="display:flex;align-items:center;gap:.8rem;font-size:.82rem"><span style="width:12px;height:12px;border-radius:50%;background:#b8922a;flex-shrink:0"></span><span style="flex:1;color:var(--w)" data-ar="مجتمع المبتكرين" data-en="Innovators">مجتمع المبتكرين</span><span style="font-family:'Space Mono',monospace;font-size:.78rem;color:var(--g2)">30%</span></li>
-      <li style="display:flex;align-items:center;gap:.8rem;font-size:.82rem"><span style="width:12px;height:12px;border-radius:50%;background:#7a6020;flex-shrink:0"></span><span style="flex:1;color:var(--w)" data-ar="النظام البيئي" data-en="Ecosystem">النظام البيئي</span><span style="font-family:'Space Mono',monospace;font-size:.78rem;color:var(--g2)">25%</span></li>
-      <li style="display:flex;align-items:center;gap:.8rem;font-size:.82rem"><span style="width:12px;height:12px;border-radius:50%;background:#5a4810;flex-shrink:0"></span><span style="flex:1;color:var(--w)" data-ar="المستثمرون" data-en="Investors">المستثمرون</span><span style="font-family:'Space Mono',monospace;font-size:.78rem;color:var(--g2)">20%</span></li>
-      <li style="display:flex;align-items:center;gap:.8rem;font-size:.82rem"><span style="width:12px;height:12px;border-radius:50%;background:#3a3008;flex-shrink:0"></span><span style="flex:1;color:var(--w)" data-ar="الفريق المؤسس" data-en="Founding Team">الفريق المؤسس</span><span style="font-family:'Space Mono',monospace;font-size:.78rem;color:var(--g2)">15%</span></li>
-      <li style="display:flex;align-items:center;gap:.8rem;font-size:.82rem"><span style="width:12px;height:12px;border-radius:50%;background:#6a3808;flex-shrink:0"></span><span style="flex:1;color:var(--w)" data-ar="صندوق الحوكمة" data-en="Governance Fund">صندوق الحوكمة</span><span style="font-family:'Space Mono',monospace;font-size:.78rem;color:var(--g2)">10%</span></li>
+<div class="sec-full">
+<div class="sec-inner">
+  <div class="sec-tag" data-ar="كيف يعمل SENYX" data-en="How SENYX Works">كيف يعمل SENYX</div>
+  <h2 class="sec-title">Innovation Sovereignty Pipeline</h2>
+  <div class="how-grid" style="margin-top:3rem">
+    <div class="step reveal">
+      <div class="step-num">1</div>
+      <div class="step-title" data-ar="تقديم الابتكار" data-en="Submit Innovation">تقديم الابتكار</div>
+      <p class="step-desc" data-ar="أدخل فكرتك، يبدأ ISP-1 بالبحث الفوري في 135M+ براءة اختراع." data-en="Enter your idea, ISP-1 instantly searches 135M+ international patents.">أدخل فكرتك، يبدأ ISP-1 بالبحث الفوري في 135M+ براءة اختراع.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">2</div>
+      <div class="step-title" data-ar="التحليل الذكي" data-en="AI Analysis">التحليل الذكي</div>
+      <p class="step-desc" data-ar="محركات SNA وISA تحلل دلالياً بـ 8 لغات وتحسب درجة الابتكار." data-en="SNA and ISA engines analyze semantically in 8 languages and compute innovation score.">محركات SNA وISA تحلل دلالياً بـ 8 لغات وتحسب درجة الابتكار.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">3</div>
+      <div class="step-title" data-ar="درع الفطرة" data-en="Fitrah Shield">درع الفطرة</div>
+      <p class="step-desc" data-ar="الفلتر الأخلاقي الإسلامي والإنساني يضمن أن الابتكار لصالح البشرية." data-en="Islamic and humanitarian ethical filter ensures the innovation serves humanity.">الفلتر الأخلاقي الإسلامي والإنساني يضمن أن الابتكار لصالح البشرية.</p>
+    </div>
+    <div class="step reveal">
+      <div class="step-num">4</div>
+      <div class="step-title" data-ar="شهادة ZKP" data-en="ZKP Certificate">شهادة ZKP</div>
+      <p class="step-desc" data-ar="شهادة موثقة بالبلوكتشين تحفظ حقوقك وتفتح أبواب السوق السيادي." data-en="Blockchain-certified certificate protects your rights and opens the sovereign market.">شهادة موثقة بالبلوكتشين تحفظ حقوقك وتفتح أبواب السوق السيادي.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- TOKENOMICS -->
+
+<section class="section">
+  <div class="sec-tag" data-ar="الرمز السيادي" data-en="Sovereign Token">الرمز السيادي</div>
+  <h2 class="sec-title">$SNYX Token Economics</h2>
+  <p class="sec-sub reveal" style="margin-bottom:2.5rem" data-ar="الرمز السيادي للمنصة — حد أقصى 1 مليار، احتراق تلقائي 0.1% لكل معاملة." data-en="The platform's sovereign token — max 1 billion, auto-burn 0.1% per transaction.">الرمز السيادي للمنصة — حد أقصى 1 مليار، احتراق تلقائي 0.1% لكل معاملة.</p>
+  <div class="token-grid reveal">
+    <div class="donut-wrap">
+      <svg width="220" height="220" viewBox="0 0 220 220">
+        <circle cx="110" cy="110" r="86" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="28"/>
+        <circle cx="110" cy="110" r="86" fill="none" stroke="#b8922a" stroke-width="28" stroke-dasharray="162 378" stroke-dashoffset="0"/>
+        <circle cx="110" cy="110" r="86" fill="none" stroke="#7a6020" stroke-width="28" stroke-dasharray="135 405" stroke-dashoffset="-162"/>
+        <circle cx="110" cy="110" r="86" fill="none" stroke="#5a4810" stroke-width="28" stroke-dasharray="108 432" stroke-dashoffset="-297"/>
+        <circle cx="110" cy="110" r="86" fill="none" stroke="#4a3808" stroke-width="28" stroke-dasharray="81 459" stroke-dashoffset="-405"/>
+        <circle cx="110" cy="110" r="86" fill="none" stroke="#8a4808" stroke-width="28" stroke-dasharray="54 486" stroke-dashoffset="-486"/>
+      </svg>
+      <div class="donut-center">
+        <span class="donut-val">1B</span>
+        <span class="donut-lbl">$SNYX</span>
+      </div>
+    </div>
+    <ul class="legend">
+      <li class="legend-item"><span class="legend-dot" style="background:#b8922a"></span><span class="legend-name" data-ar="مجتمع المبتكرين" data-en="Innovators Community">مجتمع المبتكرين</span><span class="legend-pct">30%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#7a6020"></span><span class="legend-name" data-ar="النظام البيئي" data-en="Ecosystem">النظام البيئي</span><span class="legend-pct">25%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#5a4810"></span><span class="legend-name" data-ar="المستثمرون" data-en="Investors">المستثمرون</span><span class="legend-pct">20%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#7a5a10"></span><span class="legend-name" data-ar="الفريق المؤسس" data-en="Founding Team">الفريق المؤسس</span><span class="legend-pct">15%</span></li>
+      <li class="legend-item"><span class="legend-dot" style="background:#8a4808"></span><span class="legend-name" data-ar="صندوق الحوكمة" data-en="Governance Fund">صندوق الحوكمة</span><span class="legend-pct">10%</span></li>
     </ul>
   </div>
 </section>
 
-<div class="sf"><div class="si">
-  <div class="stag" data-ar="خارطة الطريق" data-en="Roadmap">خارطة الطريق</div>
-  <h2 class="sh1">Strategic Roadmap 2025–2028</h2>
-  <div class="rm2" style="margin-top:2.2rem">
-    <div class="ph2 act reveal"><span class="badge bl" style="font-size:.58rem;position:absolute;top:.8rem;left:.8rem" data-ar="نشط" data-en="Active">نشط</span><div style="font-family:'Space Mono',monospace;font-size:.57rem;color:var(--g1);letter-spacing:.1em;margin-bottom:.38rem">PHASE 01</div><div style="font-weight:700;color:var(--w);font-size:.86rem;margin-bottom:.2rem" data-ar="الأساس السيادي" data-en="Sovereign Foundation">الأساس السيادي</div><div style="font-size:.68rem;color:var(--sv);margin-bottom:.75rem">2025 Q1/Q2</div><ul style="list-style:none;display:flex;flex-direction:column;gap:.28rem"><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>إطلاق المنصة</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>تفعيل نواة IP</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>تدريب محركات AI</li></ul></div>
-    <div class="ph2 reveal"><div style="font-family:'Space Mono',monospace;font-size:.57rem;color:var(--g1);letter-spacing:.1em;margin-bottom:.38rem">PHASE 02</div><div style="font-weight:700;color:var(--w);font-size:.86rem;margin-bottom:.2rem" data-ar="السوق السيادي" data-en="Sovereign Market">السوق السيادي</div><div style="font-size:.68rem;color:var(--sv);margin-bottom:.75rem">2025 Q3/Q4</div><ul style="list-style:none;display:flex;flex-direction:column;gap:.28rem"><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>المزادات الذكية</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>إطلاق $SNYX</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>6 مكاتب دولية</li></ul></div>
-    <div class="ph2 reveal"><div style="font-family:'Space Mono',monospace;font-size:.57rem;color:var(--g1);letter-spacing:.1em;margin-bottom:.38rem">PHASE 03</div><div style="font-weight:700;color:var(--w);font-size:.86rem;margin-bottom:.2rem" data-ar="التوسع الإقليمي" data-en="Regional Expansion">التوسع الإقليمي</div><div style="font-size:.68rem;color:var(--sv);margin-bottom:.75rem">2026 Q1/Q2</div><ul style="list-style:none;display:flex;flex-direction:column;gap:.28rem"><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>شراكات الخليج</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>بلوكتشين سيادي</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>1000 مبتكر موثق</li></ul></div>
-    <div class="ph2 reveal"><div style="font-family:'Space Mono',monospace;font-size:.57rem;color:var(--g1);letter-spacing:.1em;margin-bottom:.38rem">PHASE 04</div><div style="font-weight:700;color:var(--w);font-size:.86rem;margin-bottom:.2rem" data-ar="السيادة العالمية" data-en="Global Sovereignty">السيادة العالمية</div><div style="font-size:.68rem;color:var(--sv);margin-bottom:.75rem">2027–2028</div><ul style="list-style:none;display:flex;flex-direction:column;gap:.28rem"><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>25 دولة شريكة</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>صندوق $1 مليار</li><li style="font-size:.74rem;color:#a8b8cc;padding-right:.75rem;position:relative"><span style="position:absolute;right:0;color:var(--g1);font-size:.38rem;top:.32rem">◆</span>10,000 ابتكار</li></ul></div>
-  </div>
-</div></div>
+<!-- ROADMAP -->
 
-<section class="sec" style="text-align:center">
-  <div class="gln" style="margin-bottom:3.5rem"></div>
-  <h2 class="sh1" data-ar="انضم إلى الثورة السيادية" data-en="Join the Sovereign Revolution">انضم إلى الثورة السيادية</h2>
-  <p class="sub reveal" style="margin:0 auto 2.2rem" data-ar="ابتكارك يستحق الحماية الحقيقية — انضم إلى SENYX واصنع الفرق." data-en="Your innovation deserves real protection — join SENYX and make a difference.">ابتكارك يستحق الحماية الحقيقية — انضم إلى SENYX واصنع الفرق.</p>
-  <div style="display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap">
-    <a href="ipccore.html" class="bp" style="font-size:.88rem;padding:.85rem 2rem" data-ar="ابدأ مجاناً" data-en="Start Free">ابدأ مجاناً</a>
-    <a href="community.html" class="bo" style="font-size:.88rem;padding:.85rem 2rem" data-ar="انضم للمجتمع" data-en="Join Community">انضم للمجتمع</a>
+<div class="sec-full">
+<div class="sec-inner">
+  <div class="sec-tag" data-ar="خارطة الطريق" data-en="Roadmap">خارطة الطريق</div>
+  <h2 class="sec-title">Strategic Roadmap 2025–2028</h2>
+  <div class="roadmap-grid" style="margin-top:2.5rem">
+    <div class="phase active reveal">
+      <div style="position:absolute;top:1rem;left:1rem"><span class="badge badge-green" data-ar="نشط" data-en="Active">نشط</span></div>
+      <div class="phase-num">PHASE 01</div>
+      <div class="phase-title" data-ar="الأساس السيادي" data-en="Sovereign Foundation">الأساس السيادي</div>
+      <div class="phase-date">2025 Q1/Q2</div>
+      <ul class="phase-items">
+        <li data-ar="إطلاق المنصة" data-en="Platform launch">إطلاق المنصة</li>
+        <li data-ar="تفعيل نواة IP" data-en="IP Core activation">تفعيل نواة IP</li>
+        <li data-ar="تدريب محركات AI" data-en="AI engines training">تدريب محركات AI</li>
+      </ul>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-num">PHASE 02</div>
+      <div class="phase-title" data-ar="السوق السيادي" data-en="Sovereign Market">السوق السيادي</div>
+      <div class="phase-date">2025 Q3/Q4</div>
+      <ul class="phase-items">
+        <li data-ar="المزادات الذكية" data-en="Smart auctions">المزادات الذكية</li>
+        <li data-ar="إطلاق $SNYX" data-en="$SNYX launch">إطلاق $SNYX</li>
+        <li data-ar="6 مكاتب دولية" data-en="6 international offices">6 مكاتب دولية</li>
+      </ul>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-num">PHASE 03</div>
+      <div class="phase-title" data-ar="التوسع الإقليمي" data-en="Regional Expansion">التوسع الإقليمي</div>
+      <div class="phase-date">2026 Q1/Q2</div>
+      <ul class="phase-items">
+        <li data-ar="شراكات الخليج" data-en="Gulf partnerships">شراكات الخليج</li>
+        <li data-ar="بلوكتشين سيادي" data-en="Sovereign blockchain">بلوكتشين سيادي</li>
+        <li data-ar="1000 مبتكر موثق" data-en="1000 certified innovators">1000 مبتكر موثق</li>
+      </ul>
+    </div>
+    <div class="phase reveal">
+      <div class="phase-num">PHASE 04</div>
+      <div class="phase-title" data-ar="السيادة العالمية" data-en="Global Sovereignty">السيادة العالمية</div>
+      <div class="phase-date">2027–2028</div>
+      <ul class="phase-items">
+        <li data-ar="25 دولة شريكة" data-en="25 partner countries">25 دولة شريكة</li>
+        <li data-ar="صندوق 1 مليار$" data-en="$1B innovation fund">صندوق 1 مليار$</li>
+        <li data-ar="10,000 ابتكار مسجل" data-en="10,000 registered innovations">10,000 ابتكار مسجل</li>
+      </ul>
+    </div>
   </div>
-  <div class="gln" style="margin-top:3.5rem"></div>
+</div>
+</div>
+
+<!-- CTA -->
+
+<section class="section" style="text-align:center">
+  <div class="glow-line" style="margin-bottom:4rem"></div>
+  <div class="sec-tag" data-ar="ابدأ رحلتك" data-en="Start Your Journey">ابدأ رحلتك</div>
+  <h2 class="sec-title" data-ar="انضم إلى الثورة السيادية" data-en="Join the Sovereign Revolution">انضم إلى الثورة السيادية</h2>
+  <p class="sec-sub reveal" style="margin:0 auto 2.5rem" data-ar="ابتكارك يستحق الحماية الحقيقية. انضم إلى SENYX واصنع الفرق." data-en="Your innovation deserves real protection. Join SENYX and make a difference.">ابتكارك يستحق الحماية الحقيقية. انضم إلى SENYX واصنع الفرق.</p>
+  <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap">
+    <a href="ipccore.html" class="btn-p" style="font-size:.95rem;padding:.9rem 2.2rem" data-ar="ابدأ الابتكار مجاناً" data-en="Start Free">ابدأ الابتكار مجاناً</a>
+    <a href="community.html" class="btn-o" style="font-size:.95rem;padding:.9rem 2.2rem" data-ar="انضم للمجتمع" data-en="Join Community">انضم للمجتمع</a>
+  </div>
+  <div class="glow-line" style="margin-top:4rem"></div>
 </section>
-<footer class="ft"><div class="ftg"><div><div class="fb">SENYX</div><p style="font-size:.76rem;color:#8898b8;line-height:1.8;margin-bottom:.9rem">مدينة الابتكار العالمية الذكية — المدينة المنورة، KSA</p><div style="display:flex;gap:.35rem;flex-wrap:wrap"><span class="badge bg">VISION 2030</span><span class="badge bg">AI SOVEREIGN</span><span class="badge bg">ZKP CERTIFIED</span></div></div><div><div class="fct">المنصات</div><ul class="fl2"><li><a href="ipccore.html">نواة IP</a></li><li><a href="market.html">السوق</a></li><li><a href="ai-platform.html">منصة AI</a></li><li><a href="governance.html">الحوكمة</a></li></ul></div><div><div class="fct">المجتمع</div><ul class="fl2"><li><a href="community.html">نادي VIP</a></li><li><a href="dashboards.html">لوحات التحكم</a></li><li><a href="news.html">الأخبار</a></li><li><a href="investor.html">المستثمرون</a></li></ul></div><div><div class="fct">تواصل</div><ul class="fl2"><li><a href="mailto:info@senyx.com">info@senyx.com</a></li><li><span style="color:#8898b8">+966540040405</span></li><li><a href="https://senyx.com">www.senyx.com</a></li></ul></div></div><div class="fbot"><span>© 2026 SENYX — جميع الحقوق محفوظة</span><span>المدينة المنورة | KSA | VISION 2030</span></div></footer><div class="mo" id="m-api"><div class="mb2"><button class="mc" onclick="closeM('api')">✕</button><div class="mt">🔑 Anthropic API Key</div><div id="aSt" style="font-size:.76rem;margin-bottom:.9rem;padding:.65rem;background:rgba(255,255,255,.03);border-radius:7px;border:1px solid var(--bd)">—</div><div class="fg"><label class="fl">sk-ant-...</label><input class="fi" id="aIn" type="password" placeholder="sk-ant-api03-..."></div><div style="display:flex;gap:.6rem"><button class="bp" style="flex:1" onclick="saveAK()">✅ حفظ وتفعيل</button><button class="bo" onclick="clearAK()">🗑</button></div></div></div><div class="mo" id="m-voice"><div class="mb2"><button class="mc" onclick="closeM('voice')">✕</button><div class="mt">🔊 ElevenLabs — أصوات بشرية</div><div id="vSt" style="font-size:.76rem;margin-bottom:.9rem;padding:.65rem;background:rgba(255,255,255,.03);border-radius:7px;border:1px solid var(--bd)">—</div><p style="font-size:.76rem;color:#b0bcd0;margin-bottom:.9rem;line-height:1.8">أصوات بشرية عبر Cloudflare Worker. احصل على المفتاح مجاناً: <a href="https://elevenlabs.io" target="_blank" style="color:var(--g4)">elevenlabs.io</a></p><div class="fg"><label class="fl">sk_...</label><input class="fi" id="vIn" type="password" placeholder="sk_..."></div><div style="display:flex;gap:.6rem"><button class="bp" style="flex:1" onclick="saveVK()">✅ تفعيل الأصوات</button><button class="bo" onclick="clearVK()">🗑</button></div></div></div><div class="mo" id="m-login"><div class="mb2" style="max-width:430px"><button class="mc" onclick="closeM('login')">✕</button><div class="mt" data-ar="دخول إلى SENYX" data-en="Login to SENYX">دخول إلى SENYX</div><div style="display:flex;gap:0;margin-bottom:1.1rem;border:1px solid var(--bd);border-radius:7px;overflow:hidden"><button id="tL" onclick="authTab('l')" style="flex:1;padding:.42rem;background:rgba(184,146,42,.14);color:var(--g2);border:none;font-family:inherit;font-size:.76rem;font-weight:700;cursor:pointer">دخول</button><button id="tR" onclick="authTab('r')" style="flex:1;padding:.42rem;background:transparent;color:var(--sv);border:none;font-family:inherit;font-size:.76rem;cursor:pointer">حساب جديد</button></div><div id="fL"><div class="fg"><label class="fl">البريد</label><input class="fi" type="email" placeholder="innovator@senyx.com"></div><div class="fg"><label class="fl">كلمة المرور</label><input class="fi" type="password" placeholder="••••••••"></div><div style="text-align:left;margin-bottom:.8rem"><a href="#" style="font-size:.7rem;color:var(--g2)">نسيت كلمة المرور؟</a></div><button class="bp" style="width:100%;padding:.68rem" onclick="alert('قيد التطوير')">دخول</button></div><div id="fR" style="display:none"><div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem"><div class="fg"><label class="fl">الاسم</label><input class="fi" type="text" placeholder="ياسر"></div><div class="fg"><label class="fl">العائلة</label><input class="fi" type="text" placeholder="المجثوي"></div></div><div class="fg"><label class="fl">البريد</label><input class="fi" type="email" placeholder="innovator@senyx.com"></div><div class="fg"><label class="fl">كلمة المرور</label><input class="fi" type="password" placeholder="••••••••"></div><div class="fg"><label class="fl">نوع الحساب</label><select class="fi" style="cursor:pointer"><option>مبتكر</option><option>مستثمر</option><option>محامي</option><option>مطور</option></select></div><button class="bp" style="width:100%;padding:.68rem" onclick="alert('قيد التطوير')">إنشاء حساب</button></div></div></div></div>
-<script>
-const SNYX={_k:localStorage.getItem('snyx_k')||'',get key(){return this._k},set key(v){this._k=v.trim();v?localStorage.setItem('snyx_k',v):localStorage.removeItem('snyx_k');this._ui();},_ui(){const s=document.getElementById('aSt'),b=document.getElementById('aNb');if(s)s.innerHTML=this._k?`<span style="color:#22a866">✅ نشط ...${this._k.slice(-5)}</span>`:`<span style="color:var(--g2)">⚠️ أدخل مفتاح API</span>`;if(b)b.style.borderColor=this._k?'rgba(34,168,102,.4)':'';},async ask(msgs,sys,max=1000){if(!this._k){openM('api');return'⚠️ أدخل مفتاح API أولاً.'}try{const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json','x-api-key':this._k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:max,messages:msgs,...(sys&&{system:sys})})}));if(!r.ok){const e=await r.json().catch(()=>({}));if(r.status===401){openM('api');return'❌ مفتاح غير صحيح'}return`❌ خطأ ${r.status}`}const d=await r.json();return d.content?.[0]?.text||'لا استجابة.'}catch(e){return'❌ تعذّر الاتصال.'}}}; 
-function saveAK(){const v=document.getElementById('aIn')?.value?.trim();if(!v)return alert('أدخل المفتاح');if(!v.startsWith('sk-ant-'))return alert('⚠️ يبدأ بـ sk-ant-');SNYX.key=v;document.getElementById('aIn').value='';closeM('api');alert('✅ API مُفعَّل!');}
-function clearAK(){if(confirm('حذف مفتاح API؟'))SNYX.key='';}
-const VK={_k:localStorage.getItem('snyx_el')||'',W:'https://senyx-voice.evidyx.workers.dev'};
-function saveVK(){const v=document.getElementById('vIn')?.value?.trim();if(!v)return alert('أدخل المفتاح');VK._k=v;localStorage.setItem('snyx_el',v);document.getElementById('vIn').value='';closeM('voice');alert('✅ الأصوات البشرية مُفعَّلة!');}
-function clearVK(){if(confirm('حذف؟')){VK._k='';localStorage.removeItem('snyx_el');}}
-async function speak(text,btn){const t=text.replace(/<[^>]*>/g,'').trim().slice(0,2500);if(!t)return;if(btn){btn.disabled=true;btn.innerHTML='⏳';}if(VK._k){try{const r=await fetch(VK.W,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t,api_key:VK._k,voice_id:'pqHfZKP75CvOlQylNhV4'})});if(r.ok){const blob=await r.blob(),audio=new Audio(URL.createObjectURL(blob));if(btn){btn.disabled=false;btn.innerHTML='⏹';const sp=()=>{btn.innerHTML='🔊';btn.onclick=()=>speak(text,btn);};btn.onclick=()=>{audio.pause();sp();};audio.onended=sp;}audio.play();return;}}catch(e){}}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);const arV=speechSynthesis.getVoices().find(v=>v.lang.startsWith('ar'));if(arV)u.voice=arV;u.lang=curL==='ar'?'ar-SA':'en-US';u.rate=.9;if(btn){btn.disabled=false;btn.innerHTML='⏹';btn.onclick=()=>{speechSynthesis.cancel();btn.innerHTML='🔊';btn.onclick=()=>speak(text,btn);};}u.onend=()=>{if(btn){btn.innerHTML='🔊';btn.onclick=()=>speak(text,btn);}};speechSynthesis.speak(u);}
-let _rec=null,_ir=false;
-function mic(ii,bi){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR)return alert('استخدم Chrome.');if(_ir){if(_rec)_rec.stop();return;}const r=new SR();r.lang=curL==='ar'?'ar-SA':'en-US';r.continuous=false;r.interimResults=true;_rec=r;_ir=true;const btn=document.getElementById(bi),inp=document.getElementById(ii);if(btn){btn.classList.add('rc');btn.textContent='⏹';}r.onresult=e=>{const t=Array.from(e.results).map(r=>r[0].transcript).join('');if(inp)inp.value=t;};r.onend=()=>{_ir=false;_rec=null;if(btn){btn.classList.remove('rc');btn.textContent='🎤';}};r.onerror=e=>{_ir=false;if(btn){btn.classList.remove('rc');btn.textContent='🎤';}if(e.error==='not-allowed')alert('اسمح بالميكروفون.');};r.start();}
-async function sc(o){const inp=document.getElementById(o.i);const txt=inp?.value?.trim();if(!txt)return;inp.value='';addM(o.b,'u',txt);const btn=document.getElementById(o.btn);if(btn){btn.disabled=true;btn.innerHTML='<span class="ldr"></span>';}o.h.push({role:'user',content:txt});const rep=await SNYX.ask(o.h,o.sys||'',o.max||1000);o.h.push({role:'assistant',content:rep});addM(o.b,'a',rep);if(btn){btn.disabled=false;btn.textContent='إرسال';}}
-function bE(id,fn){document.getElementById(id)?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();fn();}});}
-function addM(bId,role,text){const body=document.getElementById(bId);if(!body)return;const d=document.createElement('div');if(role==='a'){d.style.cssText='display:flex;flex-direction:column;align-self:flex-start;max-width:88%;gap:.25rem';const msg=document.createElement('div');msg.className='ma';msg.innerHTML=text.replace(/\n/g,'<br>');const spk=document.createElement('button');spk.className='spk';spk.innerHTML='🔊';spk.onclick=function(){speak(msg.textContent,this);};d.appendChild(msg);d.appendChild(spk);}else{d.className='mu';d.textContent=text;}body.appendChild(d);body.scrollTop=body.scrollHeight;}
-let curT=localStorage.getItem('snyx_t')||'dark';
-const TI={dark:'🌙',lt:'☀️',gd:'👑'};
-function setTheme(t){document.body.classList.remove('lt','gd');if(t==='lt')document.body.classList.add('lt');if(t==='gd')document.body.classList.add('gd');curT=t;localStorage.setItem('snyx_t',t);document.querySelectorAll('.to').forEach(o=>o.classList.toggle('on',o.dataset.t===t));const btn=document.getElementById('tBtn');if(btn)btn.textContent=TI[t]||'🎨';const td=document.getElementById('tDrop');if(td)td.classList.remove('on');}
-function toggleTD(e){e.stopPropagation();const d=document.getElementById('tDrop');if(!d)return;const rect=document.getElementById('tBtn').getBoundingClientRect();d.style.right=(window.innerWidth-rect.right)+'px';d.classList.toggle('on');if(d.classList.contains('on')){setTimeout(()=>document.addEventListener('click',function cl(ev){if(!d.contains(ev.target)&&ev.target.id!=='tBtn'){d.classList.remove('on');document.removeEventListener('click',cl);}}),50);}}
-let curL=localStorage.getItem('snyx_l')||'ar';
-const NL={'index.html':{ar:'الرئيسية',en:'Home'},'ipccore.html':{ar:'نواة IP',en:'IP Core'},'market.html':{ar:'السوق',en:'Market'},'ai-platform.html':{ar:'منصة AI',en:'AI Platform'},'dashboards.html':{ar:'لوحات التحكم',en:'Dashboards'},'governance.html':{ar:'الحوكمة',en:'Governance'},'community.html':{ar:'المجتمع',en:'Community'},'investor.html':{ar:'المستثمرون',en:'Investors'},'news.html':{ar:'الأخبار',en:'News'}};
-function toggleL(){curL=curL==='ar'?'en':'ar';localStorage.setItem('snyx_l',curL);applyL();}
-function applyL(){const isAR=curL==='ar';document.documentElement.lang=curL;document.body.dir=isAR?'rtl':'ltr';const lb=document.getElementById('lBtn');if(lb)lb.textContent=isAR?'EN':'ع';document.querySelectorAll('[data-ar]').forEach(el=>{if(isAR&&el.dataset.ar)el.textContent=el.dataset.ar;else if(!isAR&&el.dataset.en)el.textContent=el.dataset.en;});document.querySelectorAll('.nav-links a[href]').forEach(a=>{const href=a.getAttribute('href');if(NL[href])a.textContent=NL[href][curL]||a.textContent;});}
-function openM(id){const el=document.getElementById('m-'+id);if(el){el.classList.add('on');el.addEventListener('click',e=>{if(e.target===el)closeM(id);});}}
-function closeM(id){document.getElementById('m-'+id)?.classList.remove('on');}
-document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.mo.on').forEach(m=>m.classList.remove('on'));});
 
-function initStars(){
-const c=document.getElementById(‘sc’);
-if(!c)return;
-c.style.cssText=‘position:fixed;inset:0;z-index:2;pointer-events:none’;
-const ctx=c.getContext(‘2d’);
-let W,H,S=[];
-const resize=()=>{W=c.width=innerWidth;H=c.height=innerHeight;};
-const mk=()=>{S=Array.from({length:320},()=>({
-x:Math.random()*W, y:Math.random()*H,
-r:Math.random()*1.6+0.3,
-a:Math.random(), da:(Math.random()-0.5)*0.012,
-vx:(Math.random()-0.5)*0.08, vy:(Math.random()-0.5)*0.04,
-hue:Math.random()<0.85?48:Math.random()*30+30
-}));};
-const draw=()=>{
-ctx.clearRect(0,0,W,H);
-S.forEach(s=>{
-s.a+=s.da; if(s.a>1||s.a<0)s.da=-s.da;
-s.x=(s.x+s.vx+W)%W; s.y=(s.y+s.vy+H)%H;
-const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,s.r*2.5);
-g.addColorStop(0,`hsla(${s.hue},90%,85%,${s.a})`);
-g.addColorStop(1,`hsla(${s.hue},80%,70%,0)`);
-ctx.beginPath(); ctx.arc(s.x,s.y,s.r*2.5,0,Math.PI*2);
-ctx.fillStyle=g; ctx.fill();
-});
-requestAnimationFrame(draw);
+<!-- FOOTER -->
+
+<footer class="snyx-footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand">SENYX</div>
+      <p class="footer-sub" data-ar="مدينة الابتكار العالمية الذكية — المدينة المنورة، المملكة العربية السعودية." data-en="Sovereign Innovation City — Al-Madinah Al-Munawarah, Saudi Arabia.">مدينة الابتكار العالمية الذكية — المدينة المنورة، المملكة العربية السعودية.</p>
+      <div style="display:flex;gap:.4rem;flex-wrap:wrap">
+        <span class="badge badge-gold">VISION 2030</span>
+        <span class="badge badge-gold">AI SOVEREIGN</span>
+        <span class="badge badge-green">ZKP CERTIFIED</span>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title" data-ar="المنصات" data-en="PLATFORMS">المنصات</div>
+      <ul class="footer-links">
+        <li><a href="ipccore.html" data-ar="نواة الملكية الفكرية" data-en="IP Core">نواة الملكية الفكرية</a></li>
+        <li><a href="market.html" data-ar="السوق السيادي" data-en="Sovereign Market">السوق السيادي</a></li>
+        <li><a href="ai-platform.html" data-ar="منصة AI" data-en="AI Platform">منصة AI</a></li>
+        <li><a href="governance.html" data-ar="الحوكمة" data-en="Governance">الحوكمة</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title" data-ar="المجتمع" data-en="COMMUNITY">المجتمع</div>
+      <ul class="footer-links">
+        <li><a href="community.html" data-ar="نادي VIP" data-en="VIP Club">نادي VIP</a></li>
+        <li><a href="dashboards.html" data-ar="لوحات التحكم" data-en="Dashboards">لوحات التحكم</a></li>
+        <li><a href="news.html" data-ar="الأخبار" data-en="News">الأخبار</a></li>
+        <li><a href="investor.html" data-ar="المستثمرون" data-en="Investors">المستثمرون</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title" data-ar="تواصل" data-en="CONTACT">تواصل</div>
+      <ul class="footer-links">
+        <li><a href="mailto:info@senyx.com">info@senyx.com</a></li>
+        <li><span style="color:var(--silver)">+966540040405</span></li>
+        <li><a href="https://senyx.com">www.senyx.com</a></li>
+        <li><span style="color:var(--silver)" data-ar="المدينة المنورة، KSA" data-en="Al-Madinah, KSA">المدينة المنورة، KSA</span></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span data-ar="© 2026 SENYX — جميع الحقوق محفوظة" data-en="© 2026 SENYX — All Rights Reserved">© 2026 SENYX — جميع الحقوق محفوظة</span>
+    <span data-ar="المدينة المنورة | المملكة العربية السعودية | VISION 2030" data-en="Al-Madinah | Saudi Arabia | VISION 2030">المدينة المنورة | المملكة العربية السعودية | VISION 2030</span>
+  </div>
+</footer>
+
+</div><!-- end page-wrap -->
+
+<!-- MODALS -->
+
+<div class="modal-overlay" id="modal-api">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('api')">✕</button>
+    <div class="modal-title" data-ar="🔑 مفتاح Anthropic API" data-en="🔑 Anthropic API Key">🔑 مفتاح Anthropic API</div>
+    <div id="apiStatus" style="font-size:.78rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)">—</div>
+    <div class="form-group">
+      <label class="form-label" data-ar="المفتاح (يبدأ بـ sk-ant-)" data-en="Key (starts with sk-ant-)">المفتاح (يبدأ بـ sk-ant-)</label>
+      <input class="form-input" id="apiInput" type="password" placeholder="sk-ant-api03-...">
+    </div>
+    <div style="display:flex;gap:.7rem">
+      <button class="btn-p" style="flex:1" onclick="saveApiKey()" data-ar="✅ حفظ وتفعيل" data-en="✅ Save & Activate">✅ حفظ وتفعيل</button>
+      <button class="btn-o" onclick="clearApiKey()" data-ar="🗑 حذف" data-en="🗑 Delete">🗑 حذف</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-voice">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal('voice')">✕</button>
+    <div class="modal-title" data-ar="🔊 مفتاح ElevenLabs — الأصوات البشرية" data-en="🔊 ElevenLabs — Human Voice">🔊 مفتاح ElevenLabs — الأصوات البشرية</div>
+    <div id="voiceStatus" style="font-size:.78rem;margin-bottom:1rem;padding:.7rem;background:rgba(255,255,255,.03);border-radius:var(--r);border:1px solid var(--border)">—</div>
+    <p style="font-size:.78rem;color:var(--silver);line-height:1.9;margin-bottom:1rem" data-ar="أدخل مفتاح ElevenLabs للأصوات البشرية الطبيعية. احصل عليه مجاناً من elevenlabs.io" data-en="Enter ElevenLabs key for natural human voices. Get it free from elevenlabs.io">أدخل مفتاح ElevenLabs للأصوات البشرية الطبيعية. احصل عليه مجاناً من <a href="https://elevenlabs.io" target="_blank" style="color:var(--gold3)">elevenlabs.io</a></p>
+    <div class="form-group">
+      <label class="form-label" data-ar="المفتاح (يبدأ بـ sk_)" data-en="Key (starts with sk_)">المفتاح (يبدأ بـ sk_)</label>
+      <input class="form-input" id="voiceInput" type="password" placeholder="sk_...">
+    </div>
+    <div style="display:flex;gap:.7rem">
+      <button class="btn-p" style="flex:1" onclick="saveVoiceKey()" data-ar="✅ حفظ وتفعيل الصوت" data-en="✅ Save & Activate Voice">✅ حفظ وتفعيل الصوت</button>
+      <button class="btn-o" onclick="clearVoiceKey()" data-ar="🗑 حذف" data-en="🗑 Delete">🗑 حذف</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-login">
+  <div class="modal-box" style="max-width:460px">
+    <button class="modal-close" onclick="closeModal('login')">✕</button>
+    <div class="modal-title" id="loginTitle">دخول إلى SENYX</div>
+
+```
+<!-- Tabs -->
+<div style="display:flex;gap:0;margin-bottom:1.5rem;border:1px solid var(--border);border-radius:var(--r);overflow:hidden">
+  <button id="tabLogin" onclick="switchAuthTab('login')" style="flex:1;padding:.5rem;background:rgba(184,146,42,.15);color:var(--gold2);border:none;font-family:inherit;font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s" data-ar="تسجيل الدخول" data-en="Login">تسجيل الدخول</button>
+  <button id="tabRegister" onclick="switchAuthTab('register')" style="flex:1;padding:.5rem;background:transparent;color:var(--silver);border:none;font-family:inherit;font-size:.8rem;cursor:pointer;transition:all .2s" data-ar="حساب جديد" data-en="Register">حساب جديد</button>
+</div>
+
+<!-- Login Form -->
+<div id="formLogin">
+  <div class="form-group">
+    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+    <input class="form-input" type="email" placeholder="innovator@senyx.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+    <input class="form-input" type="password" placeholder="••••••••">
+  </div>
+  <div style="display:flex;justify-content:flex-end;margin-bottom:1rem">
+    <a href="#" style="font-size:.75rem;color:var(--gold2)" data-ar="نسيت كلمة المرور؟" data-en="Forgot password?">نسيت كلمة المرور؟</a>
+  </div>
+  <button class="btn-p" style="width:100%;padding:.75rem;font-size:.88rem" onclick="alert('قيد التطوير — قريباً!')" data-ar="دخول" data-en="Login">دخول</button>
+  <div style="text-align:center;margin-top:1rem;font-size:.78rem;color:var(--silver)">
+    <span data-ar="ليس لديك حساب؟" data-en="Don't have an account?">ليس لديك حساب؟</span>
+    <a href="#" onclick="switchAuthTab('register')" style="color:var(--gold2);margin-right:.3rem" data-ar="سجّل مجاناً" data-en="Register free">سجّل مجاناً</a>
+  </div>
+</div>
+
+<!-- Register Form -->
+<div id="formRegister" style="display:none">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:.8rem">
+    <div class="form-group">
+      <label class="form-label" data-ar="الاسم الأول" data-en="First Name">الاسم الأول</label>
+      <input class="form-input" type="text" placeholder="ياسر">
+    </div>
+    <div class="form-group">
+      <label class="form-label" data-ar="اسم العائلة" data-en="Last Name">اسم العائلة</label>
+      <input class="form-input" type="text" placeholder="المجثوي">
+    </div>
+  </div>
+  <div class="form-group">
+    <label class="form-label" data-ar="البريد الإلكتروني" data-en="Email">البريد الإلكتروني</label>
+    <input class="form-input" type="email" placeholder="innovator@senyx.com">
+  </div>
+  <div class="form-group">
+    <label class="form-label" data-ar="كلمة المرور" data-en="Password">كلمة المرور</label>
+    <input class="form-input" type="password" placeholder="••••••••">
+  </div>
+  <div class="form-group">
+    <label class="form-label" data-ar="نوع الحساب" data-en="Account Type">نوع الحساب</label>
+    <select class="form-input" style="cursor:pointer">
+      <option data-ar="مبتكر" data-en="Innovator">مبتكر</option>
+      <option data-ar="مستثمر" data-en="Investor">مستثمر</option>
+      <option data-ar="محامي ملكية فكرية" data-en="IP Lawyer">محامي ملكية فكرية</option>
+      <option data-ar="مطور" data-en="Developer">مطور</option>
+    </select>
+  </div>
+  <button class="btn-p" style="width:100%;padding:.75rem;font-size:.88rem" onclick="alert('قيد التطوير — قريباً!')" data-ar="إنشاء حساب مجاني" data-en="Create Free Account">إنشاء حساب مجاني</button>
+  <div style="text-align:center;margin-top:1rem;font-size:.78rem;color:var(--silver)">
+    <span data-ar="لديك حساب؟" data-en="Have an account?">لديك حساب؟</span>
+    <a href="#" onclick="switchAuthTab('login')" style="color:var(--gold2);margin-right:.3rem" data-ar="سجّل دخولك" data-en="Login">سجّل دخولك</a>
+  </div>
+</div>
+```
+
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════
+// SENYX CORE — API + Voice + Theme + Lang + Stars
+// ══════════════════════════════════════════════
+
+// ── API KEY ──
+const SNYX = {
+  _key: localStorage.getItem('snyx_k') || '',
+  get key(){ return this._key },
+  set key(v){ this._key=v.trim(); v?localStorage.setItem('snyx_k',v):localStorage.removeItem('snyx_k'); this._ui(); },
+  _ui(){
+    const s=document.getElementById('apiStatus');
+    const b=document.getElementById('apiBtnNav');
+    if(s) s.innerHTML = this._key
+      ? `<span style="color:var(--green)">✅ مفتاح نشط ...${this._key.slice(-6)}</span>`
+      : `<span style="color:var(--gold2)">⚠️ أدخل مفتاح API</span>`;
+    if(b) b.style.borderColor = this._key ? 'rgba(34,170,102,.5)' : '';
+  },
+  async ask(msgs, sys='', opts={}){
+    if(!this._key){ openModal('api'); return '⚠️ أدخل مفتاح API أولاً.'; }
+    try {
+      const r = await fetch('https://api.anthropic.com/v1/messages',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','x-api-key':this._key,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+        body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:opts.max||1000,messages:msgs,...(sys&&{system:sys})})
+      });
+      if(!r.ok){const e=await r.json().catch(()=>({}));if(r.status===401){openModal('api');return'❌ مفتاح غير صحيح.'}return`❌ خطأ ${r.status}`;}
+      const d=await r.json(); return d.content?.[0]?.text||'لا توجد استجابة.';
+    } catch(e){ return '❌ تعذّر الاتصال.'; }
+  }
 };
-resize(); mk(); draw();
-window.addEventListener(‘resize’,()=>{resize();mk();});
+
+function saveApiKey(){
+  const v=document.getElementById('apiInput').value.trim();
+  if(!v){alert('أدخل المفتاح!');return;}
+  if(!v.startsWith('sk-ant-')){alert('⚠️ المفتاح يبدأ بـ sk-ant-');return;}
+  SNYX.key=v; document.getElementById('apiInput').value=''; closeModal('api');
+  alert('✅ تم تفعيل API!');
+}
+function clearApiKey(){ if(confirm('حذف المفتاح؟')) SNYX.key=''; }
+
+// ── VOICE KEY ──
+const VOICE_KEY = { _k: localStorage.getItem('snyx_el')||'' };
+function saveVoiceKey(){
+  const v=document.getElementById('voiceInput').value.trim();
+  if(!v){alert('أدخل المفتاح!');return;}
+  VOICE_KEY._k=v; localStorage.setItem('snyx_el',v);
+  document.getElementById('voiceInput').value='';
+  const s=document.getElementById('voiceStatus');
+  if(s) s.innerHTML='<span style="color:var(--green)">✅ ElevenLabs نشط — الأصوات البشرية مفعّلة</span>';
+  closeModal('voice'); alert('✅ تم تفعيل الأصوات البشرية!');
+}
+function clearVoiceKey(){ if(confirm('حذف مفتاح الصوت؟')){VOICE_KEY._k='';localStorage.removeItem('snyx_el');} }
+
+// ── VOICE SYSTEM ──
+let _rec=null, _isRec=false;
+async function speakText(text){
+  const clean=text.replace(/<[^>]*>/g,'').trim().slice(0,2000);
+  if(!clean) return;
+  if(VOICE_KEY._k){
+    try{
+      const r=await fetch('https://api.elevenlabs.io/v1/text-to-speech/pqHfZKP75CvOlQylNhV4',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','xi-api-key':VOICE_KEY._k},
+        body:JSON.stringify({text:clean,model_id:'eleven_multilingual_v2',voice_settings:{stability:.6,similarity_boost:.85}})
+      });
+      if(r.ok){const blob=await r.blob();new Audio(URL.createObjectURL(blob)).play();return;}
+    }catch(e){}
+  }
+  // Fallback browser TTS
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(clean);
+  const arV=speechSynthesis.getVoices().find(v=>v.lang.startsWith('ar'));
+  if(arV) u.voice=arV;
+  u.lang=currentLang==='ar'?'ar-SA':'en-US'; u.rate=0.9;
+  speechSynthesis.speak(u);
 }
 
-function initCursor(){const cr=document.getElementById(‘cr’),rg=document.getElementById(‘rg’);if(!cr||!rg)return;let mx=0,my=0,rx=0,ry=0;document.addEventListener(‘mousemove’,e=>{mx=e.clientX;my=e.clientY;cr.style.left=mx+‘px’;cr.style.top=my+‘px’;});(function a(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;rg.style.left=rx+‘px’;rg.style.top=ry+‘px’;requestAnimationFrame(a);})();}
-function initReveal(){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add(‘vis’);o.unobserve(e.target);}},{threshold:.08}));document.querySelectorAll(’.reveal’).forEach(el=>o.observe(el));}
-function initCounters(){const o=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const el=e.target,tg=+el.dataset.n,pr=el.dataset.pre||’’,sf=el.dataset.suf||’’;let st=null;(function t(ts){if(!st)st=ts;const p=Math.min((ts-st)/1800,1),ease=1-Math.pow(1-p,3);el.textContent=pr+Math.round(ease*tg).toLocaleString()+sf;if(p<1)requestAnimationFrame(t);})();o.unobserve(el);}},{threshold:.3}));document.querySelectorAll(’[data-n]’).forEach(el=>o.observe(el));}
-function authTab(t){const il=t===‘l’;document.getElementById(‘fL’).style.display=il?‘block’:‘none’;document.getElementById(‘fR’).style.display=il?‘none’:‘block’;const tl=document.getElementById(‘tL’),tr=document.getElementById(‘tR’);if(tl){tl.style.background=il?‘rgba(184,146,42,.15)’:‘transparent’;tl.style.color=il?‘var(–g2)’:‘var(–sv)’;tl.style.fontWeight=il?‘700’:‘400’;}if(tr){tr.style.background=il?‘transparent’:‘rgba(184,146,42,.15)’;tr.style.color=il?‘var(–sv)’:‘var(–g2)’;tr.style.fontWeight=il?‘400’:‘700’;}}
-function buildTicker(items){const inner=document.getElementById(‘tki’);if(!inner)return;const html=items.map(i=>`<span class="ticker-item">${i}</span>`).join(’’);inner.innerHTML=html+html;}
-document.addEventListener(‘DOMContentLoaded’,()=>{initStars();initCursor();initReveal();initCounters();applyL();setTheme(curT||‘dark’);SNYX._ui();const vs=document.getElementById(‘vSt’);if(vs)vs.innerHTML=VK._k?’<span style="color:#22a866">✅ ElevenLabs + Worker نشط</span>’:’<span style="color:var(--g2)">⚠️ أدخل مفتاح ElevenLabs</span>’;if(!SNYX.key)setTimeout(()=>openM(‘api’),1800);speechSynthesis.getVoices();});
-if(‘serviceWorker’ in navigator)window.addEventListener(‘load’,()=>navigator.serviceWorker.register(’/sw.js’).catch(()=>{}));
-buildTicker([‘⬡ IP CORE — فحص 135M+ براءة اختراع دولية فورياً’,‘◆ $SNYX +12.4% — حجم التداول: 2.4M اليوم’,‘⬟ درع الفطرة — 23 ابتكار محمي اليوم بدقة 100%’,‘◈ ZKP CERTIFIED — شهادة بلوكتشين لكل ابتكار’,‘◇ 6 مكاتب: المدينة المنورة · دبي · واشنطن · ميونخ · بكين · جنيف’,‘✦ محرك FD — 99% كشف احتيال وسرقة فكرية’]);</script></body></html>
+function startMic(inputId, btnId){
+  const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){alert('استخدم Chrome للتعرف الصوتي.');return;}
+  if(_isRec){if(_rec)_rec.stop();return;}
+  const rec=new SR();
+  rec.lang=currentLang==='ar'?'ar-SA':'en-US';
+  rec.continuous=false; rec.interimResults=true;
+  _rec=rec; _isRec=true;
+  const btn=document.getElementById(btnId);
+  const inp=document.getElementById(inputId);
+  if(btn){btn.style.background='var(--red)';btn.textContent='⏹';}
+  rec.onresult=e=>{const t=Array.from(e.results).map(r=>r[0].transcript).join('');if(inp)inp.value=t;};
+  rec.onend=()=>{_isRec=false;_rec=null;if(btn){btn.style.background='';btn.textContent='🎤';}};
+  rec.onerror=e=>{_isRec=false;if(btn){btn.style.background='';btn.textContent='🎤';}if(e.error==='not-allowed')alert('اسمح بالميكروفون في المتصفح.');};
+  rec.start();
+}
+
+// ── THEME ──
+let currentTheme = localStorage.getItem('snyx_theme') || 'dark';
+const THEME_ICONS = {dark:'🌙', light:'☀️', gold:'👑'};
+
+function setTheme(t) {
+  document.body.classList.remove('theme-light','theme-gold');
+  if(t==='light') document.body.classList.add('theme-light');
+  if(t==='gold')  document.body.classList.add('theme-gold');
+  currentTheme=t;
+  localStorage.setItem('snyx_theme',t);
+  document.querySelectorAll('.theme-opt').forEach(o=>o.classList.toggle('active',o.dataset.theme===t));
+  const icons={dark:'🌙',light:'☀️',gold:'👑'};
+  const btn=document.getElementById('themeBtn');
+  if(btn) btn.textContent=icons[t]||'🎨';
+  const drop=document.getElementById('themeDrop');
+  if(drop) drop.classList.remove('open');
+}
+
+function toggleThemeDrop(e) {
+  e.stopPropagation();
+  const d = document.getElementById('themeDrop');
+  if(!d) return;
+  const rect = document.getElementById('themeBtn').getBoundingClientRect();
+  d.style.right = (window.innerWidth - rect.right) + 'px';
+  d.classList.toggle('open');
+  if(d.classList.contains('open')) {
+    setTimeout(()=>{
+      document.addEventListener('click', function close(ev) {
+        if(!d.contains(ev.target) && ev.target.id !== 'themeBtn') {
+          d.classList.remove('open');
+          document.removeEventListener('click', close);
+        }
+      });
+    }, 50);
+  }
+}
+
+// ── LANGUAGE ──
+let currentLang=localStorage.getItem('snyx_lang')||'ar';
+function toggleLang(){
+  currentLang=currentLang==='ar'?'en':'ar';
+  localStorage.setItem('snyx_lang',currentLang);
+  applyLang();
+}
+function applyLang(){
+  const isAR=currentLang==='ar';
+  document.documentElement.lang=currentLang;
+  document.body.dir=isAR?'rtl':'ltr';
+  const btn=document.getElementById('langBtn');
+  if(btn) btn.textContent=isAR?'EN':'ع';
+  document.querySelectorAll('[data-ar]').forEach(el=>{
+    if(isAR && el.dataset.ar) el.textContent=el.dataset.ar;
+    else if(!isAR && el.dataset.en) el.textContent=el.dataset.en;
+  });
+}
+
+// ── MODALS ──
+function openModal(id){
+  const el=document.getElementById('modal-'+id);
+  if(el){el.classList.add('open');el.addEventListener('click',e=>{if(e.target===el)closeModal(id);});}
+}
+function closeModal(id){document.getElementById('modal-'+id)?.classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));});
+
+// ── STARS ──
+function initStars(){
+  const c=document.getElementById('starsCanvas');
+  if(!c) return;
+  const ctx=c.getContext('2d');
+  let W,H,stars=[];
+  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
+  function mk(){stars=Array.from({length:280},()=>({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.2,a:Math.random(),da:(Math.random()-.5)*.008,vx:(Math.random()-.5)*.06,vy:(Math.random()-.5)*.03}));}
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    stars.forEach(s=>{s.a+=s.da;if(s.a>1||s.a<0)s.da=-s.da;s.x=(s.x+s.vx+W)%W;s.y=(s.y+s.vy+H)%H;ctx.beginPath();ctx.arc(s.x,s.y,s.r,0,Math.PI*2);ctx.fillStyle=`rgba(253,224,104,${s.a*.7})`;ctx.fill();});
+    requestAnimationFrame(draw);
+  }
+  resize();mk();draw();
+  window.addEventListener('resize',()=>{resize();mk();});
+}
+
+// ── CURSOR ──
+function initCursor(){
+  const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+  if(!cur||!ring) return;
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.cssText=`left:${mx}px;top:${my}px;position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen`;});
+  (function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.cssText=`left:${rx}px;top:${ry}px;position:fixed;width:32px;height:32px;border:1px solid rgba(184,146,42,.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)`;requestAnimationFrame(animRing);})();
+}
+
+// ── REVEAL ──
+function initReveal(){
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}}),{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+}
+
+// ── COUNTERS ──
+function animCount(el,target,dur=1800,pre='',suf=''){
+  let st=null;
+  (function step(ts){if(!st)st=ts;const p=Math.min((ts-st)/dur,1),ease=1-Math.pow(1-p,3);el.textContent=pre+Math.round(ease*target).toLocaleString()+suf;if(p<1)requestAnimationFrame(step);})();
+}
+function initCounters(){
+  const obs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){const el=e.target;animCount(el,+el.dataset.target,1800,el.dataset.prefix||'',el.dataset.suffix||'');obs.unobserve(el);}}),{threshold:.3});
+  document.querySelectorAll('[data-target]').forEach(el=>obs.observe(el));
+}
+
+// ── TICKER ──
+function buildTicker(items){
+  const inner=document.getElementById('tickerInner');
+  if(!inner) return;
+  const html=items.map(i=>`<span class="ticker-item">${i}</span>`).join('');
+  inner.innerHTML=html+html;
+}
+
+
+function switchAuthTab(tab) {
+  const isLogin = tab === 'login';
+  document.getElementById('formLogin').style.display = isLogin ? 'block' : 'none';
+  document.getElementById('formRegister').style.display = isLogin ? 'none' : 'block';
+  const tl = document.getElementById('tabLogin');
+  const tr = document.getElementById('tabRegister');
+  if(tl){ tl.style.background = isLogin ? 'rgba(184,146,42,.15)' : 'transparent'; tl.style.color = isLogin ? 'var(--gold2)' : 'var(--silver)'; tl.style.fontWeight = isLogin ? '700' : '400'; }
+  if(tr){ tr.style.background = isLogin ? 'transparent' : 'rgba(184,146,42,.15)'; tr.style.color = isLogin ? 'var(--silver)' : 'var(--gold2)'; tr.style.fontWeight = isLogin ? '400' : '700'; }
+  const title = document.getElementById('loginTitle');
+  if(title) title.textContent = isLogin ? (currentLang==='ar'?'دخول إلى SENYX':'Login to SENYX') : (currentLang==='ar'?'إنشاء حساب جديد':'Create New Account');
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  initStars();
+  initCursor();
+  initReveal();
+  initCounters();
+  applyLang();
+  setTheme(currentTheme || 'dark');
+  SNYX._ui();
+  // Update voice status
+  const vs=document.getElementById('voiceStatus');
+  if(vs && VOICE_KEY._k) vs.innerHTML='<span style="color:var(--green)">✅ ElevenLabs نشط</span>';
+  else if(vs) vs.innerHTML='<span style="color:var(--gold2)">⚠️ أدخل مفتاح ElevenLabs</span>';
+  // Show API modal if no key
+  if(!SNYX.key) setTimeout(()=>openModal('api'),1800);
+  // Load TTS voices
+  speechSynthesis.getVoices();
+  if(speechSynthesis.onvoiceschanged!==undefined) speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices();
+  // Ticker
+  buildTicker([
+    '⬡ IP CORE — فحص 135M+ براءة اختراع',
+    '◈ $SNYX +12.4% — حجم التداول: 2.4M',
+    '◆ محرك SNA — دقة 97%',
+    '⬟ درع الفطرة — 23 ابتكار محمي اليوم',
+    '◇ مزاد نشط: براءة الطاقة الشمسية',
+    '✦ محرك FSE — دقة 100% كشف احتيالي',
+  ]);
+});
+
+// PWA
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));
+}
+</script>
+
+</body>
+</html>
